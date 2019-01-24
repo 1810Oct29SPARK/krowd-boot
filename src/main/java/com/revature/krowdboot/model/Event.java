@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.OnDelete;
@@ -66,8 +67,7 @@ public class Event implements Serializable {
 	@NotNull
 	private String address;
 	
-	@Column
-	@NotNull
+	@Transient
 	private int score;
 	
 	@Column

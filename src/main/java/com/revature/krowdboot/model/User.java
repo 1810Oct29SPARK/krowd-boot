@@ -62,6 +62,9 @@ public class User implements Serializable {
 	private String username;
 	
 	@Column
+	private String cognito;
+	
+	@Column
 	private String picture;
 	
 	@Column

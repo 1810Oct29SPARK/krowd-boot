@@ -43,6 +43,9 @@ public class Admin implements Serializable {
 	private String username;
 	
 	@Column
+	private String cognito;
+	
+	@Column
 	@NotNull
 	private String email;
 	
