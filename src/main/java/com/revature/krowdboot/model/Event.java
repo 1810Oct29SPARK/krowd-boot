@@ -74,8 +74,9 @@ public class Event implements Serializable {
 	@NotNull
 	private int flag;
 	
-	@Column
-	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "user_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User userId;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
