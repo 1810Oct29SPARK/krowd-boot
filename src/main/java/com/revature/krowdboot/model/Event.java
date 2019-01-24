@@ -25,7 +25,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "event")
 public class Event implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -36,7 +36,7 @@ public class Event implements Serializable {
 	}
 
 	public Event(int id, @NotNull String name, String picture, @NotNull String date, @NotNull String address,
-			@NotNull int score, @NotNull int flag, EventCategory categoryId) {
+			@NotNull int score, @NotNull int flag, EventCategory categoryId, User userId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -46,48 +46,47 @@ public class Event implements Serializable {
 		this.score = score;
 		this.flag = flag;
 		this.categoryId = categoryId;
+		this.userId = userId;
+		// might need to rerefence user table with this
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column
 	@NotNull
 	private String name;
-	
+
 	@Column
 	private String picture;
-	
+
 	@Column
 	@NotNull
 	private String date;
-	
+
 	@Column
 	@NotNull
 	private String address;
-	
+
 	@Transient
 	private int score;
-	
+
 	@Column
 	@NotNull
 	private int flag;
-	
-	@Column
-	@NotNull
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "user_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User userId;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "event_category_id")
-	@OnDelete (action = OnDeleteAction.CASCADE)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private EventCategory categoryId;
-	
-	@OneToMany(
-	        mappedBy = "event",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
+
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<UserEvent> users = new ArrayList<>();
 
 	public int getId() {
@@ -152,6 +151,14 @@ public class Event implements Serializable {
 
 	public void setCategoryId(EventCategory categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public User getUserId() {
+		return userId;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
 	}
 
 	@Override

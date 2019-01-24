@@ -12,9 +12,9 @@ import com.revature.krowdboot.model.User;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {
 	
-	public List<Event> allEvents();
-	public void addEvent(Event e);
-	public void updateEvent(Event e);
+	public List<Event> findAll();
+	//public void updateEvent(Event e);
+	//public void addEvent(Event e);
 	public void deleteEventById(int id);
 	public Event getEventById(int id);
 	public List<Event> getEventByCategoryId(EventCategory ec);
