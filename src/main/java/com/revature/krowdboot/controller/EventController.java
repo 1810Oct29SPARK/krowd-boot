@@ -32,8 +32,8 @@ public class EventController {
 	@PostMapping("/add")
 	public void addEvent(@RequestBody int id, String name, String picture, String description, String date, String address, int score, int flag, int categoryId, int userId ){
 		EventCategory ec=ecs.getCategoryById(categoryId);
-		Event event=
-		es.addEvent(event);
+		//Event event=
+		//es.addEvent(event);
 	}
 	
 	@DeleteMapping("/delete")

@@ -60,6 +60,10 @@ public class Event implements Serializable {
 	private String name;
 
 	@Column
+	@NotNull
+	private String description;
+	
+	@Column
 	private String picture;
 
 	@Column
@@ -80,6 +84,11 @@ public class Event implements Serializable {
 	@Column
 	@NotNull
 	private String description;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "user_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private User userId;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id")
