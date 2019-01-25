@@ -22,14 +22,8 @@ public class UserService {
 	public List<User> findAllUsers() {
 		return userRepository.findAll();
 	}
+
 	
-	public void addUser(User user) {
-		 userRepository.addUser(user);
-	}
-	
-	public void updateUserById (User user, int id) {
-		userRepository.updateUserById(user, id);
-	}
 	
 	public void deleteUserById(int id) {
 		userRepository.deleteUserById(id);	}
