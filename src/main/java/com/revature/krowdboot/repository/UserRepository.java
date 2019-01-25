@@ -12,8 +12,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public User getUserByAccountStatus(int status);
 	public List<User> findAll();
-	public void addUser(User user);
-	public void updateUserById(User user, int id);
+	
+
 	public void deleteUserById(int id);
 	public User getUserById(int id);
 	public User findByUsername(String username);
