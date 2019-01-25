@@ -42,9 +42,9 @@ public class EventService {
 		return e;
 	}
 	
-	public List<Event>getEventByEventCategory(EventCategory ec){
+	public List<Event>getEventByEventCategory(int id){
 		List<Event> e=new ArrayList<>();
-		eventRepository.getEventByCategoryId(ec);
+		eventRepository.getEventByCategoryId(id);
 		return e;
 	}
 	
