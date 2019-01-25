@@ -36,7 +36,7 @@ public class Event implements Serializable {
 	}
 
 	public Event(int id, @NotNull String name, String picture, @NotNull String date, @NotNull String address,
-			@NotNull int score, @NotNull int flag, EventCategory categoryId, User userId) {
+			@NotNull int score, @NotNull int flag, @NotNull EventCategory categoryId, @NotNull User userId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -75,6 +75,10 @@ public class Event implements Serializable {
 	@Column
 	@NotNull
 	private int flag;
+	
+	@Column
+	@NotNull
+	private String description;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id")
@@ -88,6 +92,10 @@ public class Event implements Serializable {
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<UserEvent> users = new ArrayList<>();
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "address_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 
 	public int getId() {
 		return id;
@@ -169,7 +177,7 @@ public class Event implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, categoryId, date, flag, id, name, picture, score);
+		return Objects.hash(address, categoryId, date, flag, id, name, picture, score, flag);
 	}
 
 	@Override
