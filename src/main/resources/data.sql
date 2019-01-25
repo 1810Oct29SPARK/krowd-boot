@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 INSERT INTO EVENT_CATEGORY VALUES (1, 'Sports');
 INSERT INTO EVENT_CATEGORY VALUES (2, 'METEOROLOGY');
 INSERT INTO EVENT_CATEGORY VALUES (3, 'LITERATURE');
@@ -7,4 +8,7 @@ Insert into USER (id,email,firstname,lastname,username,picture,reputation,accoun
 Insert into USER (id,email,firstname,lastname,username,picture,reputation,account_status) values (3,'what','Ed','Soma','Punk',null,2,1);
 
 Insert into EVENT(id,address,date,description,flag,name,event_category_id,user_id) values(1,'123q street','12 jan','kickball',0,'kickball',1,1);
+=======
+INSERT INTO KROWD_USER (EMAIL,FIRSTNAME,LASTNAME,USERNAME,REPUTATION,ACCOUNT_STATUS) VALUES ('JAKEY@JAKEY.COM','JAKE','MAN','RUNESCAPER1337',1,1);
+>>>>>>> 40361158a5b89647a34d47b42dce33bd93232741
 COMMIT;

@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.revature.krowdboot.service.EventCategoryService;
 import com.revature.krowdboot.service.EventService;
+import com.revature.krowdboot.service.UserService;
 import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.EventCategory;
 import com.revature.krowdboot.model.User;
@@ -17,6 +20,9 @@ public class EventController {
 	@Autowired
 	private EventService es;
 	
+	@Autowired
+	private EventCategoryService ecs;
+	
 	@GetMapping("/all")
 	public ResponseEntity<List<Event>> getAllEvents(){
 	return new ResponseEntity<>(es.findallEvents(), HttpStatus.OK);
@@ -24,8 +30,10 @@ public class EventController {
 	
 	
 	@PostMapping("/add")
-	public void addEvent(@RequestBody Event event){
-		es.addEvent(event);
+	public void addEvent(@RequestBody int id, String name, String picture, String description, String date, String address, int score, int flag, int categoryId, int userId ){
+		EventCategory ec=ecs.getCategoryById(categoryId);
+		//Event event=
+		//es.addEvent(event);
 	}
 	
 	@DeleteMapping("/delete")
@@ -46,7 +54,7 @@ public class EventController {
 	
 	@GetMapping("/byCategory/{categoryId}")
 	public ResponseEntity<List<Event>> getEventByEventCategory(@PathVariable int categoryId){
-		return new ResponseEntity<List<Event>>(es.getEventByEventCategory(new EventCategory(categoryId,null)), HttpStatus.OK);
+		return new ResponseEntity<List<Event>>(es.getEventByEventCategory(categoryId), HttpStatus.OK);
 	}
 	
 	@GetMapping("/byUser/{userId}")

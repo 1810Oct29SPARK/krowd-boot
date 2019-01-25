@@ -12,9 +12,13 @@ import com.revature.krowdboot.model.User;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {
 	
-	public List<Event> getEventByCategoryId(EventCategory ec);
+<<<<<<< HEAD
+	public List<Event> getEventByCategoryId(int id);
 	//not sure at the moment how the above and below methods interact with mappings to other tables
 	public List<Event> getEventByUserId(User u);
 	
+=======
+	public List<Event> getEventsByFlag(int flag);
+>>>>>>> 40361158a5b89647a34d47b42dce33bd93232741
 	
 }
