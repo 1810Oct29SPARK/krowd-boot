@@ -25,7 +25,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "event")
 public class Event implements Serializable {
-	
+
 	/**
 	 * 
 	 */
@@ -36,7 +36,7 @@ public class Event implements Serializable {
 	}
 
 	public Event(int id, @NotNull String name, String picture, @NotNull String date, @NotNull String address,
-			@NotNull int score, @NotNull int flag, EventCategory categoryId) {
+			@NotNull int score, @NotNull int flag, @NotNull EventCategory categoryId, @NotNull User userId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -46,49 +46,56 @@ public class Event implements Serializable {
 		this.score = score;
 		this.flag = flag;
 		this.categoryId = categoryId;
+		this.userId = userId;
+		// might need to rerefence user table with this
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column
 	@NotNull
 	private String name;
-	
+
 	@Column
 	private String picture;
-	
+
 	@Column
 	@NotNull
 	private String date;
-	
+
 	@Column
 	@NotNull
 	private String address;
-	
+
 	@Transient
 	private int score;
-	
+
 	@Column
 	@NotNull
 	private int flag;
 	
 	@Column
 	@NotNull
+	private String description;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "user_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User userId;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "event_category_id")
-	@OnDelete (action = OnDeleteAction.CASCADE)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private EventCategory categoryId;
-	
-	@OneToMany(
-	        mappedBy = "event",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
+
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<UserEvent> users = new ArrayList<>();
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "address_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 
 	public int getId() {
 		return id;
@@ -154,6 +161,14 @@ public class Event implements Serializable {
 		this.categoryId = categoryId;
 	}
 
+	public User getUserId() {
+		return userId;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", name=" + name + ", picture=" + picture + ", date=" + date + ", address=" + address
@@ -162,7 +177,7 @@ public class Event implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, categoryId, date, flag, id, name, picture, score);
+		return Objects.hash(address, categoryId, date, flag, id, name, picture, score, flag);
 	}
 
 	@Override
