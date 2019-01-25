@@ -8,4 +8,6 @@ import com.revature.krowdboot.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+	public User getUserByAccountStatus(int status);
+	
 }

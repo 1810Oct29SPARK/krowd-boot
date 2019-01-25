@@ -57,6 +57,10 @@ public class Event implements Serializable {
 	private String name;
 	
 	@Column
+	@NotNull
+	private String description;
+	
+	@Column
 	private String picture;
 	
 	@Column
