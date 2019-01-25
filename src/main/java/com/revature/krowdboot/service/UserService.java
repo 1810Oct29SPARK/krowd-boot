@@ -10,8 +10,14 @@ import com.revature.krowdboot.repository.UserRepository;
 
 @Service("userService")
 public class UserService {
+	
+	
+	private UserRepository userRepository;
+	
 	@Autowired
-	UserRepository userRepository;
+	public void setUserRepository(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 	
 	public List<User> findAllUsers() {
 		return userRepository.findAll();
@@ -35,4 +41,5 @@ public class UserService {
 	public User findUserByUsername(String username) {
 		return userRepository.findByUsername(username);
 	}
+
 }
