@@ -57,6 +57,10 @@ public class Event implements Serializable {
 	private String name;
 	
 	@Column
+	@NotNull
+	private String description;
+	
+	@Column
 	private String picture;
 	
 	@Column
@@ -74,6 +78,11 @@ public class Event implements Serializable {
 	@NotNull
 	private int flag;
 	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "user_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private User userId;
+
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "event_category_id")
 	@OnDelete (action = OnDeleteAction.CASCADE)
