@@ -35,10 +35,25 @@ public class Event implements Serializable {
 		super();
 	}
 
-	public Event(int id, @NotNull String name, String picture,String description, @NotNull String date, @NotNull String address,
-			@NotNull int score, @NotNull int flag, @NotNull EventCategory categoryId, @NotNull User userId) {
+	public Event(int id, @NotNull String name, String picture,String description, @NotNull String date, @NotNull Address address,
+			@NotNull Integer score, @NotNull Integer flag, @NotNull EventCategory categoryId, @NotNull User userId) {
 		super();
 		this.id = id;
+		this.name = name;
+		this.picture = picture;
+		this.description = description;
+		this.date = date;
+		this.address = address;
+		this.score = score;
+		this.flag = flag;
+		this.categoryId = categoryId;
+		this.userId = userId;
+		// might need to rerefence user table with this
+	}
+	
+	public Event(@NotNull String name, String picture,String description, @NotNull String date, @NotNull Address address,
+			@NotNull Integer score, @NotNull Integer flag, @NotNull EventCategory categoryId, @NotNull User userId) {
+		super();
 		this.name = name;
 		this.picture = picture;
 		this.description = description;
@@ -53,7 +68,7 @@ public class Event implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@Column
 	@NotNull
@@ -70,25 +85,14 @@ public class Event implements Serializable {
 	@NotNull
 	private String date;
 
-	@Column
-	@NotNull
-	private String address;
+
 
 	@Transient
-	private int score;
+	private Integer score;
 
 	@Column
 	@NotNull
-	private int flag;
-	
-	@Column
-	@NotNull
-	private String description;
-
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private User userId;
+	private Integer flag;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id")
@@ -103,11 +107,12 @@ public class Event implements Serializable {
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<UserEvent> users = new ArrayList<>();
 	
-	@OneToMany(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "address_id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Address address;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -139,15 +144,15 @@ public class Event implements Serializable {
 		this.date = date;
 	}
 
-	public String getAddress() {
+	public  Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
-	public int getScore() {
+	public Integer getScore() {
 		return score;
 	}
 
@@ -155,7 +160,7 @@ public class Event implements Serializable {
 		this.score = score;
 	}
 
-	public int getFlag() {
+	public Integer getFlag() {
 		return flag;
 	}
 
