@@ -20,7 +20,7 @@ import com.revature.krowdboot.repository.EventRepository;
 @Service
 public class EventService {
 	@Autowired
-	EventRepository eventRepository;
+	private EventRepository eventRepository;
 	
 	public List<Event> findallEvents(){
 		List<Event> e= new ArrayList<>();
@@ -32,25 +32,25 @@ public class EventService {
 		eventRepository.save(event);
 	}
 	
-	public void deleteEvent(int id) {
+	public void deleteEvent(Integer id) {
 		Event e=eventRepository.getOne(id);
 		eventRepository.delete(e);
 	}
 	
-	public Event getEventById(int id) {
+	public Event getEventById(Integer id) {
 		Event e=eventRepository.getOne(id);
 		return e;
 	}
 	
-	public List<Event>getEventByEventCategory(int id){
+	public List<Event>getEventsByEventCategory(Integer id){
 		List<Event> e=new ArrayList<>();
 		eventRepository.getEventByCategoryId(id);
 		return e;
 	}
 	
-	public List<Event>getEventByUser(User u){
+	public List<Event>getEventsByUser(Integer id){
 		List<Event> e=new ArrayList<>();
-		eventRepository.getEventByUserId(u);
+		eventRepository.getEventByUserId(id);
 		return e;
 	}
 }

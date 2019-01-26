@@ -34,6 +34,16 @@ public class Address implements Serializable {
 		this.state = state;
 		this.zip = zip;
 	}
+	
+	public Address(@NotNull String streetAddress, String apartment, @NotNull String city, @NotNull String state,
+			@NotNull int zip) {
+		super();
+		this.streetAddress = streetAddress;
+		this.apartment = apartment;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
