@@ -42,7 +42,9 @@ public class EventController {
 	}
 	
 	@DeleteMapping("/delete")
-	public void deleteEvent(@RequestBody Integer id) {
+	public void deleteEvent(@RequestBody String jsonStr) {
+		JSONObject json = new JSONObject(jsonStr);
+		Integer id = Integer.parseInt((String)json.get("id"));
 		es.deleteEvent(id);
 	}
 	
