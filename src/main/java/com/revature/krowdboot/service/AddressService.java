@@ -12,35 +12,31 @@ import com.revature.krowdboot.repository.AddressRepository;
 public class AddressService {
 	@Autowired
 	private AddressRepository addressRepository;
-	
-	public Address getAddressById(int id){
-		Address a=addressRepository.getOne(id);
+
+	public Address getAddressById(int id) {
+		Address a = addressRepository.getOne(id);
 		return a;
 	}
-	
-	public List<Address> getAllAddresses(){
-		List<Address> a=addressRepository.findAll();
+
+	public List<Address> getAllAddresses() {
+		List<Address> a = addressRepository.findAll();
 		return a;
 	}
-	
+
 	public void addAddress(Address address) {
 		addressRepository.save(address);
 	}
-	
+
 	public Address checkAddress(Address address) {
-		boolean inList = false;
-		List<Address> a=addressRepository.findAll();
-		for (Address addressInList : a) {
-			if(address==addressInList) {
-				inList = true;
-				System.out.println("found with no id");
-			}
-		}
-		if(!inList) {
+
+		Integer zip = address.getZip();
+		String streetAddress = address.getStreetAddress();
+		String apartment = address.getApartment();
+		Address checkedAddress = addressRepository.findAllByZipLikeAndStreetAddressLikeAndApartment(zip, streetAddress, apartment);
+		if (checkedAddress == null) {
 			addressRepository.save(address);
+			return address;
 		}
-		
-		return address;
-		//how go we get the address with no id?
+		return checkedAddress;
 	}
 }

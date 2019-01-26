@@ -25,7 +25,7 @@ public class Address implements Serializable {
 	}
 
 	public Address(int id, @NotNull String streetAddress, String apartment, @NotNull String city, @NotNull String state,
-			@NotNull int zip) {
+			@NotNull Integer zip) {
 		super();
 		this.id = id;
 		this.streetAddress = streetAddress;
@@ -36,7 +36,7 @@ public class Address implements Serializable {
 	}
 	
 	public Address(@NotNull String streetAddress, String apartment, @NotNull String city, @NotNull String state,
-			@NotNull int zip) {
+			@NotNull Integer zip) {
 		super();
 		this.streetAddress = streetAddress;
 		this.apartment = apartment;
@@ -47,7 +47,7 @@ public class Address implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@Column
 	@NotNull
@@ -66,9 +66,9 @@ public class Address implements Serializable {
 	
 	@Column
 	@NotNull
-	private int zip;
+	private Integer zip;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -108,7 +108,7 @@ public class Address implements Serializable {
 		this.state = state;
 	}
 
-	public int getZip() {
+	public Integer getZip() {
 		return zip;
 	}
 
