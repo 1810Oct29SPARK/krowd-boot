@@ -80,15 +80,6 @@ public class Event implements Serializable {
 	@Column
 	@NotNull
 	private int flag;
-	
-	@Column
-	@NotNull
-	private String description;
-
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private User userId;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id")
