@@ -23,13 +23,11 @@ public class UserService {
 		return userRepository.findAll();
 	}
 
-	
-	
 	public void deleteUserById(int id) {
-		userRepository.deleteUserById(id);	}
+		userRepository.deleteById(id);	}
 	
 	public User getUserById(int id) {
-		return userRepository.getUserById(id);
+		return userRepository.getById(id);
 	}
 	
 	public User findUserByUsername(String username) {

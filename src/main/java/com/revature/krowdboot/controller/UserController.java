@@ -32,4 +32,17 @@ public class UserController {
 		return new ResponseEntity<>(userService.getUserById(id),HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/getuserbyusername", method = RequestMethod.GET)
+	public ResponseEntity<User> getUserByUsername(@RequestBody String user){
+		JSONObject js = new JSONObject(user);
+		String username = js.getString("username");
+		return new ResponseEntity<>(userService.findUserByUsername(username),HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/deleteuser", method = RequestMethod.POST)
+	public void deleteUserById(@RequestBody String user){
+		JSONObject js = new JSONObject(user);
+		int id = js.getInt("id");
+		userService.deleteUserById(id);
+	}
 }
