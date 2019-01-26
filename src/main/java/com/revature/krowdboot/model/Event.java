@@ -92,11 +92,7 @@ public class Event implements Serializable {
 
 	@Column
 	@NotNull
-<<<<<<< HEAD
-	private int flag;
-=======
 	private Integer flag;
->>>>>>> c009c1d8cc575878dde40f161fed2f47ede1a6de
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id")

@@ -26,4 +26,21 @@ public class AddressService {
 	public void addAddress(Address address) {
 		addressRepository.save(address);
 	}
+	
+	public Address checkAddress(Address address) {
+		boolean inList = false;
+		List<Address> a=addressRepository.findAll();
+		for (Address addressInList : a) {
+			if(a==addressInList) {
+				inList = true;
+				System.out.println("found with no id");
+			}
+		}
+		if(!inList) {
+			addressRepository.save(address);
+		}
+		
+		return address;
+		//how go we get the address with no id?
+	}
 }

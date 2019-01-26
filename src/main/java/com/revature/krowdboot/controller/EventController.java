@@ -22,12 +22,12 @@ import com.revature.krowdboot.model.User;
 public class EventController {
 	@Autowired
 	private EventService es;
-	@Autowired
-	private UserService us;
-	@Autowired
-	private EventCategoryService ecs;
-	@Autowired
-	private AddressService as;
+//	@Autowired
+//	private UserService us;
+//	@Autowired
+//	private EventCategoryService ecs;
+//	@Autowired
+//	private AddressService as;
 	
 	@GetMapping("/all")
 	public ResponseEntity<List<Event>> getAllEvents(){
@@ -37,9 +37,9 @@ public class EventController {
 	
 	@PostMapping("/add")
 	public void addEvent(@RequestBody String jsonStr) {//@RequestBody String name,@RequestBody String picture,@RequestBody String description,@RequestBody String date,@RequestBody Integer score,@RequestBody Integer flag,@RequestBody Integer categoryId,@RequestBody Integer userId,@RequestBody String streetAddress,@RequestBody String apartment,@RequestBody String city,@RequestBody String state,@RequestBody Integer zipCode ){
-		boolean inList =false;
-		JSONObject jObject = new JSONObject(jsonStr);
-		System.out.println(jObject);
+//		boolean inList =false;
+		JSONObject json = new JSONObject(jsonStr);
+		es.addEvent(json);
 //		System.out.println(name);
 //		System.out.println(" THIS IS THE USER ID: "+userId);
 //		User u=us.getUserById(userId);
