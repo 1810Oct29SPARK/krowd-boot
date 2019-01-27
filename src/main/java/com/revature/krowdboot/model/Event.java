@@ -84,17 +84,7 @@ public class Event implements Serializable {
 	@Column
 	@NotNull
 	private String date;
-<<<<<<< HEAD
 
-
-
-=======
-	
-	@Column(name = "address_id")
-	@NotNull
-	private String address;
-	
->>>>>>> 1526506574958ccf543bec45d3605bd069d9e5ea
 	@Transient
 	private Integer score;
 
