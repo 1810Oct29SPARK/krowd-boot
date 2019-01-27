@@ -53,15 +53,9 @@ public class EventService {
 		int userId = Integer.parseInt((String) json.get("userId"));
 		User userObj = userService.getUserById(userId);
 		//we need to call the get userById on the above
-<<<<<<< HEAD
-		Integer eventCategoryId = (Integer) json.get("categoryId");
-		EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
-		//the above gets the Category
-=======
         int eventCategoryId = Integer.parseInt((String) json.get("categoryId"));
         EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
         //the above gets the Category
->>>>>>> bbfc3c062869328e14acf52c0427482d2f641bd6
 		String streetAddress = (String) json.get("streetAddress");
 		String apartment = (String) json.get("apartment");
 		String city = (String) json.get("city");
