@@ -27,8 +27,16 @@ public class User implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public User() {
+	public User(@NotNull String email, @NotNull String firstname, @NotNull String lastname,
+			@NotNull String username, String picture, @NotNull int reputation, @NotNull int accountStatus) {
 		super();
+		this.email = email;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+		this.picture = picture;
+		this.reputation = reputation;
+		this.accountStatus = accountStatus;
 	}
 
 	public User(int id, @NotNull String email, @NotNull String firstname, @NotNull String lastname,
