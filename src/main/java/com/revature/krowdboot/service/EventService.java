@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.constraints.NotNull;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -45,21 +47,54 @@ public class EventService {
 		String picture = (String) json.get("picture");
 		String description = (String) json.get("description");
 		String date = (String) json.get("date");
-		Integer score = (Integer) json.get("score");
-		Integer flag = (Integer) json.get("flag");
+		int score = Integer.parseInt((String) json.get("score"));
+		int flag = Integer.parseInt((String) json.get("flag"));
 		//the above are fine as is, the below need to call methods
-		Integer userId = (Integer) json.get("userId");
+		int userId = Integer.parseInt((String) json.get("userId"));
 		User userObj = userService.getUserById(userId);
 		//we need to call the get userById on the above
+<<<<<<< HEAD
 		Integer eventCategoryId = (Integer) json.get("categoryId");
 		EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
 		//the above gets the Category
+=======
+        int eventCategoryId = Integer.parseInt((String) json.get("categoryId"));
+        EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
+        //the above gets the Category
+>>>>>>> bbfc3c062869328e14acf52c0427482d2f641bd6
 		String streetAddress = (String) json.get("streetAddress");
 		String apartment = (String) json.get("apartment");
 		String city = (String) json.get("city");
 		String state = (String) json.get("state");
-		Integer zipCode = (Integer) json.get("zipCode");
+		int zipCode = Integer.parseInt((String) json.get("zipCode"));
 		Address address = addressService.checkAddress(new Address(streetAddress,apartment,city,state,zipCode));
+		Event e=new Event(name,picture,description,date,address,score,flag,eventCategory,userObj);
+		eventRepository.save(e);
+	}
+	
+	public void updateEvent(JSONObject json) {
+		Integer id = Integer.parseInt((String) json.get("id"));
+		String name = (String) json.get("name");
+		String picture = (String) json.get("picture");
+		String description = (String) json.get("description");
+		String date = (String) json.get("date");
+		int score = Integer.parseInt((String) json.get("score"));
+		int flag = Integer.parseInt((String) json.get("flag"));
+		//the above are fine as is, the below need to call methods
+		int userId = Integer.parseInt((String) json.get("userId"));
+		User userObj = userService.getUserById(userId);
+		//we need to call the get userById on the above
+        int eventCategoryId = Integer.parseInt((String) json.get("categoryId"));
+        EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
+        //the above gets the Category
+		String streetAddress = (String) json.get("streetAddress");
+		String apartment = (String) json.get("apartment");
+		String city = (String) json.get("city");
+		String state = (String) json.get("state");
+		int zipCode = Integer.parseInt((String) json.get("zipCode"));
+		Address address = addressService.checkAddress(new Address(streetAddress,apartment,city,state,zipCode));
+		Event e=new Event(id,name,picture,description,date,address,score,flag,eventCategory,userObj);
+		eventRepository.save(e);
 	}
 	
 	public void deleteEvent(Integer id) {
@@ -74,13 +109,21 @@ public class EventService {
 	
 	public List<Event>getEventsByEventCategory(Integer id){
 		List<Event> e=new ArrayList<>();
-		eventRepository.getEventByCategoryId(id);
+		EventCategory eventCategory = eventCategoryService.getCategoryById(id);
+		e=eventRepository.getEventByCategoryId(eventCategory);
 		return e;
 	}
 	
 	public List<Event>getEventsByUser(Integer id){
 		List<Event> e=new ArrayList<>();
-		eventRepository.getEventByUserId(id);
+		User user = userService.getUserById(id);
+		e=eventRepository.getEventByUserId(user);
+		return e;
+	}
+	
+	public List<Event>getEventsByFlag(){
+		List<Event> e= new ArrayList<>();
+		e=eventRepository.getEventsByFlag(1);
 		return e;
 	}
 }
