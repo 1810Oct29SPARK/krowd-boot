@@ -32,9 +32,9 @@ public class AdminController {
 		List<Comment> comments = new ArrayList<>();
 		try {
 			comments = adminService.getFlaggedComments(1);
-			response = new ResponseEntity<List<Comment>>(comments, HttpStatus.OK);
+			response = new ResponseEntity<>(comments, HttpStatus.OK);
 		} catch (Exception e) {
-			response = new ResponseEntity<List<Comment>>(comments, HttpStatus.BAD_REQUEST);
+			response = new ResponseEntity<>(comments, HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}
@@ -45,9 +45,9 @@ public class AdminController {
 		List<Event> events = new ArrayList<>();
 		try {
 			events = adminService.getFlaggedEvents(1);
-			response = new ResponseEntity<List<Event>>(events, HttpStatus.OK);
+			response = new ResponseEntity<>(events, HttpStatus.OK);
 		} catch (Exception e) {
-			response = new ResponseEntity<List<Event>>(events, HttpStatus.BAD_REQUEST);
+			response = new ResponseEntity<>(events, HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}
@@ -58,9 +58,9 @@ public class AdminController {
 		User u = null;
 		try {
 			u = adminService.updateUser(user);
-			response = new ResponseEntity<User>(u, HttpStatus.OK);
+			response = new ResponseEntity<>(u, HttpStatus.OK);
 		} catch (Exception e) {
-			response = new ResponseEntity<User>(u, HttpStatus.BAD_REQUEST);
+			response = new ResponseEntity<>(u, HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}
@@ -71,9 +71,9 @@ public class AdminController {
 		User u = null;
 		try {
 			u = adminService.deactivateUser(id);
-			response = new ResponseEntity<User>(u, HttpStatus.OK);
+			response = new ResponseEntity<>(u, HttpStatus.OK);
 		} catch (Exception e) {
-			response = new ResponseEntity<User>(u, HttpStatus.BAD_REQUEST);
+			response = new ResponseEntity<>(u, HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}
