@@ -43,6 +43,11 @@ public class User implements Serializable {
 		this.reputation = reputation;
 		this.accountStatus = accountStatus;
 	}
+	
+	public User(int id) {
+		super();
+		this.id = id;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
