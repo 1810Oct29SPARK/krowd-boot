@@ -23,5 +23,3 @@ INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (1,'Look
 INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (2,'This is a flagged comment',1,2,2,null);
 
 INSERT INTO KROWD_USER (EMAIL,FIRSTNAME,LASTNAME,USERNAME,REPUTATION,ACCOUNT_STATUS) VALUES ('JAKEY@JAKEY.COM','JAKE','MAN','RUNESCAPER1337',1,1);
-
-

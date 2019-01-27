@@ -25,59 +25,76 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @Table(name = "event")
 public class Event implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public Event() {
 		super();
 	}
 
-	public Event(int id, @NotNull String name, String picture, @NotNull String date, @NotNull String address,
-			@NotNull int score, @NotNull int flag, EventCategory categoryId) {
+	public Event(int id, @NotNull String name, String picture, String description, @NotNull String date,
+			@NotNull Address address, @NotNull Integer score, @NotNull Integer flag, @NotNull EventCategory categoryId,
+			@NotNull User userId) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.picture = picture;
+		this.description = description;
 		this.date = date;
 		this.address = address;
 		this.score = score;
 		this.flag = flag;
 		this.categoryId = categoryId;
+		this.userId = userId;
+
+	}
+
+	public Event(@NotNull String name, String picture, String description, @NotNull String date,
+			@NotNull Address address, @NotNull Integer score, @NotNull Integer flag, @NotNull EventCategory categoryId,
+			@NotNull User userId) {
+		super();
+		this.name = name;
+		this.picture = picture;
+		this.description = description;
+		this.date = date;
+		this.address = address;
+		this.score = score;
+		this.flag = flag;
+		this.categoryId = categoryId;
+		this.userId = userId;
+
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
+	private Integer id;
+
 	@Column
 	@NotNull
 	private String name;
-	
+
 	@Column
 	@NotNull
 	private String description;
-	
+
 	@Column
 	private String picture;
-	
+
 	@Column
 	@NotNull
 	private String date;
-	
+
 	@Column(name = "address_id")
 	@NotNull
 	private String address;
 	
 	@Transient
-	private int score;
-	
+	private Integer score;
+
 	@Column
 	@NotNull
-	private int flag;
-	
+	private Integer flag;
+
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "user_id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -85,17 +102,18 @@ public class Event implements Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "event_category_id")
-	@OnDelete (action = OnDeleteAction.CASCADE)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private EventCategory categoryId;
-	
-	@OneToMany(
-	        mappedBy = "event",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
+
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<UserEvent> users = new ArrayList<>();
 
-	public int getId() {
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "address_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Address address;
+
+	public Integer getId() {
 		return id;
 	}
 
@@ -127,15 +145,15 @@ public class Event implements Serializable {
 		this.date = date;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
-	public int getScore() {
+	public Integer getScore() {
 		return score;
 	}
 
@@ -143,7 +161,7 @@ public class Event implements Serializable {
 		this.score = score;
 	}
 
-	public int getFlag() {
+	public Integer getFlag() {
 		return flag;
 	}
 
@@ -159,6 +177,14 @@ public class Event implements Serializable {
 		this.categoryId = categoryId;
 	}
 
+	public User getUserId() {
+		return userId;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
+
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", name=" + name + ", picture=" + picture + ", date=" + date + ", address=" + address
@@ -167,7 +193,7 @@ public class Event implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, categoryId, date, flag, id, name, picture, score);
+		return Objects.hash(address, categoryId, date, flag, id, name, picture, score, flag);
 	}
 
 	@Override
