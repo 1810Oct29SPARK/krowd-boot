@@ -1,3 +1,10 @@
+/*
+ * AdminService highlights the methods that are associated with users whom are admins. The AdminService 
+ * uses methods that are defined in the UserRepository, EventRepository, and CommentRepository. The 
+ * methods include getting lists of flagged events and comments, deactivating users, updating users, 
+ * and getting users by their account status.
+ */
+
 package com.revature.krowdboot.service;
 
 import java.util.List;
@@ -19,26 +26,41 @@ public class AdminService {
 	private EventRepository eventRepository;
 	private CommentRepository commentRepository;
 	
+	/*
+	 * Setter method for the EventRepository.
+	 */
 	@Autowired
 	public void setEventRepository(EventRepository eventRepository) {
 		this.eventRepository = eventRepository;
 	}
 
+	/*
+	 * Setter method for the CommentRepository.
+	 */
 	@Autowired
 	public void setCommentRepository(CommentRepository commentRepository) {
 		this.commentRepository = commentRepository;
 	}
 	
+	/*
+	 * Setter method for the UserRepository.
+	 */
 	@Autowired
 	public void setUserRepository(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 	
+	/*
+	 * Method for obtaining a user associated with a given account status.
+	 */
 	public User getUserByAccountStatus(int status) {
 		User user = userRepository.getUserByAccountStatus(status);
 		return user;
 	}
 	
+	/*
+	 * Method 
+	 */
 	public List<Comment> getFlaggedComments(int flag) {
 		List<Comment> comments = commentRepository.getCommentsByFlag(flag);
 		return comments;
