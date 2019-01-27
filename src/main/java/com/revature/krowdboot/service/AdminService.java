@@ -3,6 +3,7 @@ package com.revature.krowdboot.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.krowdboot.model.Comment;
 import com.revature.krowdboot.model.Event;
@@ -11,6 +12,7 @@ import com.revature.krowdboot.repository.CommentRepository;
 import com.revature.krowdboot.repository.EventRepository;
 import com.revature.krowdboot.repository.UserRepository;
 
+@Service
 public class AdminService {
 	
 	private UserRepository userRepository;

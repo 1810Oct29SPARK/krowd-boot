@@ -26,17 +26,15 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "event")
 public class Event implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public Event() {
 		super();
 	}
 
-	public Event(int id, @NotNull String name, String picture,String description, @NotNull String date, @NotNull Address address,
-			@NotNull Integer score, @NotNull Integer flag, @NotNull EventCategory categoryId, @NotNull User userId) {
+	public Event(int id, @NotNull String name, String picture, String description, @NotNull String date,
+			@NotNull Address address, @NotNull Integer score, @NotNull Integer flag, @NotNull EventCategory categoryId,
+			@NotNull User userId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -48,11 +46,12 @@ public class Event implements Serializable {
 		this.flag = flag;
 		this.categoryId = categoryId;
 		this.userId = userId;
-		// might need to rerefence user table with this
+
 	}
-	
-	public Event(@NotNull String name, String picture,String description, @NotNull String date, @NotNull Address address,
-			@NotNull Integer score, @NotNull Integer flag, @NotNull EventCategory categoryId, @NotNull User userId) {
+
+	public Event(@NotNull String name, String picture, String description, @NotNull String date,
+			@NotNull Address address, @NotNull Integer score, @NotNull Integer flag, @NotNull EventCategory categoryId,
+			@NotNull User userId) {
 		super();
 		this.name = name;
 		this.picture = picture;
@@ -63,7 +62,7 @@ public class Event implements Serializable {
 		this.flag = flag;
 		this.categoryId = categoryId;
 		this.userId = userId;
-		// might need to rerefence user table with this
+
 	}
 
 	@Id
@@ -77,7 +76,7 @@ public class Event implements Serializable {
 	@Column
 	@NotNull
 	private String description;
-	
+
 	@Column
 	private String picture;
 
@@ -104,7 +103,7 @@ public class Event implements Serializable {
 
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<UserEvent> users = new ArrayList<>();
-	
+
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "address_id")
 	@OnDelete(action = OnDeleteAction.CASCADE)
@@ -142,7 +141,7 @@ public class Event implements Serializable {
 		this.date = date;
 	}
 
-	public  Address getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 

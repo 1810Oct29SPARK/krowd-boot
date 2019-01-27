@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.krowdboot.model.Comment;
@@ -54,7 +53,7 @@ public class AdminController {
 	}
 	
 	@PutMapping("/update")
-	public ResponseEntity<User> updateUser(User user) {
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		ResponseEntity<User> response = null;
 		User u = null;
 		try {
