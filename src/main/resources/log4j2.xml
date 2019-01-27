@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" name="KrowdConfiguration"
+	packages="com.revature">
+
+	<Appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="%p: %m %ex%n" />
+		</Console>
+
+		<File name="controllerInfoAppender"
+			fileName="logs/app-controller-info.log">
+			<PatternLayout>
+				<Pattern>%d{MMM-dd, HH:mm} %p: %c{1} [%t] %m %ex%n</Pattern>
+			</PatternLayout>
+		</File>
+
+		<File name="controllerErrorAppender"
+			fileName="logs/app-controller-error.log">
+			<PatternLayout>
+				<Pattern>%d{MMM-dd, HH:mm} %p: %c{1} [%t] %m %ex%n</Pattern>
+			</PatternLayout>
+		</File>
+
+		<File name="serviceInfoAppender"
+			fileName="logs/app-service-info.log">
+			<PatternLayout>
+				<Pattern>%d{MMM-dd, HH:mm} %p: %c{1} [%t] %m %ex%n</Pattern>
+			</PatternLayout>
+		</File>
+
+		<File name="serviceErrorAppender"
+			fileName="logs/app-service-error.log">
+			<PatternLayout>
+				<Pattern>%d{MMM-dd, HH:mm} %p: %c{1} [%t] %m %ex%n</Pattern>
+			</PatternLayout>
+		</File>
+
+		<File name="rootAppender" fileName="logs/app-root.log">
+			<PatternLayout>
+				<Pattern>%d{MMM-dd, HH:mm} %p: %c{1} [%t] %m %ex%n</Pattern>
+			</PatternLayout>
+		</File>
+
+		<File name="errorAppender" fileName="logs/app-error.log">
+			<PatternLayout>
+				<Pattern>%d{MMM-dd, HH:mm} %p: %c{1} [%t] %m %ex%n</Pattern>
+			</PatternLayout>
+		</File>
+
+		<File name="masterAppender" fileName="logs/app-master.log">
+			<PatternLayout>
+				<Pattern>%d{MMM-dd, HH:mm} %p: %c{1} [%t] %m %ex%n</Pattern>
+			</PatternLayout>
+		</File>
+	</Appenders>
+
+	<Loggers>
+		<Logger name="controllerLogger" level="info" additivity="false">
+			<AppenderRef ref="controllerInfoAppender" level="info" />
+			<AppenderRef ref="controllerErrorAppender" level="error" />
+			<AppenderRef ref="errorAppender" level="error" />
+			<AppenderRef ref="masterAppender" level="info" />
+		</Logger>
+
+		<Logger name="serviceLogger" level="info" additivity="false">
+			<AppenderRef ref="serviceInfoAppender" level="info" />
+			<AppenderRef ref="serviceErrorAppender" level="error" />
+			<AppenderRef ref="errorAppender" level="error" />
+			<AppenderRef ref="masterAppender" level="info" />
+		</Logger>
+
+		<Root level="info" additivity="true">
+			<AppenderRef ref="rootAppender" level="warn" />
+			<AppenderRef ref="STDOUT" level="warn" />
+			<AppenderRef ref="errorAppender" level="error" />
+			<AppenderRef ref="masterAppender" level="info" />
+		</Root>
+	</Loggers>
+
+</Configuration>
