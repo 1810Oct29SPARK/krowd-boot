@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,17 +36,25 @@ public class UserController {
 		return new ResponseEntity<>(userService.findAllUsers(),HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/getuserbyid")
-	public ResponseEntity<User> getUserById(@RequestBody String user){
-		JSONObject js = new JSONObject(user);
-		int id = js.getInt("id");
+	/*
+	 * getUserById will map a get request to the endpoint, /user/getuserbyid/{requestid}. The request 
+	 * will contain an int that will be associated with their id. If their id is 
+	 * a real id within the database, the method will return the user associated with that 
+	 * id.
+	 */
+	@GetMapping(value="/getuserbyid/{requestid}")
+	public ResponseEntity<User> getUserById(@PathVariable String requestid){
+		int id = Integer.parseInt(requestid);
 		return new ResponseEntity<>(userService.getUserById(id),HttpStatus.OK);
 	}
 	
-	@GetMapping(value="/getuserbyusername")
-	public ResponseEntity<User> getUserByUsername(@RequestBody String user){
-		JSONObject js = new JSONObject(user);
-		String username = js.getString("username");
+	/*
+	 * getUserByUsername will map a get request to the endpoint, /user/getuserbyusername/{username}. 
+	 * The request will contain a username that will be used to find that user in the database.
+	 * If it is a real user, the method will return a user object associated with that username.
+	 */
+	@GetMapping(value="/getuserbyusername/{username}")
+	public ResponseEntity<User> getUserByUsername(@PathVariable String username){
 		return new ResponseEntity<>(userService.findUserByUsername(username),HttpStatus.OK);
 	}
 	
