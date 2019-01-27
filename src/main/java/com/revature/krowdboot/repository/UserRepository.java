@@ -15,8 +15,12 @@ import com.revature.krowdboot.model.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public User getUserByAccountStatus(int status);
+	
 	public List<User> findAll();
+
 	public void deleteById(int id);
+  
 	public User getById(int id);
+
 	public User findByUsername(String username);
 }

@@ -10,5 +10,4 @@ public interface AddressRepository extends JpaRepository<Address, Integer>{
 	
 	public Address findAllByZipLikeAndStreetAddressLikeAndApartment(Integer zipcode, String streetAddress, String apartment);
 
-
 }

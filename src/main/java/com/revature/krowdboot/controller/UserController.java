@@ -30,8 +30,7 @@ public class UserController {
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-	
-	
+		
 	/*
 	 * getAllUsers maps a get request that corresponds to /user/getallusers. 
 	 * The method will return a response that contains a list of all of the 
@@ -49,8 +48,8 @@ public class UserController {
 	 * id.
 	 */
 	@GetMapping(value="/{requestid}")
-	public ResponseEntity<User> getUserById(@PathVariable String requestid){
-		int id = Integer.parseInt(requestid);
+	public ResponseEntity<User> getUserById(@PathVariable String requestId){
+		int id = Integer.parseInt(requestId);
 		return new ResponseEntity<>(userService.getUserById(id),HttpStatus.OK);
 	}
 	
