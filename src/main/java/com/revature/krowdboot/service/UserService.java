@@ -39,7 +39,8 @@ public class UserService {
 	 * with that id from the database.
 	 */
 	public void deleteUserById(int id) {
-		userRepository.deleteById(id);	}
+		userRepository.deleteById(id);	
+  }
 	
 	/*
 	 * getUserById will use the UserRepository method, getById, that returns the user associated 
