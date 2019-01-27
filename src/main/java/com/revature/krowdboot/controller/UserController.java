@@ -45,4 +45,5 @@ public class UserController {
 		int id = js.getInt("id");
 		userService.deleteUserById(id);
 	}
+	
 }
