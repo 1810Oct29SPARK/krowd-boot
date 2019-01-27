@@ -1,3 +1,7 @@
+/*
+ * UserRpository interface highlights the CRUD methods that will be used within the UserService and 
+ * AdminService. The methods are associated with the KROWD_USER table.
+ */
 package com.revature.krowdboot.repository;
 
 import java.util.List;
