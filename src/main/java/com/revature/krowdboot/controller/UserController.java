@@ -23,15 +23,21 @@ import com.revature.krowdboot.service.UserService;
 @RestController
 @RequestMapping("/user")
 public class UserController {
+	
+	private UserService userService;
+	
 	@Autowired
-	UserService userService;
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+	
 	
 	/*
 	 * getAllUsers maps a get request that corresponds to /user/getallusers. 
 	 * The method will return a response that contains a list of all of the 
 	 * users in the database.
 	 */
-	@GetMapping("/getallusers")
+	@GetMapping("/all")
 	public ResponseEntity<List<User>> getAllUsers() {
 		return new ResponseEntity<>(userService.findAllUsers(),HttpStatus.OK);
 	}
@@ -42,7 +48,7 @@ public class UserController {
 	 * a real id within the database, the method will return the user associated with that 
 	 * id.
 	 */
-	@GetMapping(value="/getuserbyid/{requestid}")
+	@GetMapping(value="/{requestid}")
 	public ResponseEntity<User> getUserById(@PathVariable String requestid){
 		int id = Integer.parseInt(requestid);
 		return new ResponseEntity<>(userService.getUserById(id),HttpStatus.OK);
@@ -53,7 +59,7 @@ public class UserController {
 	 * The request will contain a username that will be used to find that user in the database.
 	 * If it is a real user, the method will return a user object associated with that username.
 	 */
-	@GetMapping(value="/getuserbyusername/{username}")
+	@GetMapping(value="/{username}")
 	public ResponseEntity<User> getUserByUsername(@PathVariable String username){
 		return new ResponseEntity<>(userService.findUserByUsername(username),HttpStatus.OK);
 	}
@@ -63,7 +69,7 @@ public class UserController {
 	 * The request will contain a user object that will be used with the service method,
 	 * deleteUserById, once the id is extracted from the object.
 	 */
-	@PostMapping(value="/deleteuser")
+	@PostMapping(value="/delete")
 	public void deleteUserById(@RequestBody String user){
 		JSONObject js = new JSONObject(user);
 		int id = js.getInt("id");

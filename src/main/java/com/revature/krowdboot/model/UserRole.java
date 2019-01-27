@@ -20,8 +20,9 @@ public class UserRole implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public UserRole() {
+	public UserRole(@NotNull String name) {
 		super();
+		this.name = name;
 	}
 
 	public UserRole(int id, @NotNull String name) {
