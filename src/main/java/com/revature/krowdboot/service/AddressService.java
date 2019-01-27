@@ -31,7 +31,7 @@ public class AddressService {
 		boolean inList = false;
 		List<Address> a=addressRepository.findAll();
 		for (Address addressInList : a) {
-			if(a==addressInList) {
+			if(address==addressInList) {
 				inList = true;
 				System.out.println("found with no id");
 			}

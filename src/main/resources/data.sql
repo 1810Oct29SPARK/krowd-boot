@@ -1,12 +1,30 @@
 
-INSERT INTO EVENT_CATEGORY VALUES (1, 'Sports');
-INSERT INTO EVENT_CATEGORY VALUES (2, 'METEOROLOGY');
-INSERT INTO EVENT_CATEGORY VALUES (3, 'LITERATURE');
+INSERT ALL
+INTO ADDRESS VALUES (1,'123 Boogie Woogie Ave',NULL,'Spooksville','CV',12345),
+INTO ADDRESS VALUES (2,'456 Boogie Woogie Ave','Apt 3','Ghostburg','PG',67890),
+SELECT * FROM DUAL;
 
-Insert into KROWD_USER (id,email,firstname,lastname,username,picture,reputation,account_status) values (1,'what','Jon','Snider','Bubsy',null,12,1);
-Insert into KROWD_USER (id,email,firstname,lastname,username,picture,reputation,account_status) values (2,'wshat','Stew','Gardner','Anger',null,9,1);
-Insert into KROWD_USER (id,email,firstname,lastname,username,picture,reputation,account_status) values (3,'wfhat','Ed','Soma','Punk',null,2,1);
+INSERT ALL
+INTO EVENT VALUES (1,'Haunted House Party',NULL,'Spooky stuff going on in the graveyard, come on down.','October 31st, 2019',1,'13',0,1,1),
+INTO EVENT VALUES (2,'Miner 49er',NULL,'Scooby-Doo type stuff.','May 3rd, 2019',2,'69',1,2,2),
+SELECT * FROM DUAL;
 
-Insert into ADDRESS(id,street_Address,apartment,city,state,zip) values(1,'123qwea','2','asder','CA',12345);
+INSERT ALL
+INTO EVENT_CATEGORY VALUES (1,'Party'),
+INTO EVENT_CATEGORY VALUES (2,'Other'),
+SELECT * FROM DUAL;
 
-Insert into EVENT(id,address_id,date,description,flag,name,event_category_id,user_id) values(1,1,'12 jan','kickball',0,'kickball',1,1);
+INSERT ALL
+INTO KROWD_USER VALUES (1,'email@email.com','firstname','lastname','username','picture',1234,0),
+INTO KROWD_USER VALUES (2,'WWW@WWW.com','Bo','Peep','PeepBo',NULL,87,1),
+SELECT * FROM DUAL;
+
+INSERT ALL
+INTO USER_ROLE VALUES (1,'Admin'),
+INTO USER_ROLE VALUES (2,'User'),
+SELECT * FROM DUAL;
+
+INSERT ALL
+INTO USER_ROLE VALUES (1,'Admin'),
+INTO USER_ROLE VALUES (2,'User'),
+SELECT * FROM DUAL;

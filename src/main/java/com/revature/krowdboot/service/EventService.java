@@ -31,6 +31,9 @@ public class EventService {
 	@Autowired
 	private AddressService addressService;
 	
+	@Autowired
+	private EventCategoryService eventCategoryService;
+	
 	public List<Event> findallEvents(){
 		List<Event> e= new ArrayList<>();
 		e=eventRepository.findAll();
@@ -48,6 +51,9 @@ public class EventService {
 		Integer userId = (Integer) json.get("userId");
 		User userObj = userService.getUserById(userId);
 		//we need to call the get userById on the above
+		Integer eventCategoryId = (Integer) json.get("categoryId");
+		EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
+		//the above gets the Category
 		String streetAddress = (String) json.get("streetAddress");
 		String apartment = (String) json.get("apartment");
 		String city = (String) json.get("city");
