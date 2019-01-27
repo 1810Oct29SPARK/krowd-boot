@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "krowd_user")
 public class User implements Serializable {
@@ -179,5 +181,7 @@ public class User implements Serializable {
 				&& Objects.equals(lastname, other.lastname) && Objects.equals(picture, other.picture)
 				&& reputation == other.reputation && Objects.equals(username, other.username);
 	}
+	
+	
 
 }

@@ -67,7 +67,7 @@ public class Event implements Serializable {
 	@NotNull
 	private String date;
 	
-	@Column
+	@Column(name = "address_id")
 	@NotNull
 	private String address;
 	
