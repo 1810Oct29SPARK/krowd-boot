@@ -49,7 +49,7 @@ public class UserEvent implements Serializable {
 	@MapsId("eventId")
 	private Event event;
 	
-	@Column(name = "rating")
+	@Column(name = "rating", columnDefinition = "int default 0")
 	private int rating;
 
 	public UserEventId getId() {
