@@ -181,15 +181,17 @@ public class Event implements Serializable {
 		this.userId = userId;
 	}
 
-	@Override
-	public String toString() {
-		return "Event [id=" + id + ", name=" + name + ", picture=" + picture + ", date=" + date + ", address=" + address
-				+ ", score=" + score + ", flag=" + flag + ", categoryId=" + categoryId + "]";
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, categoryId, date, flag, id, name, picture, score, flag);
+		return Objects.hash(address, categoryId, date, description, flag, id, name, picture, score, userId, users);
 	}
 
 	@Override
@@ -202,8 +204,10 @@ public class Event implements Serializable {
 			return false;
 		Event other = (Event) obj;
 		return Objects.equals(address, other.address) && Objects.equals(categoryId, other.categoryId)
-				&& Objects.equals(date, other.date) && flag == other.flag && id == other.id
-				&& Objects.equals(name, other.name) && Objects.equals(picture, other.picture) && score == other.score;
+				&& Objects.equals(date, other.date) && Objects.equals(description, other.description)
+				&& Objects.equals(flag, other.flag) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
+				&& Objects.equals(picture, other.picture) && Objects.equals(score, other.score)
+				&& Objects.equals(userId, other.userId) && Objects.equals(users, other.users);
 	}
 
 }
