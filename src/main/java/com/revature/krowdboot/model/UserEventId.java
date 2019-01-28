@@ -8,12 +8,9 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class UserEventId implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	
+
 	public UserEventId() {
 		super();
 	}
@@ -23,10 +20,10 @@ public class UserEventId implements Serializable {
 		this.userId = userId;
 		this.eventId = eventId;
 	}
-	
+
 	@Column(name = "user_id")
 	private int userId;
-	
+
 	@Column(name = "event_id")
 	private int eventId;
 
@@ -66,6 +63,6 @@ public class UserEventId implements Serializable {
 			return false;
 		UserEventId other = (UserEventId) obj;
 		return eventId == other.eventId && userId == other.userId;
-	}	
+	}
 
 }

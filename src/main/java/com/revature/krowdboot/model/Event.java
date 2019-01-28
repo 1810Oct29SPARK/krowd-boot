@@ -84,10 +84,6 @@ public class Event implements Serializable {
 	@NotNull
 	private String date;
 
-	@Column(name = "address_id")
-	@NotNull
-	private String address;
-	
 	@Transient
 	private Integer score;
 
@@ -113,7 +109,7 @@ public class Event implements Serializable {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Address address;
 
-	//weird
+	// weird
 //	public List<UserEvent> getUsers() {
 //		return users;
 //	}
