@@ -51,19 +51,6 @@ public class AdminController {
 		return response;
 	}
 
-	@PutMapping("/update")
-	public ResponseEntity<User> updateUser(@RequestBody User user) {
-		ResponseEntity<User> response = null;
-		User u = null;
-		try {
-			u = adminService.updateUser(user);
-			response = new ResponseEntity<>(u, HttpStatus.OK);
-		} catch (Exception e) {
-			response = new ResponseEntity<>(u, HttpStatus.BAD_REQUEST);
-		}
-		return response;
-	}
-
 	@PostMapping("/deactivate")
 	public ResponseEntity<User> deactivateUser(@RequestBody int id) {
 		ResponseEntity<User> response = null;
