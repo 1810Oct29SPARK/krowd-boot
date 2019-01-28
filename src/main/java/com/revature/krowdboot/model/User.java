@@ -55,6 +55,9 @@ public class User implements Serializable {
 		super();
 		this.id = id;
 	}
+	public User() {
+		super();
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
