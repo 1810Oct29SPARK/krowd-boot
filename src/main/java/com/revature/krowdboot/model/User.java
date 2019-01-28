@@ -24,6 +24,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Table(name = "krowd_user")
 public class User implements Serializable {
 
+	public User() {
+		super();
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	public User(@NotNull String email, @NotNull String firstname, @NotNull String lastname,
