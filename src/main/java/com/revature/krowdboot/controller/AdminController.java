@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,19 +46,6 @@ public class AdminController {
 			response = new ResponseEntity<>(events, HttpStatus.OK);
 		} catch (Exception e) {
 			response = new ResponseEntity<>(events, HttpStatus.BAD_REQUEST);
-		}
-		return response;
-	}
-	
-	@PutMapping("/update")
-	public ResponseEntity<User> updateUser(@RequestBody User user) {
-		ResponseEntity<User> response = null;
-		User u = null;
-		try {
-			u = adminService.updateUser(user);
-			response = new ResponseEntity<>(u, HttpStatus.OK);
-		} catch (Exception e) {
-			response = new ResponseEntity<>(u, HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}

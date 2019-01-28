@@ -23,7 +23,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-@Table(name = "event")
+@Table(name = "EVENT")
 public class Event implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -92,12 +92,12 @@ public class Event implements Serializable {
 	private Integer flag;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "USER_ID")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User userId;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "event_category_id")
+	@JoinColumn(name = "EVENT_CATEGORY_ID")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private EventCategory categoryId;
 
@@ -105,18 +105,9 @@ public class Event implements Serializable {
 	private List<UserEvent> users = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "address_id")
+	@JoinColumn(name = "ADDRESS_ID")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Address address;
-
-	//weird
-//	public List<UserEvent> getUsers() {
-//		return users;
-//	}
-//
-//	public void setUsers(List<UserEvent> users) {
-//		this.users = users;
-//	}
 
 	public Integer getId() {
 		return id;
