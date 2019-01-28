@@ -137,7 +137,7 @@ public class Comment implements Serializable {
 
 	@JsonProperty("userId")
 	private void unpackNestedUser(int user_id) {
-		this.userId = new User(user_id);
+		this.userId = new User();
 		userId.setId(user_id);
 	}
 

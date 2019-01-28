@@ -24,6 +24,10 @@ public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	public User() {
+		super();
+	}
+
 	public User(@NotNull String email, @NotNull String firstname, @NotNull String lastname, @NotNull String username,
 			String picture, @NotNull int reputation, @NotNull int accountStatus) {
 		super();
