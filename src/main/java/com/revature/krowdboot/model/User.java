@@ -18,16 +18,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 @Entity
 @Table(name = "krowd_user")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public User(@NotNull String email, @NotNull String firstname, @NotNull String lastname,
-			@NotNull String username, String picture, @NotNull int reputation, @NotNull int accountStatus) {
+	public User(@NotNull String email, @NotNull String firstname, @NotNull String lastname, @NotNull String username,
+			String picture, @NotNull int reputation, @NotNull int accountStatus) {
 		super();
 		this.email = email;
 		this.firstname = firstname;
@@ -96,7 +94,6 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<UserEvent> events = new ArrayList<>();
-
 
 	public int getId() {
 		return id;
@@ -188,7 +185,5 @@ public class User implements Serializable {
 				&& Objects.equals(lastname, other.lastname) && Objects.equals(picture, other.picture)
 				&& reputation == other.reputation && Objects.equals(username, other.username);
 	}
-	
-	
 
 }

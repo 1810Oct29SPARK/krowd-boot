@@ -1,6 +1,7 @@
 package com.revature.krowdboot.model;
 
 public class LoginInfo extends UserInfo {
+
 	private Boolean newPasswordRequired = false;
 
 	public LoginInfo(String userName, String emailAddr, String location) {

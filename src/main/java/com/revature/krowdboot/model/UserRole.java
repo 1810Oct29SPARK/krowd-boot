@@ -14,10 +14,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "user_role")
 public class UserRole implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public UserRole(@NotNull String name) {
@@ -34,7 +31,7 @@ public class UserRole implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column
 	@NotNull
 	private String name;

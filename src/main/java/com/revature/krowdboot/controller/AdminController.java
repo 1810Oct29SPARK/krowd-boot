@@ -22,11 +22,11 @@ import com.revature.krowdboot.service.AdminService;
 @CrossOrigin
 @RequestMapping(value = "/admin")
 public class AdminController {
-	
+
 	private AdminService adminService;
-	
+
 	@GetMapping(value = "/comments")
-	public ResponseEntity<List<Comment>> getFlaggedComments(){
+	public ResponseEntity<List<Comment>> getFlaggedComments() {
 		ResponseEntity<List<Comment>> response = null;
 		List<Comment> comments = new ArrayList<>();
 		try {
@@ -37,9 +37,9 @@ public class AdminController {
 		}
 		return response;
 	}
-	
+
 	@GetMapping(value = "/events")
-	public ResponseEntity<List<Event>> getFlaggedEvents(){
+	public ResponseEntity<List<Event>> getFlaggedEvents() {
 		ResponseEntity<List<Event>> response = null;
 		List<Event> events = new ArrayList<>();
 		try {
@@ -50,7 +50,7 @@ public class AdminController {
 		}
 		return response;
 	}
-	
+
 	@PutMapping("/update")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		ResponseEntity<User> response = null;
@@ -63,7 +63,7 @@ public class AdminController {
 		}
 		return response;
 	}
-	
+
 	@PostMapping("/deactivate")
 	public ResponseEntity<User> deactivateUser(@RequestBody int id) {
 		ResponseEntity<User> response = null;

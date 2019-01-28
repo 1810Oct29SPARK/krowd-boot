@@ -14,10 +14,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "address")
 public class Address implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public Address() {
@@ -34,7 +31,7 @@ public class Address implements Serializable {
 		this.state = state;
 		this.zip = zip;
 	}
-	
+
 	public Address(@NotNull String streetAddress, String apartment, @NotNull String city, @NotNull String state,
 			@NotNull Integer zip) {
 		super();
@@ -48,22 +45,22 @@ public class Address implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column
 	@NotNull
 	private String streetAddress;
-	
+
 	@Column
 	private String apartment;
-	
+
 	@Column
 	@NotNull
 	private String city;
-	
+
 	@Column
 	@NotNull
 	private String state;
-	
+
 	@Column
 	@NotNull
 	private Integer zip;
