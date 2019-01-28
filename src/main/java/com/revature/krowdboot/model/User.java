@@ -18,17 +18,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "krowd_user")
 public class User implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
-	public User() {
+	public User(@NotNull String email, @NotNull String firstname, @NotNull String lastname,
+			@NotNull String username, String picture, @NotNull int reputation, @NotNull int accountStatus) {
 		super();
+		this.email = email;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+		this.picture = picture;
+		this.reputation = reputation;
+		this.accountStatus = accountStatus;
 	}
 
 	public User(int id, @NotNull String email, @NotNull String firstname, @NotNull String lastname,
@@ -43,7 +50,7 @@ public class User implements Serializable {
 		this.reputation = reputation;
 		this.accountStatus = accountStatus;
 	}
-	
+
 	public User(int id) {
 		super();
 		this.id = id;
@@ -52,46 +59,42 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column
 	@NotNull
 	private String email;
-	
+
 	@Column
 	@NotNull
 	private String firstname;
-	
+
 	@Column
 	@NotNull
 	private String lastname;
-	
+
 	@Column
 	@NotNull
 	private String username;
-	
+
 	@Column
 	private String cognito;
-	
+
 	@Column
 	private String picture;
-	
+
 	@Column
 	@NotNull
 	private int reputation;
-	
+
 	@Column
 	@NotNull
 	private int accountStatus;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "role_id")
 	private UserRole roleId;
-	
-	@OneToMany(
-	        mappedBy = "user",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<UserEvent> events = new ArrayList<>();
 
 
@@ -185,5 +188,7 @@ public class User implements Serializable {
 				&& Objects.equals(lastname, other.lastname) && Objects.equals(picture, other.picture)
 				&& reputation == other.reputation && Objects.equals(username, other.username);
 	}
+	
+	
 
 }

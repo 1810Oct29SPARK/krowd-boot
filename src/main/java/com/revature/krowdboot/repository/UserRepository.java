@@ -1,3 +1,7 @@
+/*
+ * UserRpository interface highlights the CRUD methods that will be used within the UserService and 
+ * AdminService. The methods are associated with the KROWD_USER table.
+ */
 package com.revature.krowdboot.repository;
 
 import java.util.List;
@@ -13,11 +17,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	public User getUserByAccountStatus(int status);
 	
 	public List<User> findAll();
-	
-	public void deleteUserById(int id);
-	
-	public User getUserById(int id);
-	
-	public User findByUsername(String username);
 
+	public void deleteById(int id);
+  
+	public User getById(int id);
+
+	public User findByUsername(String username);
 }
