@@ -94,6 +94,7 @@ public class User implements Serializable {
 	    )
 	private List<UserEvent> events = new ArrayList<>();
 
+
 	public int getId() {
 		return id;
 	}
