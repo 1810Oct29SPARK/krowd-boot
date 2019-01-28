@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "comment")
 public class Comment implements Serializable {
@@ -38,11 +40,20 @@ public class Comment implements Serializable {
 		this.userId = userId;
 		this.eventId = eventId;
 	}
+	
+	public Comment(int id, @NotNull String comment, @NotNull int flag, User userId, Event eventId,String timestamp) {
+		super();
+		this.id = id;
+		this.comment = comment;
+		this.flag = flag;
+		this.userId = userId;
+		this.eventId = eventId;
+	}
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 	@Column
 	@NotNull
 	private String comment;
@@ -128,4 +139,23 @@ public class Comment implements Serializable {
 				&& id == other.id && Objects.equals(userId, other.userId);
 	}
 
+	@JsonProperty("userId")
+    private void unpackNestedUser(int user_id) {
+        this.userId = new User();
+        userId.setId(user_id);
+    }
+	
+	@JsonProperty("eventId")
+    private void unpackNestedEvent(int event_id) {
+        this.eventId = new Event();
+        eventId.setId(event_id);
+    }
+
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
+	}
 }
