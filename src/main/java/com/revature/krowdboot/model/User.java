@@ -18,11 +18,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "krowd_user")
+@Table(name = "KROWD_USER")
 public class User implements Serializable {
+
+	public User() {
+		super();
+	}
 
 	private static final long serialVersionUID = 1L;
 
@@ -94,7 +97,7 @@ public class User implements Serializable {
 	private int accountStatus;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id")
+	@JoinColumn(name = "ROLE_ID")
 	private UserRole roleId;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

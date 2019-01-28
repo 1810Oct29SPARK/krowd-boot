@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.User;
-import com.revature.krowdboot.model.UserEventId;
-import com.revature.krowdboot.service.EventService;
 import com.revature.krowdboot.service.UserEventService;
 
 @RestController

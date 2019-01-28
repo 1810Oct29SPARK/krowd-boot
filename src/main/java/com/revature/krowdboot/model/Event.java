@@ -23,7 +23,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-@Table(name = "event")
+@Table(name = "EVENT")
 public class Event implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -84,10 +84,13 @@ public class Event implements Serializable {
 	@NotNull
 	private String date;
 
+<<<<<<< HEAD
 	//@Column(name = "address_id")
 	//@NotNull
 	//private String address;
 	
+=======
+>>>>>>> 43826591af346ef839e90b33cabd75f03146b70d
 	@Transient
 	private Integer score;
 
@@ -96,12 +99,12 @@ public class Event implements Serializable {
 	private Integer flag;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "USER_ID")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User userId;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "event_category_id")
+	@JoinColumn(name = "EVENT_CATEGORY_ID")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private EventCategory categoryId;
 
@@ -109,11 +112,14 @@ public class Event implements Serializable {
 	private List<UserEvent> users = new ArrayList<>();
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "address_id")
+	@JoinColumn(name = "ADDRESS_ID")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Address address;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 43826591af346ef839e90b33cabd75f03146b70d
 	public Integer getId() {
 		return id;
 	}
@@ -186,15 +192,17 @@ public class Event implements Serializable {
 		this.userId = userId;
 	}
 
-	@Override
-	public String toString() {
-		return "Event [id=" + id + ", name=" + name + ", picture=" + picture + ", date=" + date + ", address=" + address
-				+ ", score=" + score + ", flag=" + flag + ", categoryId=" + categoryId + "]";
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, categoryId, date, flag, id, name, picture, score, flag);
+		return Objects.hash(address, categoryId, date, description, flag, id, name, picture, score, userId, users);
 	}
 
 	@Override
@@ -207,8 +215,10 @@ public class Event implements Serializable {
 			return false;
 		Event other = (Event) obj;
 		return Objects.equals(address, other.address) && Objects.equals(categoryId, other.categoryId)
-				&& Objects.equals(date, other.date) && flag == other.flag && id == other.id
-				&& Objects.equals(name, other.name) && Objects.equals(picture, other.picture) && score == other.score;
+				&& Objects.equals(date, other.date) && Objects.equals(description, other.description)
+				&& Objects.equals(flag, other.flag) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
+				&& Objects.equals(picture, other.picture) && Objects.equals(score, other.score)
+				&& Objects.equals(userId, other.userId) && Objects.equals(users, other.users);
 	}
 
 }

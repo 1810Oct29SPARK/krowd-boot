@@ -8,14 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.revature.krowdboot.service.AddressService;
-import com.revature.krowdboot.service.EventCategoryService;
 import com.revature.krowdboot.service.EventService;
-import com.revature.krowdboot.service.UserService;
-import com.revature.krowdboot.model.Address;
 import com.revature.krowdboot.model.Event;
-import com.revature.krowdboot.model.EventCategory;
-import com.revature.krowdboot.model.User;
 
 @RestController
 @RequestMapping(value="/event")

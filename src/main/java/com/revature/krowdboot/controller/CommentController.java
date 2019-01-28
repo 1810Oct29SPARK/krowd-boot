@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.krowdboot.model.Comment;
-import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.service.CommentService;
 
 @RestController
