@@ -97,6 +97,7 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<UserEvent> events = new ArrayList<>();
 
+
 	public int getId() {
 		return id;
 	}

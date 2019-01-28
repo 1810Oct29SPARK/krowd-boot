@@ -113,6 +113,15 @@ public class Event implements Serializable {
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Address address;
 
+	//weird
+//	public List<UserEvent> getUsers() {
+//		return users;
+//	}
+//
+//	public void setUsers(List<UserEvent> users) {
+//		this.users = users;
+//	}
+
 	public Integer getId() {
 		return id;
 	}
