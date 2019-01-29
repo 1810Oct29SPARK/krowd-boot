@@ -2,7 +2,6 @@ package com.revature.krowdboot.controller;
 
 import java.util.List;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,18 +53,6 @@ public class UserController {
 	public ResponseEntity<User> getUserById(@PathVariable String requestId){
 		int id = Integer.parseInt(requestId);
 		return new ResponseEntity<>(userService.getUserById(id),HttpStatus.OK);
-	}
-
-	/*
-	 * getUserById will map a get request to the endpoint,
-	 * /user/getuserbyid/{requestid}. The request will contain an int that will be
-	 * associated with their id. If their id is a real id within the database, the
-	 * method will return the user associated with that id.
-	 */
-	@GetMapping(value = "/users/{requestid}")
-	public ResponseEntity<User> getUserById(@PathVariable String requestid) {
-		int id = Integer.parseInt(requestid);
-		return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
 	}
 
 	/*
