@@ -24,25 +24,31 @@ public class AdminTest extends TestSetup {
     
 /*    @Test
     public void UpdateUserTest() {
-    	RequestSpecification sendRequest = RestAssured.given();
-    	JSONObject request = new JSONObject();
-    	request.put("user","{\"id\":1,\"email\":\"email@email.com\",\"firstname\":\"Arv\",\"lastname\":\"lastname\",\"username\":\"username\",\"picture\":\"picture\",\"reputation\":1234,\"accountStatus\":1}");
-   		request.put("id", 1);
-    	request.put("email","email@email.com");
-    	request.put("firstname","Alex");
-    	request.put("lastname","lastname");
-    	request.put("username","username");
-    	request.put("picture","picture");
-    	request.put("reputation",1234);
-    	request.put("accountStatus", 1);
-    	// Add a header stating the Request body is a JSON
-    	sendRequest.header("Content-Type", "application/json");
-    	sendRequest.body(request.toJSONString());
-    	 Response response = sendRequest.put("/admin/update"); 
-    	 int statusCode = response.getStatusCode();
-    	 Assert.assertEquals(statusCode, 200);
+            RequestSpecification httpRequest = RestAssured.given();
+            httpRequest.header("Content-Type", "application/json");
+            JsonObject request = new JsonObject();
+            request.addProperty("id", 2);
+            request.addProperty("email", "shepherd@lamb.com");
+            request.addProperty("firstname", "Bo");
+            request.addProperty("lastname", "Peep");
+            request.addProperty("username", "BoPeep");
+            request.addProperty("picture", "https://upload.wikimedia.org/wikipedia/commons/6/66/Hambledon_Hill_Sheep.jpg");
+            request.addProperty("reputation", 87);
+            request.addProperty("accountStatus", 1);
+            httpRequest.body(request.toString());
+            Response response = httpRequest.post("/admin/deactivate");
+            Assert.assertEquals(response.statusCode(), 200);
     }
 */
+    /*
+     * deactivateUserTest will ensure that admins are able to deactivate user accounts.
+     * The test begins by initializing an http request and sets the content type in the
+     * header to be JSON data. A JSON object is then created that includes the id 
+     * of the user that will be deactivated, in this case 2. The http request body 
+     * is then loaded with the JSON object and to the deactivate endpoint via a post 
+     * request. The response is then checked to ensure that the status code is 200, 
+     * meaning a user was successfully deactivated.
+     */
     @Test
     public void deactivateUserTest() {
             RequestSpecification httpRequest = RestAssured.given();

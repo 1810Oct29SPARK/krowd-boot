@@ -3,11 +3,14 @@ package com.revature.test;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 
+import org.junit.Assert;
 import org.junit.Test;
 
-import com.revature.krowdboot.model.Comment;
+import com.google.gson.JsonObject;
 
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 public class CommentTest extends TestSetup{
 
@@ -30,13 +33,26 @@ public class CommentTest extends TestSetup{
     
     @Test
     public void deleteCommentTest() {
-    //    RestAssured.get("/user/all").then().statusCode(200);
+        RequestSpecification httpRequest = RestAssured.given();
+        httpRequest.header("Content-Type", "application/json");
+        JsonObject request = new JsonObject();
+        request.addProperty("id", 2);
+        httpRequest.body(request.toString());
+        Response response = httpRequest.post("/comment/deletecomment");
+        Assert.assertEquals(response.statusCode(), 200);
     }
     
     @Test
     public void createCommentTest() {
-    //	RestAssured.get("/user/all").then().assertThat()
-    //	.body("size()", equalTo(3));
+        RequestSpecification httpRequest = RestAssured.given();
+        httpRequest.header("Content-Type", "application/json");
+        JsonObject request = new JsonObject();
+        request.addProperty("comment", "Laughable");
+        request.addProperty("userId", 1);
+        request.addProperty("eventId", 1);
+        httpRequest.body(request.toString());
+        Response response = httpRequest.post("/comment/createcomment");
+        Assert.assertEquals(response.statusCode(), 200);
     }
     
     @Test
