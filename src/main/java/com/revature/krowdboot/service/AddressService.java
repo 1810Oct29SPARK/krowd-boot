@@ -12,6 +12,13 @@ import com.revature.krowdboot.repository.AddressRepository;
 public class AddressService {
 	@Autowired
 	private AddressRepository addressRepository;
+	
+	public AddressService() {
+	}
+	
+	public AddressService(AddressRepository addressRepositoryMock) {
+		this.addressRepository = addressRepositoryMock;
+	}
 
 	public Address getAddressById(int id) {
 		Address a = addressRepository.getOne(id);
