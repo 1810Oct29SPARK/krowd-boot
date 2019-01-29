@@ -51,7 +51,7 @@ VALUES (4,'Toy Drive','January 29th, 2019',8,0,6,1,'St Jude''s Children''s Hospi
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
 VALUES (5,'Hike near Hillsborough','February 2nd, 2019',2,0,4,2,'Let''s go for a nice Hike near Morris Bridge, I''ll meet you guys there.',null);
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
-VALUES (6,'Swamp Orienteering','February 9th, 2019',3,0,4,2,'Want to learn how to find your way out of the swamp? I can teach you how.','https://images.unsplash.com/photo-1501155971883-5eea9f469c10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+VALUES (6,'Swamp Orienteering','February 9th, 2019',3,1,4,2,'Want to learn how to find your way out of the swamp? I can teach you how.','https://images.unsplash.com/photo-1501155971883-5eea9f469c10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
 VALUES (7,'Trees of Tampa','February 16th, 2019',4,0,4,2,'The flora of Tampa are quite diverse. I''ll show you what''s what.','https://images.unsplash.com/photo-1541638127853-301f4ac81bbc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
