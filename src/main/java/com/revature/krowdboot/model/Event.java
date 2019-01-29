@@ -108,7 +108,6 @@ public class Event implements Serializable {
 	@JoinColumn(name = "ADDRESS_ID")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Address address;
-
 	public Integer getId() {
 		return id;
 	}
