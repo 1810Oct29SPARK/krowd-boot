@@ -42,18 +42,6 @@ public class UserController {
 	public ResponseEntity<List<User>> getAllUsers() {
 		return new ResponseEntity<>(userService.findAllUsers(),HttpStatus.OK);
 	}
-	
-	/*
-	 * getUserById will map a get request to the endpoint, /user/getuserbyid/{requestid}. The request 
-	 * will contain an int that will be associated with their id. If their id is 
-	 * a real id within the database, the method will return the user associated with that 
-	 * id.
-	 */
-	@GetMapping(value="/users/{requestid}")
-	public ResponseEntity<User> getUserById(@PathVariable String requestId){
-		int id = Integer.parseInt(requestId);
-		return new ResponseEntity<>(userService.getUserById(id),HttpStatus.OK);
-	}
 
 	/*
 	 * getUserByUsername will map a get request to the endpoint,

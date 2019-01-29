@@ -1,4 +1,4 @@
-package com.revature.test;
+package com.revature.krowdboot.controller;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.revature.krowdboot.service.UserService;
 import io.restassured.RestAssured;
 
-public class UserTest extends TestSetup{
+public class UserControllerTest extends TestSetup{
 	private UserService userService;
 
 	@Autowired

@@ -1,4 +1,4 @@
-package com.revature.test;
+package com.revature.krowdboot.controller;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,7 +10,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-public class AdminTest extends TestSetup {
+public class AdminControllerTest extends TestSetup {
 	
     @Test
     public void flaggedCommentsTest() {
@@ -57,7 +57,7 @@ public class AdminTest extends TestSetup {
             request.addProperty("id", 2);
             httpRequest.body(request.toString());
             Response response = httpRequest.post("/admin/deactivate");
-            Assert.assertEquals(response.statusCode(), 200);
+            Assert.assertEquals(200, response.statusCode());
     }
     
 }

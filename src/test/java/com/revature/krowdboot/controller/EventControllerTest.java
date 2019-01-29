@@ -1,4 +1,4 @@
-package com.revature.test;
+package com.revature.krowdboot.controller;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -12,7 +12,7 @@ import com.revature.krowdboot.model.Event;
 
 import io.restassured.RestAssured;
 
-public class EventTest extends TestSetup{
+public class EventControllerTest extends TestSetup{
 
     @Test
     public void getAllEventsTest() {

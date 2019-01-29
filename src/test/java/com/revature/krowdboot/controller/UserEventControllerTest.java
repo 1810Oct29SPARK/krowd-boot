@@ -1,4 +1,4 @@
-package com.revature.test;
+package com.revature.krowdboot.controller;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -7,17 +7,17 @@ import org.junit.Test;
 
 import io.restassured.RestAssured;
 
-public class UserEventTest extends TestSetup {
+public class UserEventControllerTest extends TestSetup {
 
     @Test
     public void getAllUsersByEventIdTest() {
-        RestAssured.get("/userEvent/userByEvent/1").then().assertThat().body("size()",equalTo(6));
+        RestAssured.get("/userEvent/userByEvent/1").then().assertThat().body("size()",equalTo(10));
     }
     
     @Test
     public void getAllEventsByUserIdTest() {
     	RestAssured.get("/userEvent/eventByUser/1").then().assertThat()
-    	.body("size()", equalTo(6));
+    	.body("size()", equalTo(10));
     }
     
     @Test
