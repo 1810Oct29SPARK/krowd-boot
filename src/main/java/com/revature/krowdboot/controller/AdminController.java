@@ -18,6 +18,7 @@ import com.revature.krowdboot.model.Comment;
 import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.service.AdminService;
+import com.revature.krowdboot.service.CommentService;
 
 @RestController
 @CrossOrigin
@@ -26,11 +27,18 @@ public class AdminController {
 	
 	private AdminService adminService;
 	
+	private CommentService commentService;
+
 	@Autowired
 	public void setAdminService(AdminService adminService) {
 		this.adminService = adminService;
 	}
-	
+
+	@Autowired
+	public void setCommentService(CommentService commentService) {
+		this.commentService = commentService;
+	}
+
 	@GetMapping(value = "/comments")
 	public ResponseEntity<List<Comment>> getFlaggedComments(){
 		ResponseEntity<List<Comment>> response = null;
@@ -70,6 +78,16 @@ public class AdminController {
 			response = new ResponseEntity<>(u, HttpStatus.BAD_REQUEST);
 		}
 		return response;
+	}
+	
+	@PostMapping("/unflagcomment")
+	public ResponseEntity<Comment> unflagComment(@RequestBody String id) {
+		JSONObject js = new JSONObject(id);
+		int comid = js.getInt("id");
+		Comment com =commentService.getCommentById(comid);
+		com.setFlag(0);
+		commentService.updateComment(com);
+		return new ResponseEntity<>(com,HttpStatus.OK);
 	}
 
 }
