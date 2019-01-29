@@ -26,7 +26,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public User(@NotNull String email, @NotNull String firstname, @NotNull String lastname,
-			@NotNull String username, String picture, @NotNull int reputation, @NotNull int accountStatus) {
+			@NotNull String username, String picture, @NotNull int reputation, @NotNull int accountStatus, @NotNull UserRole roleId) {
 		super();
 		this.email = email;
 		this.firstname = firstname;
@@ -35,10 +35,11 @@ public class User implements Serializable {
 		this.picture = picture;
 		this.reputation = reputation;
 		this.accountStatus = accountStatus;
+		this.roleId = roleId;
 	}
 
 	public User(int id, @NotNull String email, @NotNull String firstname, @NotNull String lastname,
-			@NotNull String username, String picture, @NotNull int reputation, @NotNull int accountStatus) {
+			@NotNull String username, String picture, @NotNull int reputation, @NotNull int accountStatus, @NotNull UserRole roleId) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -48,6 +49,7 @@ public class User implements Serializable {
 		this.picture = picture;
 		this.reputation = reputation;
 		this.accountStatus = accountStatus;
+		this.roleId = roleId;
 	}
 
 	public User(int id) {
@@ -92,7 +94,7 @@ public class User implements Serializable {
 	@NotNull
 	private int accountStatus;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "ROLE_ID")
 	private UserRole roleId;
 
@@ -162,6 +164,22 @@ public class User implements Serializable {
 
 	public void setAccountStatus(int accountStatus) {
 		this.accountStatus = accountStatus;
+	}
+
+	public String getCognito() {
+		return cognito;
+	}
+
+	public void setCognito(String cognito) {
+		this.cognito = cognito;
+	}
+
+	public UserRole getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(UserRole roleId) {
+		this.roleId = roleId;
 	}
 
 	@Override
