@@ -16,27 +16,26 @@ import com.revature.krowdboot.repository.EventRepository;
 
 @Service
 public class EventService {
-	
+
 	@Autowired
 	private EventRepository eventRepository;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private AddressService addressService;
-	
+
 	@Autowired
 	private EventCategoryService eventCategoryService;
-	
-	public List<Event> findallEvents(){
-		List<Event> e= new ArrayList<>();
-		e=eventRepository.findAll();
+
+	public List<Event> findallEvents() {
+		List<Event> e = new ArrayList<>();
+		e = eventRepository.findAll();
 		return e;
 	}
-	
-	public void addEvent(JSONObject json) {
 
+	public void addEvent(JSONObject json) {
 		String name =json.getString("eventName");
 		String picture =json.getString("eventPhotoID");
 		String description =json.getString("eventDescription");
@@ -59,7 +58,7 @@ public class EventService {
 		Event e=new Event(name,picture,description,date,address,score,flag,eventCategory,userObj);
 		eventRepository.save(e);
 	}
-	
+
 	public void updateEvent(JSONObject json) {
 		Integer id = json.getInt("eventID");
 		String name = json.getString("eventName");
@@ -84,11 +83,11 @@ public class EventService {
 		Event e=new Event(id,name,picture,description,date,address,score,flag,eventCategory,userObj);
 		eventRepository.save(e);
 	}
-	
+
 	public void deleteEvent(Integer id) {
 		eventRepository.deleteById(id);
 	}
-	
+
 	public Event getEventById(Integer id) {
 		Optional<Event> e=eventRepository.findById(id);
 		if (e.isPresent()) {
@@ -97,27 +96,25 @@ public class EventService {
 			return null;
 		}
 	}
-	
-	public List<Event>getEventsByEventCategory(Integer id){
-		List<Event> e=new ArrayList<>();
+
+	public List<Event> getEventsByEventCategory(Integer id) {
+		List<Event> e = new ArrayList<>();
 		EventCategory eventCategory = eventCategoryService.getCategoryById(id);
-		e=eventRepository.getEventsByCategoryId(eventCategory);
+		e = eventRepository.getEventsByCategoryId(eventCategory);
 		return e;
 	}
-	
-	public List<Event>getEventsByUser(Integer id){
-		List<Event> e=new ArrayList<>();
+
+	public List<Event> getEventsByUser(Integer id) {
+		List<Event> e = new ArrayList<>();
 		User user = userService.getUserById(id);
-		e=eventRepository.getEventsByUserId(user);
+		e = eventRepository.getEventsByUserId(user);
 		return e;
 	}
-	
-	public List<Event>getEventsByFlag(){
-		List<Event> e= new ArrayList<>();
-		e=eventRepository.getEventsByFlag(1);
+
+	public List<Event> getEventsByFlag() {
+		List<Event> e = new ArrayList<>();
+		e = eventRepository.getEventsByFlag(1);
 		return e;
 	}
+
 }
-	
-
-

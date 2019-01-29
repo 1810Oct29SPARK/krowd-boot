@@ -24,44 +24,48 @@ import com.revature.krowdboot.service.UserEventService;
 @RequestMapping(value="/userEvent")
 public class UserEventController {
 
-	@Autowired
 	private UserEventService ues;
-	
+
+	@Autowired
+	public void setUes(UserEventService ues) {
+		this.ues = ues;
+	}
+
 	@GetMapping("/userByEvent/{eventId}")
-	public ResponseEntity<List<User>> getAllUsersByEventId(@PathVariable String eventId){
-		int eventNumber=Integer.parseInt(eventId);
-		return new ResponseEntity<>(ues.findAllUsersByEventId(eventNumber),HttpStatus.OK);
+	public ResponseEntity<List<User>> getAllUsersByEventId(@PathVariable String eventId) {
+		int eventNumber = Integer.parseInt(eventId);
+		return new ResponseEntity<>(ues.findAllUsersByEventId(eventNumber), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/eventByUser/{userId}")
-	public ResponseEntity<List<Event>> getAllEventsByUserId(@PathVariable String userId){
-		int userNumber=Integer.parseInt(userId);
-		return new ResponseEntity<>(ues.findAllEventsByUserId(userNumber),HttpStatus.OK);
+	public ResponseEntity<List<Event>> getAllEventsByUserId(@PathVariable String userId) {
+		int userNumber = Integer.parseInt(userId);
+		return new ResponseEntity<>(ues.findAllEventsByUserId(userNumber), HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/addUserEvent")
-	public void addUserEvent(@RequestBody String jsonStr){
+	public void addUserEvent(@RequestBody String jsonStr) {
 		JSONObject json = new JSONObject(jsonStr);
-		int eventId=Integer.parseInt((String)json.get("eventId"));
-		int userId=Integer.parseInt((String)json.get("userId"));
+		int eventId = Integer.parseInt((String) json.get("eventId"));
+		int userId = Integer.parseInt((String) json.get("userId"));
 		ues.addUserEvent(userId, eventId);
 	}
-	
+
 	@GetMapping("/scoreEvent/{eventId}")
 	public Integer getScore(@PathVariable String eventId) {
 		int eId = Integer.parseInt(eventId);
 		return ues.calculateEventScore(eId);
 	}
-	
+
 	@PutMapping("/rate")
 	public void rateEvent(@RequestBody String jsonStr) {
 		JSONObject json = new JSONObject(jsonStr);
 		ues.updateUserEvent(json);
 	}
-	
+
 	@GetMapping("/getReputation/{userId}")
 	public Integer getReputation(@PathVariable String userId) {
-		int userNumber=Integer.parseInt(userId);
+		int userNumber = Integer.parseInt(userId);
 		return ues.calculateReputation(userNumber);
 	}
 }
