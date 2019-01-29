@@ -20,7 +20,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "comment")
+@Table(name = "COMMENT")
 public class Comment implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -62,13 +62,13 @@ public class Comment implements Serializable {
 	private String timestamp;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "USER_ID")
+	@OnDelete (action = OnDeleteAction.CASCADE)
 	private User userId;
 
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "event_id")
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "EVENT_ID")
+	@OnDelete (action = OnDeleteAction.CASCADE)
 	private Event eventId;
 
 	public int getId() {

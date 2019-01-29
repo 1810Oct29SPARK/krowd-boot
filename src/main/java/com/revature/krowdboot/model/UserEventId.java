@@ -20,11 +20,10 @@ public class UserEventId implements Serializable {
 		this.userId = userId;
 		this.eventId = eventId;
 	}
-
-	@Column(name = "user_id")
+	@Column(name = "USER_ID")
 	private int userId;
-
-	@Column(name = "event_id")
+	
+	@Column(name = "EVENT_ID")
 	private int eventId;
 
 	public int getUserId() {

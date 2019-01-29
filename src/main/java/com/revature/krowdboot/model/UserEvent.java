@@ -12,7 +12,7 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_event")
+@Table(name = "USER_EVENT")
 public class UserEvent implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -45,8 +45,7 @@ public class UserEvent implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("eventId")
 	private Event event;
-
-	@Column(name = "rating", columnDefinition = "int default 0")
+	@Column(name = "RATING", columnDefinition = "int default 0")
 	private int rating;
 
 	public UserEventId getId() {

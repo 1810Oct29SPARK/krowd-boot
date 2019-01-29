@@ -50,14 +50,6 @@ public class AdminService {
 	}
 
 	/*
-	 * Method for obtaining a user associated with a given account status.
-	 */
-	public User getUserByAccountStatus(int status) {
-		User user = userRepository.getUserByAccountStatus(status);
-		return user;
-	}
-
-	/*
 	 * Method
 	 */
 	public List<Comment> getFlaggedComments(int flag) {
@@ -68,11 +60,6 @@ public class AdminService {
 	public List<Event> getFlaggedEvents(int flag) {
 		List<Event> events = eventRepository.getEventsByFlag(flag);
 		return events;
-	}
-
-	public User updateUser(User user) {
-		User u = userRepository.save(user);
-		return u;
 	}
 
 	public User deactivateUser(int id) {

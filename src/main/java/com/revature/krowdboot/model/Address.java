@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "address")
+@Table(name = "ADDRESS")
 public class Address implements Serializable {
 
 	private static final long serialVersionUID = 1L;
