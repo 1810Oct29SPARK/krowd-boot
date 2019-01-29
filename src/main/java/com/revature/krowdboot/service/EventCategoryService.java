@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import com.revature.krowdboot.model.EventCategory;
 import com.revature.krowdboot.repository.EventCategoryRepository;
 
+/*
+ * @Author Jonathan Snider & Stewart Gardner
+*/
+
 @Service
 public class EventCategoryService {
 

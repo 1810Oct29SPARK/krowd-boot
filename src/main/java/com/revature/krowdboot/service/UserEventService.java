@@ -13,6 +13,10 @@ import com.revature.krowdboot.model.UserEvent;
 import com.revature.krowdboot.model.UserEventId;
 import com.revature.krowdboot.repository.UserEventRepository;
 
+/*
+ * @Author Jonathan Snider & Stewart Gardner
+*/
+
 @Service
 public class UserEventService {
 

@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import com.revature.krowdboot.model.Address;
 import com.revature.krowdboot.repository.AddressRepository;
 
+/*
+ * @Author Jonathan Snider & Stewart Gardner
+*/
+
 @Service
 public class AddressService {
 
