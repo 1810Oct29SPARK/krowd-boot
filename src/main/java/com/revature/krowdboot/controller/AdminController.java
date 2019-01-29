@@ -28,10 +28,12 @@ public class AdminController {
 	private AdminService adminService;
 	
 	private CommentService commentService;
+
 	@Autowired
 	public void setAdminService(AdminService adminService) {
 		this.adminService = adminService;
 	}
+
 	@Autowired
 	public void setCommentService(CommentService commentService) {
 		this.commentService = commentService;
@@ -64,11 +66,13 @@ public class AdminController {
 	}
 	
 	@PostMapping("/deactivate")
-	public ResponseEntity<User> deactivateUser(@RequestBody int id) {
+	public ResponseEntity<User> deactivateUser(@RequestBody String id) {
 		ResponseEntity<User> response = null;
+		JSONObject js = new JSONObject(id);
+		int userId = js.getInt("id");
 		User u = null;
 		try {
-			u = adminService.deactivateUser(id);
+			u = adminService.deactivateUser(userId);
 			response = new ResponseEntity<>(u, HttpStatus.OK);
 		} catch (Exception e) {
 			response = new ResponseEntity<>(u, HttpStatus.BAD_REQUEST);
