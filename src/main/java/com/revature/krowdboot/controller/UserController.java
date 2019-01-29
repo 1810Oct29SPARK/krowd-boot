@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.krowdboot.model.User;
+import com.revature.krowdboot.model.UserRole;
+
 import com.revature.krowdboot.service.UserService;
 
 @RestController
@@ -32,7 +34,7 @@ public class UserController {
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-		
+
 	/*
 	 * getAllUsers maps a get request that corresponds to /user/getallusers. 
 	 * The method will return a response that contains a list of all of the 
@@ -76,5 +78,17 @@ public class UserController {
 		int id = js.getInt("id");
 		userService.deleteUserById(id);
 	}
+	
+	@PostMapping(value="/create")
+	public ResponseEntity<User> createUser(@RequestBody User user){
+		user.setAccountStatus(0);
+		
+		userService.createUser(user);
+		
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	
 	
 }
