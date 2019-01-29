@@ -24,9 +24,9 @@ import com.revature.krowdboot.service.CommentService;
 @CrossOrigin
 @RequestMapping(value = "/admin")
 public class AdminController {
-	
+
 	private AdminService adminService;
-	
+  
 	private CommentService commentService;
 
 	@Autowired
@@ -40,7 +40,7 @@ public class AdminController {
 	}
 
 	@GetMapping(value = "/comments")
-	public ResponseEntity<List<Comment>> getFlaggedComments(){
+	public ResponseEntity<List<Comment>> getFlaggedComments() {
 		ResponseEntity<List<Comment>> response = null;
 		List<Comment> comments = new ArrayList<>();
 		try {
@@ -51,9 +51,9 @@ public class AdminController {
 		}
 		return response;
 	}
-	
+
 	@GetMapping(value = "/events")
-	public ResponseEntity<List<Event>> getFlaggedEvents(){
+	public ResponseEntity<List<Event>> getFlaggedEvents() {
 		ResponseEntity<List<Event>> response = null;
 		List<Event> events = new ArrayList<>();
 		try {
@@ -64,7 +64,7 @@ public class AdminController {
 		}
 		return response;
 	}
-	
+
 	@PostMapping("/deactivate")
 	public ResponseEntity<User> deactivateUser(@RequestBody String id) {
 		ResponseEntity<User> response = null;
@@ -79,7 +79,7 @@ public class AdminController {
 		}
 		return response;
 	}
-	
+
 	@PostMapping("/unflagcomment")
 	public ResponseEntity<Comment> unflagComment(@RequestBody String id) {
 		JSONObject js = new JSONObject(id);

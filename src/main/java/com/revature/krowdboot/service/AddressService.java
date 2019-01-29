@@ -15,7 +15,7 @@ import com.revature.krowdboot.repository.AddressRepository;
 
 @Service
 public class AddressService {
-	@Autowired
+
 	private AddressRepository addressRepository;
 	
 	public AddressService() {
@@ -23,6 +23,15 @@ public class AddressService {
 	
 	public AddressService(AddressRepository addressRepositoryMock) {
 		this.addressRepository = addressRepositoryMock;
+	}
+
+	public AddressRepository getAddressRepository() {
+		return addressRepository;
+	}
+
+	@Autowired
+	public void setAddressRepository(AddressRepository addressRepository) {
+		this.addressRepository = addressRepository;
 	}
 
 	public Address getAddressById(int id) {
@@ -48,11 +57,13 @@ public class AddressService {
 		Integer zip = address.getZip();
 		String streetAddress = address.getStreetAddress();
 		String apartment = address.getApartment();
-		Address checkedAddress = addressRepository.findAllByZipLikeAndStreetAddressLikeAndApartment(zip, streetAddress, apartment);
+		Address checkedAddress = addressRepository.findAllByZipLikeAndStreetAddressLikeAndApartment(zip, streetAddress,
+				apartment);
 		if (checkedAddress == null) {
 			addressRepository.save(address);
 			return address;
 		}
 		return checkedAddress;
 	}
+
 }

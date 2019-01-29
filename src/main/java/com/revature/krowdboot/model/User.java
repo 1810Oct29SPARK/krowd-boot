@@ -101,7 +101,6 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<UserEvent> events = new ArrayList<>();
 
-
 	public int getId() {
 		return id;
 	}
@@ -208,7 +207,5 @@ public class User implements Serializable {
 				&& Objects.equals(lastname, other.lastname) && Objects.equals(picture, other.picture)
 				&& reputation == other.reputation && Objects.equals(username, other.username);
 	}
-	
-	
 
 }

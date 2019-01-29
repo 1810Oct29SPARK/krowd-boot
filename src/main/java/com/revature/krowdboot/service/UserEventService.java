@@ -19,6 +19,7 @@ import com.revature.krowdboot.repository.UserEventRepository;
 
 @Service
 public class UserEventService {
+
 	@Autowired
 	private UserEventRepository userEventRepository;
 	@Autowired
@@ -53,7 +54,6 @@ public class UserEventService {
 		UserEventId ueId = new UserEventId(userId, eventId);
 		UserEvent ue = new UserEvent(ueId, u, e, 0);
 		userEventRepository.save(ue);
-
 	}
 
 	public Integer calculateEventScore(Integer eventId) {
