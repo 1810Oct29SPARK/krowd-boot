@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +36,7 @@ public class CommentController {
 		return new ResponseEntity<>(commentService.getCommentById(id),HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole(2)")
 	@PostMapping("/commentsbyflag")
 	public ResponseEntity<List<Comment>> getCommentByFlag(@RequestBody String comment) {
 		JSONObject js = new JSONObject(comment);
@@ -42,6 +44,7 @@ public class CommentController {
 		return new ResponseEntity<>(commentService.getCommentsByFlag(flag),HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasRole(2)")
 	@PostMapping("/deletecomment")
 		public ResponseEntity<String> deleteComment(@RequestBody String comment){
 			JSONObject js = new JSONObject(comment);
@@ -50,6 +53,8 @@ public class CommentController {
 			return new ResponseEntity<>("",HttpStatus.OK);
 		}
 	
+	//If this does not work, we must take off tags for Admins to be able to use User roles
+	@PreAuthorize("hasRole(1)")
 	@PostMapping("/createcomment")
 	public ResponseEntity<String> createComment(@RequestBody Comment comment){
 		LocalDateTime ldt = LocalDateTime.now();
