@@ -3,6 +3,7 @@ package com.revature.krowdboot.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,6 +24,11 @@ import com.revature.krowdboot.service.AdminService;
 public class AdminController {
 	
 	private AdminService adminService;
+	
+	@Autowired
+	public void setAdminService(AdminService adminService) {
+		this.adminService = adminService;
+	}
 	
 	@GetMapping(value = "/comments")
 	public ResponseEntity<List<Comment>> getFlaggedComments(){
