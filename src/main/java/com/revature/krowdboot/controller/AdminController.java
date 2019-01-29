@@ -18,6 +18,7 @@ import com.revature.krowdboot.model.Comment;
 import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.service.AdminService;
+import com.revature.krowdboot.service.CommentService;
 
 @RestController
 @CrossOrigin
@@ -25,12 +26,18 @@ import com.revature.krowdboot.service.AdminService;
 public class AdminController {
 
 	private AdminService adminService;
+  
+	private CommentService commentService;
 
 	@Autowired
 	public void setAdminService(AdminService adminService) {
 		this.adminService = adminService;
 	}
-	
+
+	@Autowired
+	public void setCommentService(CommentService commentService) {
+		this.commentService = commentService;
+	}
 
 	@GetMapping(value = "/comments")
 	public ResponseEntity<List<Comment>> getFlaggedComments() {
@@ -61,10 +68,10 @@ public class AdminController {
 	@PostMapping("/deactivate")
 	public ResponseEntity<User> deactivateUser(@RequestBody String id) {
 		ResponseEntity<User> response = null;
+		JSONObject js = new JSONObject(id);
+		int userId = js.getInt("id");
 		User u = null;
 		try {
-			JSONObject js = new JSONObject(id);
-			int userId = js.getInt("id");
 			u = adminService.deactivateUser(userId);
 			response = new ResponseEntity<>(u, HttpStatus.OK);
 		} catch (Exception e) {
@@ -72,4 +79,15 @@ public class AdminController {
 		}
 		return response;
 	}
+
+	@PostMapping("/unflagcomment")
+	public ResponseEntity<Comment> unflagComment(@RequestBody String id) {
+		JSONObject js = new JSONObject(id);
+		int comid = js.getInt("id");
+		Comment com =commentService.getCommentById(comid);
+		com.setFlag(0);
+		commentService.updateComment(com);
+		return new ResponseEntity<>(com,HttpStatus.OK);
+	}
+
 }

@@ -26,12 +26,6 @@ public class EventController {
 
 	@Autowired
 	private EventService es;
-//	@Autowired
-//	private UserService us;
-//	@Autowired
-//	private EventCategoryService ecs;
-//	@Autowired
-//	private AddressService as;
 
 	@GetMapping("/all")
 	public ResponseEntity<List<Event>> getAllEvents() {

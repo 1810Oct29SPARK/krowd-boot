@@ -76,9 +76,9 @@ public class UserEventService {
 	}
 
 	public void updateUserEvent(JSONObject json) {
-		int userId = Integer.parseInt((String) json.get("userId"));
-		int eventId = Integer.parseInt((String) json.get("eventId"));
-		int rating = Integer.parseInt((String) json.get("rating"));
+		int userId =json.getInt("userId");
+		int eventId =json.getInt("eventId");
+		int rating =json.getInt("rating");
 		UserEvent ue = userEventRepository.findByUserIdLikeAndEventId(userId, eventId);
 		ue.setRating(rating);
 		userEventRepository.save(ue);

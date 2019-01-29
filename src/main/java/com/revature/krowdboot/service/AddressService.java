@@ -1,6 +1,7 @@
 package com.revature.krowdboot.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,13 @@ import com.revature.krowdboot.repository.AddressRepository;
 public class AddressService {
 
 	private AddressRepository addressRepository;
+	
+	public AddressService() {
+	}
+	
+	public AddressService(AddressRepository addressRepositoryMock) {
+		this.addressRepository = addressRepositoryMock;
+	}
 
 	public AddressRepository getAddressRepository() {
 		return addressRepository;
@@ -23,8 +31,12 @@ public class AddressService {
 	}
 
 	public Address getAddressById(int id) {
-		Address a = addressRepository.getOne(id);
-		return a;
+		Optional<Address> a = addressRepository.findById(id);
+		if (a.isPresent()) {
+			return a.get();
+		} else {
+			return null;
+		}
 	}
 
 	public List<Address> getAllAddresses() {

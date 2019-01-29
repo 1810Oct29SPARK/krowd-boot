@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.krowdboot.model.User;
+
 import com.revature.krowdboot.service.UserService;
 
 /*
@@ -40,7 +41,19 @@ public class UserController {
 	 */
 	@GetMapping("/all")
 	public ResponseEntity<List<User>> getAllUsers() {
-		return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
+		return new ResponseEntity<>(userService.findAllUsers(),HttpStatus.OK);
+	}
+	
+	/*
+	 * getUserById will map a get request to the endpoint, /user/getuserbyid/{requestid}. The request 
+	 * will contain an int that will be associated with their id. If their id is 
+	 * a real id within the database, the method will return the user associated with that 
+	 * id.
+	 */
+	@GetMapping(value="/users/{requestid}")
+	public ResponseEntity<User> getUserById(@PathVariable String requestId){
+		int id = Integer.parseInt(requestId);
+		return new ResponseEntity<>(userService.getUserById(id),HttpStatus.OK);
 	}
 
 	/*
@@ -64,6 +77,13 @@ public class UserController {
 	@GetMapping(value = "/{username}")
 	public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
 		return new ResponseEntity<>(userService.findUserByUsername(username), HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/create")
+	public ResponseEntity<User> createUser(@RequestBody User user){
+		user.setAccountStatus(0);
+		userService.createUser(user);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }

@@ -21,10 +21,10 @@ import com.revature.krowdboot.service.CommentService;
 @RestController
 @CrossOrigin
 @RequestMapping("/comment")
-public class CommentController {
-
-	CommentService commentService;
-
+public class CommentController {	
+	
+	private CommentService commentService;
+	
 	@Autowired
 	public void setCommentService(CommentService commentService) {
 		this.commentService = commentService;
@@ -61,6 +61,8 @@ public class CommentController {
 		String time = ldt.toString();
 
 		comment.setTimestamp(time);
+		comment.setFlag(0);
+		
 		commentService.createAComment(comment);
 		// Comment c =commentService.getCommentById(comment.getId());
 
@@ -68,15 +70,13 @@ public class CommentController {
 	}
 
 	@PostMapping("/flagcomment")
-	public ResponseEntity<Comment> flagComment(@RequestBody Comment comment) {
-		comment.setFlag(1);
-		return new ResponseEntity<>(comment, HttpStatus.OK);
-	}
-
-	@PostMapping("/unflagcomment")
-	public ResponseEntity<Comment> unflagComment(@RequestBody Comment comment) {
-		comment.setFlag(0);
-		return new ResponseEntity<>(comment, HttpStatus.OK);
+	public ResponseEntity<Comment> flagComment(@RequestBody String id) {
+		JSONObject js = new JSONObject(id);
+		int comid = js.getInt("id");
+		Comment com = commentService.getCommentById(comid);
+		com.setFlag(1);
+		commentService.updateComment(com);
+		return new ResponseEntity<>(com,HttpStatus.OK);
 	}
 
 }

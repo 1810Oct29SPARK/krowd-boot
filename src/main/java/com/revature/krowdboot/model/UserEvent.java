@@ -37,12 +37,12 @@ public class UserEvent implements Serializable {
 
 	@EmbeddedId
 	private UserEventId id;
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("userId")
 	private User user;
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	
+	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("eventId")
 	private Event event;
 	@Column(name = "RATING", columnDefinition = "int default 0")
