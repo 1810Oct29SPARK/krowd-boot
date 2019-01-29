@@ -12,7 +12,7 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_event")
+@Table(name = "USER_EVENT")
 public class UserEvent implements Serializable {
 	
 	/**
@@ -49,7 +49,7 @@ public class UserEvent implements Serializable {
 	@MapsId("eventId")
 	private Event event;
 	
-	@Column(name = "rating")
+	@Column(name = "RATING", columnDefinition = "int default 0")
 	private int rating;
 
 	public UserEventId getId() {
