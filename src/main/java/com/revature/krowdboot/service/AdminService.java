@@ -8,6 +8,7 @@
 package com.revature.krowdboot.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,10 +66,15 @@ public class AdminService {
 	}
 	
 	public User deactivateUser(int id) {
-		User u = userRepository.getOne(id);
-		u.setAccountStatus(1);
-		u = userRepository.save(u);
-		return u;
+		Optional<User> u = userRepository.findById(id);
+		if (u.isPresent()) {
+			User user = u.get();
+			user.setAccountStatus(1);
+			user = userRepository.save(user);
+			return user;	
+		} else {
+			return null;
+		}
 	}
 
 }
