@@ -14,6 +14,10 @@ import com.revature.krowdboot.model.EventCategory;
 import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.repository.EventRepository;
 
+/*
+ * @Author Jonathan Snider & Stewart Gardner
+*/
+
 @Service
 public class EventService {
 	

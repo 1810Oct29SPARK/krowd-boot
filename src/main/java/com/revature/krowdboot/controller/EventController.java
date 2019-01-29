@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.service.EventService;
 
+/*
+ * @Author Jonathan Snider & Stewart Gardner
+*/
+
 @RestController
 @CrossOrigin
 @RequestMapping(value="/event")
