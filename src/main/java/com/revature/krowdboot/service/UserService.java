@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.krowdboot.model.User;
-import com.revature.krowdboot.model.UserRole;
 import com.revature.krowdboot.repository.UserRepository;
 
 @Service("userService")

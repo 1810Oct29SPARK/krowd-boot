@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.krowdboot.model.User;
-import com.revature.krowdboot.model.UserRole;
 
 import com.revature.krowdboot.service.UserService;
 
@@ -51,7 +50,7 @@ public class UserController {
 	 * a real id within the database, the method will return the user associated with that 
 	 * id.
 	 */
-	@GetMapping(value="/{requestid}")
+	@GetMapping(value="/users/{requestid}")
 	public ResponseEntity<User> getUserById(@PathVariable String requestId){
 		int id = Integer.parseInt(requestId);
 		return new ResponseEntity<>(userService.getUserById(id),HttpStatus.OK);
