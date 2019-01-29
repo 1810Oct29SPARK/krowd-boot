@@ -33,13 +33,21 @@ public class EventService {
 	@Autowired
 	private EventCategoryService eventCategoryService;
 
+	public EventService() {
+	}
+	
+	public EventService(EventRepository eventRepository) {
+		this.eventRepository= eventRepository; 
+	}
+
+
 	public List<Event> findallEvents() {
 		List<Event> e = new ArrayList<>();
 		e = eventRepository.findAll();
 		return e;
 	}
 
-	public void addEvent(JSONObject json) {
+	public int addEvent(JSONObject json) {
 		String name =json.getString("eventName");
 		String picture =json.getString("eventPhotoID");
 		String description =json.getString("eventDescription");
@@ -60,7 +68,11 @@ public class EventService {
 		int zipCode =json.getInt("eventZip");
 		Address address = addressService.checkAddress(new Address(streetAddress,apartment,city,state,zipCode));
 		Event e=new Event(name,picture,description,date,address,score,flag,eventCategory,userObj);
-		eventRepository.save(e);
+		Event newEvent = eventRepository.save(e); 
+		if (newEvent !=null) {
+			return newEvent.getId(); 
+		}
+		return 0; 
 	}
 
 	public void updateEvent(JSONObject json) {
