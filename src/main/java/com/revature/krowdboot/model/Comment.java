@@ -65,12 +65,12 @@ public class Comment implements Serializable {
 	@Column
 	private String timestamp;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "USER_ID")
 	@OnDelete (action = OnDeleteAction.CASCADE)
 	private User userId;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "EVENT_ID")
 	@OnDelete (action = OnDeleteAction.CASCADE)
 	private Event eventId;

@@ -1,4 +1,3 @@
-
 INSERT INTO ADDRESS (id,street_Address,apartment,city,state,zip) VALUES (1,'123 Boogie Woogie Ave',NULL,'Spooksville','CV',12345);
 INSERT INTO ADDRESS (id,street_Address,apartment,city,state,zip) VALUES (2,'456 Boogie Woogie Ave','Apt 3','Ghostburg','PG',67890);
 
@@ -22,4 +21,4 @@ INSERT INTO USER_EVENT (event_id,user_id) VALUES (2,1);
 INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (1,'Looking forward to the thing',0,1,1,null);
 INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (2,'This is a flagged comment',1,2,2,null);
 
-INSERT INTO KROWD_USER (EMAIL,FIRSTNAME,LASTNAME,USERNAME,REPUTATION,ACCOUNT_STATUS) VALUES ('JAKEY@JAKEY.COM','JAKE','MAN','RUNESCAPER1337',1,1);
+INSERT INTO KROWD_USER (EMAIL,FIRSTNAME,LASTNAME,USERNAME,REPUTATION,ACCOUNT_STATUS, ROLE_ID) VALUES ('JAKEY@JAKEY.COM','JAKE','MAN','RUNESCAPER1337',1,1,1);

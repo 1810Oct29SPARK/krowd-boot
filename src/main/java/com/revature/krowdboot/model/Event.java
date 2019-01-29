@@ -91,12 +91,12 @@ public class Event implements Serializable {
 	@NotNull
 	private Integer flag;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "USER_ID")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User userId;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "EVENT_CATEGORY_ID")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private EventCategory categoryId;
@@ -104,7 +104,7 @@ public class Event implements Serializable {
 	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<UserEvent> users = new ArrayList<>();
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "ADDRESS_ID")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Address address;
@@ -113,7 +113,7 @@ public class Event implements Serializable {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -153,7 +153,7 @@ public class Event implements Serializable {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(Integer score) {
 		this.score = score;
 	}
 
@@ -161,7 +161,7 @@ public class Event implements Serializable {
 		return flag;
 	}
 
-	public void setFlag(int flag) {
+	public void setFlag(Integer flag) {
 		this.flag = flag;
 	}
 
