@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,17 +35,15 @@ public class CommentController {
 		return new ResponseEntity<>(commentService.getAllComments(), HttpStatus.OK);
 	}
 
-	@PostMapping("/commentbyid")
-	public ResponseEntity<Comment> getCommentById(@RequestBody String comment) {
-		JSONObject js = new JSONObject(comment);
-		int id = js.getInt("id");
+	@GetMapping("/getById/{getId}")
+	public ResponseEntity<Comment> getCommentById(@PathVariable String getId) {
+		int id = Integer.parseInt(getId);
 		return new ResponseEntity<>(commentService.getCommentById(id), HttpStatus.OK);
 	}
 
-	@PostMapping("/commentsbyflag")
-	public ResponseEntity<List<Comment>> getCommentByFlag(@RequestBody String comment) {
-		JSONObject js = new JSONObject(comment);
-		int flag = js.getInt("flag");
+	@GetMapping("/getByFlag/{getFlag}")
+	public ResponseEntity<List<Comment>> getCommentByFlag(@PathVariable String getFlag) {
+		int flag = Integer.parseInt(getFlag);
 		return new ResponseEntity<>(commentService.getCommentsByFlag(flag), HttpStatus.OK);
 	}
 

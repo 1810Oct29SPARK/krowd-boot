@@ -13,20 +13,19 @@ public class CommentTest extends TestSetup{
 
     @Test
     public void getAllCommentsTest() {
-    //    RestAssured.get("/comment/getallcomments").then().assertThat()
-    //    .body("size()", equalTo(2));
+        RestAssured.get("/comment/getallcomments").then().assertThat()
+        .body("size()", equalTo(10));
     }
     
     @Test
     public void getCommentByIdTest() {
-    //	Comment c = new Comment(1,"Looking forward to the thing",0,1,1,null);
-    //	RestAssured.get("/comment/getcommentbyid").then().assertThat()
-    //	.body(equalTo(c));
+    	RestAssured.get("/comment/getById/1").then().assertThat()
+    	.body(containsString("Looking forward to seeing all you."));
     }
     
     @Test
     public void getCommentByFlagTest() {
-    //	RestAssured.get("/user/users/1").then().assertThat().body(containsString("firstname"));
+    	RestAssured.get("/comment/getByFlag/1").then().assertThat().body("size()",equalTo(3));
     }
     
     @Test

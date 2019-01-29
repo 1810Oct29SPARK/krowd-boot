@@ -63,7 +63,7 @@ public class AdminService {
 	}
 
 	public User deactivateUser(int id) {
-		User u = userRepository.getOne(id);
+		User u = userRepository.getById(id);
 		u.setAccountStatus(1);
 		u = userRepository.save(u);
 		return u;

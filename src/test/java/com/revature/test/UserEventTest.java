@@ -11,23 +11,23 @@ public class UserEventTest extends TestSetup {
 
     @Test
     public void getAllUsersByEventIdTest() {
-    //    RestAssured.get("/user/all").then().statusCode(200);
+        RestAssured.get("/userEvent/userByEvent/1").then().assertThat().body("size()",equalTo(6));
     }
     
     @Test
     public void getAllEventsByUserIdTest() {
-    //	RestAssured.get("/user/all").then().assertThat()
-    //	.body("size()", equalTo(3));
+    	RestAssured.get("/userEvent/eventByUser/1").then().assertThat()
+    	.body("size()", equalTo(6));
     }
     
     @Test
     public void addUserEventTest() {
-    //	RestAssured.get("/user/users/1").then().assertThat().body(containsString("firstname"));
+    //	RestAssured.get("/userEvent/scoreEvent/1").then().assertThat().body(containsString("firstname"));
     }
     
     @Test
     public void getScoreTest() {
-    //    RestAssured.get("/user/all").then().statusCode(200);
+        RestAssured.get("/userEvent/scoreEvent/1").then().assertThat().body(containsString("4"));
     }
     
     @Test
@@ -38,6 +38,6 @@ public class UserEventTest extends TestSetup {
     
     @Test
     public void getReputationTest() {
-    //	RestAssured.get("/user/users/1").then().assertThat().body(containsString("firstname"));
+    	RestAssured.get("/userEvent/getReputation/1").then().assertThat().body(containsString("21"));
     }
 }

@@ -3,6 +3,8 @@ package com.revature.krowdboot.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,6 +25,12 @@ import com.revature.krowdboot.service.AdminService;
 public class AdminController {
 
 	private AdminService adminService;
+
+	@Autowired
+	public void setAdminService(AdminService adminService) {
+		this.adminService = adminService;
+	}
+	
 
 	@GetMapping(value = "/comments")
 	public ResponseEntity<List<Comment>> getFlaggedComments() {
@@ -51,16 +59,17 @@ public class AdminController {
 	}
 
 	@PostMapping("/deactivate")
-	public ResponseEntity<User> deactivateUser(@RequestBody int id) {
+	public ResponseEntity<User> deactivateUser(@RequestBody String id) {
 		ResponseEntity<User> response = null;
 		User u = null;
 		try {
-			u = adminService.deactivateUser(id);
+			JSONObject js = new JSONObject(id);
+			int userId = js.getInt("id");
+			u = adminService.deactivateUser(userId);
 			response = new ResponseEntity<>(u, HttpStatus.OK);
 		} catch (Exception e) {
 			response = new ResponseEntity<>(u, HttpStatus.BAD_REQUEST);
 		}
 		return response;
 	}
-
 }

@@ -2,6 +2,7 @@ package com.revature.krowdboot.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,8 +90,12 @@ public class EventService {
 	}
 
 	public Event getEventById(Integer id) {
-		Event e = eventRepository.getOne(id);
-		return e;
+		Optional<Event> e=eventRepository.findById(id);
+		if(e.isPresent()) {
+			return e.get();
+		}else {
+			return null;
+		}
 	}
 
 	public List<Event> getEventsByEventCategory(Integer id) {

@@ -38,22 +38,22 @@ public class EventTest extends TestSetup{
     @Test
     public void getEventByEventIdTest() {
     	RestAssured.get("/event/byId/1").then().assertThat()
-      .body(containsString("Haunted House Party"));
+      .body(containsString("First Meet Up!"));
     }
     
     @Test
     public void getEventsByEventCategoryTest() {
-    	RestAssured.get("/event/byCategory/2").then().assertThat().body(containsString("Other"));
+    	RestAssured.get("/event/byCategory/2").then().assertThat().body(containsString("Learn To Bake"));
     }
     
     @Test
     public void getEventsByUser() {
-        RestAssured.get("/event/byUser/2").then().assertThat().body("name",equalTo("Miner 49er"));
+        RestAssured.get("/event/byUser/2").then().assertThat().body(containsString("Hike near Hillsborough"));
     }
     
     @Test
     public void getEventsByFlagTest() {
     	RestAssured.get("/event/byFlag").then().assertThat()
-    	.body("size()", equalTo(1));
+    	.body("size()", equalTo(0));
     }
 }

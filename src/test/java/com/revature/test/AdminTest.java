@@ -1,10 +1,14 @@
 package com.revature.test;
 
+import org.junit.Assert;
 import org.junit.Test;
 
+import com.google.gson.JsonObject;
 import com.revature.krowdboot.model.User;
 
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 public class AdminTest extends TestSetup {
 	
@@ -41,19 +45,13 @@ public class AdminTest extends TestSetup {
 */
     @Test
     public void deactivateUserTest() {
-/*    	RequestSpecification sendRequest = RestAssured.given();
-    	JSONObject request = new JSONObject();
-    	request.put("id", 1);
-    	sendRequest.header("Content-Type", "application/json");
-    	sendRequest.body(request.toJSONString());
-    	 Response response = sendRequest.post("/admin/deactivate"); 
-    	 int statusCode = response.getStatusCode();
-    	 Assert.assertEquals(statusCode, 200);*/
-        RestAssured.with().body(new User(1,"email@email.com","firstname","lastname","username","picture",1234,0))
-        .when()
-        .request("POST", "/admin/deactivate")
-        .then()
-        .statusCode(200);
+            RequestSpecification httpRequest = RestAssured.given();
+            httpRequest.header("Content-Type", "application/json");
+            JsonObject request = new JsonObject();
+            request.addProperty("id", 2);
+            httpRequest.body(request.toString());
+            Response response = httpRequest.post("/admin/deactivate");
+            Assert.assertEquals(response.statusCode(), 200);
     }
     
 }
