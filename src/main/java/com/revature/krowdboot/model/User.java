@@ -23,10 +23,6 @@ import javax.validation.constraints.NotNull;
 @Table(name = "KROWD_USER")
 public class User implements Serializable {
 
-	public User() {
-		super();
-	}
-
 	private static final long serialVersionUID = 1L;
 
 	public User(@NotNull String email, @NotNull String firstname, @NotNull String lastname,

@@ -84,13 +84,6 @@ public class Event implements Serializable {
 	@NotNull
 	private String date;
 
-<<<<<<< HEAD
-	//@Column(name = "address_id")
-	//@NotNull
-	//private String address;
-	
-=======
->>>>>>> 43826591af346ef839e90b33cabd75f03146b70d
 	@Transient
 	private Integer score;
 
@@ -115,11 +108,6 @@ public class Event implements Serializable {
 	@JoinColumn(name = "ADDRESS_ID")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Address address;
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 43826591af346ef839e90b33cabd75f03146b70d
 	public Integer getId() {
 		return id;
 	}
