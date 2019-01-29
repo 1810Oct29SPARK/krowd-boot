@@ -30,7 +30,7 @@ public class EventCategory implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column
 	@NotNull
 	private String name;
