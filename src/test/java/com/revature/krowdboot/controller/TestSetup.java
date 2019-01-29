@@ -1,4 +1,4 @@
-package com.revature.test;
+package com.revature.krowdboot.controller;
 
 import org.junit.BeforeClass;
 
