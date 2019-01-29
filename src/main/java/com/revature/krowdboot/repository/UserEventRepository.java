@@ -15,10 +15,5 @@ import com.revature.krowdboot.model.UserEvent;
 public interface UserEventRepository extends JpaRepository<UserEvent, Integer> {
 	public List<UserEvent> getUserIdByEventId(int id);
 	public List<UserEvent> getEventIdByUserId(int id);
-<<<<<<< HEAD
-	public UserEvent findByUserIdLikeAndEventId(int userId,int eventId);	
-=======
-	
 	public UserEvent findByUserIdLikeAndEventId(int userId,int eventId);
->>>>>>> 5ce699ca055f52ed94acab6d7acb24dce6d2a4b1
 }
