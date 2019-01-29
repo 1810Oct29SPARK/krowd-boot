@@ -37,49 +37,49 @@ public class EventService {
 	
 	public void addEvent(JSONObject json) {
 
-		String name =json.getString("name");
-		String picture =json.getString("picture");
-		String description =json.getString("description");
-		String date = json.getString("date");
-		int score =json.getInt("score");
-		int flag =json.getInt("flag");
+		String name =json.getString("eventName");
+		String picture =json.getString("eventPhotoID");
+		String description =json.getString("eventDescription");
+		String date = json.getString("eventDate");
+		Integer flag = 0;
+		Integer score = 0;
 		//the above are fine as is, the below need to call methods
-		int userId =json.getInt("userId");
+		int userId =json.getInt("userID");
 		User userObj = userService.getUserById(userId);
 		//we need to call the get userById on the above
-        int eventCategoryId =json.getInt("categoryId");
+        int eventCategoryId =json.getInt("eventCategory");
         EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
         //the above gets the Category
-		String streetAddress =json.getString("streetAddress");
-		String apartment =json.getString("apartment");
-		String city =json.getString("city");
-		String state =json.getString("state");
-		int zipCode =json.getInt("zipCode");
+		String streetAddress =json.getString("eventAddress");
+		String apartment =json.getString("eventApartment");
+		String city =json.getString("eventCity");
+		String state =json.getString("eventState");
+		int zipCode =json.getInt("eventZip");
 		Address address = addressService.checkAddress(new Address(streetAddress,apartment,city,state,zipCode));
 		Event e=new Event(name,picture,description,date,address,score,flag,eventCategory,userObj);
 		eventRepository.save(e);
 	}
 	
 	public void updateEvent(JSONObject json) {
-		Integer id = json.getInt("id");
-		String name = json.getString("name");
-		String picture = json.getString("picture");
-		String description = json.getString("description");
-		String date = json.getString("date");
-		int score = json.getInt("score");
-		int flag = json.getInt("flag");
+		Integer id = json.getInt("eventID");
+		String name = json.getString("eventName");
+		String picture = json.getString("eventPhotoID");
+		String description = json.getString("eventDescription");
+		String date = json.getString("eventDate");
+		int score = 0;//json.getInt("score");
+		int flag = json.getInt("eventFlag");
 		//the above are fine as is, the below need to call methods
-		int userId = json.getInt("userId");
+		int userId = json.getInt("userID");
 		User userObj = userService.getUserById(userId);
 		//we need to call the get userById on the above
-        int eventCategoryId = json.getInt("categoryId");
+        int eventCategoryId = json.getInt("eventCategory");
         EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
         //the above gets the Category
-		String streetAddress = json.getString("streetAddress");
-		String apartment = json.getString("apartment");
-		String city = json.getString("city");
-		String state = json.getString("state");
-		int zipCode = json.getInt("zipCode");
+		String streetAddress = json.getString("eventAddress");
+		String apartment = json.getString("eventApartment");
+		String city = json.getString("eventCity");
+		String state = json.getString("eventState");
+		int zipCode = json.getInt("eventZip");
 		Address address = addressService.checkAddress(new Address(streetAddress,apartment,city,state,zipCode));
 		Event e=new Event(id,name,picture,description,date,address,score,flag,eventCategory,userObj);
 		eventRepository.save(e);
