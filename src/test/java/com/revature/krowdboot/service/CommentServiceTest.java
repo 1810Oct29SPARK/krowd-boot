@@ -16,6 +16,10 @@ import com.revature.krowdboot.model.Comment;
 import com.revature.krowdboot.repository.CommentRepository;
 import com.revature.krowdboot.utility.MockUtility;
 
+/*
+ * @Author Moises Trevino
+ */
+
 public class CommentServiceTest {
 
 	MockUtility mock;
