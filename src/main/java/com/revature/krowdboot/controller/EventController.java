@@ -35,7 +35,7 @@ public class EventController {
 	private EventService es;
 
 	@GetMapping("/all")
-	public ResponseEntity<List<Event>> getAllEvents(@RequestHeader(value = "Authorization") String cognito) {
+	public ResponseEntity<List<Event>> getAllEvents() {
 		if(cognito.length() < 100) {
 			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}

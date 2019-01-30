@@ -34,7 +34,6 @@ public class EventControllerTest {
 		RestAssured.port = port;
 	}
 
-	@Ignore
 	@Test
 	public void getAllEventsTest() {
 		RestAssured.get("/event/all").then().statusCode(200);
