@@ -16,10 +16,6 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
 	public List<Comment> findAll();
 
-	public Comment getCommentById(int id);
-
-	public void deleteCommentById(int id);
-
 	public List<Comment> findByUserId(User user);
 
 	public List<Comment> findByEventId(Event event);
