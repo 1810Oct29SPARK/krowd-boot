@@ -42,14 +42,4 @@ public class EventServiceTest {
 		assertEquals(event,actual);
 	}
 	
-	@Test
-	public void testGetEventsByEventCategory() {
-		eventRepositoryMock = mock(EventRepository.class);
-		eventService = new EventService(eventRepositoryMock);
-		int categoryId = 1;
-		
-		
-	}
-	
-	
 }
