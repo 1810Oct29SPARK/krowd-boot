@@ -63,12 +63,12 @@ public class Comment implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "USER_ID")
-	@OnDelete (action = OnDeleteAction.CASCADE)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User userId;
 
 	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "EVENT_ID")
-	@OnDelete (action = OnDeleteAction.CASCADE)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Event eventId;
 
 	public int getId() {

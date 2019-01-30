@@ -79,9 +79,9 @@ public class UserController {
 		int id = js.getInt("id");
 		userService.deleteUserById(id);
 	}
-	
-	@PostMapping(value="/create")
-	public ResponseEntity<User> createUser(@RequestBody User user){
+
+	@PostMapping(value = "/create")
+	public ResponseEntity<User> createUser(@RequestBody User user) {
 		user.setAccountStatus(0);
 		userService.createUser(user);
 		return new ResponseEntity<>(HttpStatus.OK);

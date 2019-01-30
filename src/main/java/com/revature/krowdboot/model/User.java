@@ -20,15 +20,14 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 @Entity
 @Table(name = "KROWD_USER")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	public User(@NotNull String email, @NotNull String firstname, @NotNull String lastname,
-			@NotNull String username, String picture, @NotNull int reputation, @NotNull int accountStatus, @NotNull UserRole roleId) {
+	public User(@NotNull String email, @NotNull String firstname, @NotNull String lastname, @NotNull String username,
+			String picture, @NotNull int reputation, @NotNull int accountStatus, @NotNull UserRole roleId) {
 		super();
 		this.email = email;
 		this.firstname = firstname;
@@ -41,7 +40,8 @@ public class User implements Serializable {
 	}
 
 	public User(int id, @NotNull String email, @NotNull String firstname, @NotNull String lastname,
-			@NotNull String username, String picture, @NotNull int reputation, @NotNull int accountStatus, @NotNull UserRole roleId) {
+			@NotNull String username, String picture, @NotNull int reputation, @NotNull int accountStatus,
+			@NotNull UserRole roleId) {
 		super();
 		this.id = id;
 		this.email = email;
@@ -58,6 +58,7 @@ public class User implements Serializable {
 		super();
 		this.id = id;
 	}
+
 	public User() {
 		super();
 	}
@@ -209,11 +210,11 @@ public class User implements Serializable {
 				&& Objects.equals(lastname, other.lastname) && Objects.equals(picture, other.picture)
 				&& reputation == other.reputation && Objects.equals(username, other.username);
 	}
-	
+
 	@JsonProperty("roleId")
-    private void unpackNestedRole(int role_id) {
-        this.roleId = new UserRole();
-        roleId.setId(role_id);
-    }
+	private void unpackNestedRole(int role_id) {
+		this.roleId = new UserRole();
+		roleId.setId(role_id);
+	}
 
 }
