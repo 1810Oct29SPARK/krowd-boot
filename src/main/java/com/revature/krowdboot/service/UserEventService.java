@@ -25,6 +25,30 @@ public class UserEventService {
 	private UserService userService;
 	@Autowired
 	private EventService eventService;
+	
+	public UserEventRepository getUserEventRepository() {
+		return userEventRepository;
+	}
+
+	public void setUserEventRepository(UserEventRepository userEventRepository) {
+		this.userEventRepository = userEventRepository;
+	}
+	
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+	public EventService getEventService() {
+		return eventService;
+	}
+
+	public void setEventService(EventService eventService) {
+		this.eventService = eventService;
+	}
 
 	public List<User> findAllUsersByEventId(Integer eventId) {
 		List<User> users = new ArrayList<User>();
