@@ -22,10 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table(name = "COMMENT")
 public class Comment implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public Comment() {
@@ -40,8 +37,8 @@ public class Comment implements Serializable {
 		this.userId = userId;
 		this.eventId = eventId;
 	}
-	
-	public Comment(int id, @NotNull String comment, @NotNull int flag, User userId, Event eventId,String timestamp) {
+
+	public Comment(int id, @NotNull String comment, @NotNull int flag, User userId, Event eventId, String timestamp) {
 		super();
 		this.id = id;
 		this.comment = comment;
@@ -49,7 +46,6 @@ public class Comment implements Serializable {
 		this.userId = userId;
 		this.eventId = eventId;
 	}
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,20 +53,20 @@ public class Comment implements Serializable {
 	@Column
 	@NotNull
 	private String comment;
-	
+
 	@Column
 	@NotNull
 	private int flag;
-	
+
 	@Column
 	private String timestamp;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "USER_ID")
 	@OnDelete (action = OnDeleteAction.CASCADE)
 	private User userId;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	@JoinColumn(name = "EVENT_ID")
 	@OnDelete (action = OnDeleteAction.CASCADE)
 	private Event eventId;
@@ -140,16 +136,16 @@ public class Comment implements Serializable {
 	}
 
 	@JsonProperty("userId")
-    private void unpackNestedUser(int user_id) {
-        this.userId = new User();
-        userId.setId(user_id);
-    }
-	
+	private void unpackNestedUser(int user_id) {
+		this.userId = new User();
+		userId.setId(user_id);
+	}
+
 	@JsonProperty("eventId")
-    private void unpackNestedEvent(int event_id) {
-        this.eventId = new Event();
-        eventId.setId(event_id);
-    }
+	private void unpackNestedEvent(int event_id) {
+		this.eventId = new Event();
+		eventId.setId(event_id);
+	}
 
 	public String getTimestamp() {
 		return timestamp;
@@ -158,4 +154,5 @@ public class Comment implements Serializable {
 	public void setTimestamp(String timestamp) {
 		this.timestamp = timestamp;
 	}
+
 }
