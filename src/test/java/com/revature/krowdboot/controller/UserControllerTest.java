@@ -1,4 +1,8 @@
-package com.revature.test;
+/**
+ * @Author Jake Mulrenin
+ */
+
+package com.revature.krowdboot.controller;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -7,13 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.revature.krowdboot.service.UserService;
 import io.restassured.RestAssured;
 
-public class UserTest extends TestSetup{
-	private UserService userService;
-
-	@Autowired
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
+public class UserControllerTest extends TestSetup{
 	
     @Test
     public void basicPingTest() {

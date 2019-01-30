@@ -1,4 +1,8 @@
-package com.revature.test;
+/**
+ * @Author Jake Mulrenin
+ */
+
+package com.revature.krowdboot.controller;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -7,12 +11,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.google.gson.JsonObject;
-
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-public class CommentTest extends TestSetup{
+
+public class CommentControllerTest extends TestSetup{
 
     @Test
     public void getAllCommentsTest() {
@@ -28,7 +32,7 @@ public class CommentTest extends TestSetup{
     
     @Test
     public void getCommentByFlagTest() {
-    	RestAssured.get("/comment/getByFlag/1").then().assertThat().body("size()",equalTo(3));
+    	RestAssured.get("/comment/getByFlag/1").then().assertThat().body("size()",equalTo(2));
     }
     
     @Test
@@ -39,7 +43,7 @@ public class CommentTest extends TestSetup{
         request.addProperty("id", 2);
         httpRequest.body(request.toString());
         Response response = httpRequest.post("/comment/deletecomment");
-        Assert.assertEquals(response.statusCode(), 200);
+        Assert.assertEquals(200, response.statusCode());
     }
     
     @Test
@@ -52,12 +56,18 @@ public class CommentTest extends TestSetup{
         request.addProperty("eventId", 1);
         httpRequest.body(request.toString());
         Response response = httpRequest.post("/comment/createcomment");
-        Assert.assertEquals(response.statusCode(), 200);
+        Assert.assertEquals(200, response.statusCode());
     }
     
     @Test
     public void flagCommentTest() {
-    //	RestAssured.get("/user/users/1").then().assertThat().body(containsString("firstname"));
+        RequestSpecification httpRequest = RestAssured.given();
+        httpRequest.header("Content-Type", "application/json");
+        JsonObject request = new JsonObject();
+        request.addProperty("id",1);
+        httpRequest.body(request.toString());
+        Response response = httpRequest.post("/comment/flagcomment");
+        Assert.assertEquals(200, response.statusCode());
     }
     
     @Test

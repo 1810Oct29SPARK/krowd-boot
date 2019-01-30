@@ -74,8 +74,14 @@ public class EventService {
 		return 0;
 	}
 
+<<<<<<< HEAD
 	public int updateEvent(JSONObject json) {
+=======
+	public void updateEvent(JSONObject json) {
+
+>>>>>>> f41e9179057225cee5a0db74022eb01fa097847e
 		Integer id = json.getInt("eventID");
+		Event e = eventRepository.getOne(id);
 		String name = json.getString("eventName");
 		String picture = json.getString("eventPhotoID");
 		String description = json.getString("eventDescription");
@@ -94,6 +100,7 @@ public class EventService {
 		String city = json.getString("eventCity");
 		String state = json.getString("eventState");
 		int zipCode = json.getInt("eventZip");
+<<<<<<< HEAD
 		Address address = addressService.checkAddress(new Address(streetAddress, apartment, city, state, zipCode));
 		Event e = new Event(id, name, picture, description, date, address, score, flag, eventCategory, userObj);
 		Event newEvent = eventRepository.save(e);
@@ -101,6 +108,11 @@ public class EventService {
 			return newEvent.getId();
 		}
 		return 0;
+=======
+		Address address = addressService.checkAddress(new Address(streetAddress,apartment,city,state,zipCode));
+		e = new Event(id,name,picture,description,date,address,score,flag,eventCategory,userObj);
+		eventRepository.save(e);
+>>>>>>> f41e9179057225cee5a0db74022eb01fa097847e
 	}
 
 	public int deleteEvent(Integer id) {
