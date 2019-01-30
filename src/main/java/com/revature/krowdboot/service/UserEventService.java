@@ -13,8 +13,13 @@ import com.revature.krowdboot.model.UserEvent;
 import com.revature.krowdboot.model.UserEventId;
 import com.revature.krowdboot.repository.UserEventRepository;
 
+/*
+ * @Author Jonathan Snider & Stewart Gardner
+*/
+
 @Service
 public class UserEventService {
+
 	@Autowired
 	private UserEventRepository userEventRepository;
 	@Autowired
@@ -49,7 +54,6 @@ public class UserEventService {
 		UserEventId ueId = new UserEventId(userId, eventId);
 		UserEvent ue = new UserEvent(ueId, u, e, 0);
 		userEventRepository.save(ue);
-
 	}
 
 	public Integer calculateEventScore(Integer eventId) {

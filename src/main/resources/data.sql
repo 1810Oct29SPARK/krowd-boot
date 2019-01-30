@@ -1,4 +1,4 @@
-
+--Stewart
 INSERT INTO ADDRESS (id,street_Address,apartment,city,state,zip) VALUES (1,'123 Boogie Woogie Ave',NULL,'St. Petersburg','FL',33705);
 INSERT INTO ADDRESS (id,street_Address,apartment,city,state,zip) VALUES (2,'456 Boogie Woogie Ave','Apt 3','St. Petersburg','FL',33708);
 INSERT INTO ADDRESS (id,street_Address,apartment,city,state,zip) VALUES (3,'1 St. Pete Beach',NULL,'St. Petersburg','FL',33706);
@@ -41,25 +41,25 @@ INSERT INTO KROWD_USER (id,email,firstname,lastname,username,picture,reputation,
 VALUES (10,'Burt@CONELRAD.gov','Burt','Turtle','DuckAndCover',NULL,56,1,0);
 
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
-VALUES (1,'First Meet Up!','January 27th, 2019',1,0,7,1,'Krowd Tampa has it''s first meeting today! I''d love to see you there.','https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60');
+VALUES (1,'First Meet Up!','2019-01-27T12:00',1,0,7,1,'Krowd Tampa has it''s first meeting today! I''d love to see you there.','https://images.unsplash.com/photo-1517457373958-b7bdd4587205?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60');
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
-VALUES (2,'Arts and Crafts with Grandma','January 27th, 2019',1,0,1,1,'I''d love to share my knowledge of art with all my friends.','https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80');
+VALUES (2,'Arts and Crafts with Grandma','2019-01-27T16:00',1,0,1,1,'I''d love to share my knowledge of art with all my friends.','https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80');
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
-VALUES (3,'Learn to Bake','January 28th, 2019',1,0,2,1,'For those of you who''d like to learn how to bake, my home will be open. I''ll have all the ingredients so don''t worry.','https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+VALUES (3,'Learn to Bake','2019-01-28T14:00',1,0,2,1,'For those of you who''d like to learn how to bake, my home will be open. I''ll have all the ingredients so don''t worry.','https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
-VALUES (4,'Toy Drive','January 29th, 2019',8,0,6,1,'St Jude''s Children''s Hospital would love to have some donations of toys for the upcoming season. Any help is appreciated.','https://images.unsplash.com/photo-1516981879613-9f5da904015f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80');
+VALUES (4,'Toy Drive','2019-01-29T08:00',8,0,6,1,'St Jude''s Children''s Hospital would love to have some donations of toys for the upcoming season. Any help is appreciated.','https://images.unsplash.com/photo-1516981879613-9f5da904015f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80');
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
-VALUES (5,'Hike near Hillsborough','February 2nd, 2019',2,0,4,2,'Let''s go for a nice Hike near Morris Bridge, I''ll meet you guys there.',null);
+VALUES (5,'Hike near Hillsborough','2019-02-02T08:00',2,0,4,2,'Let''s go for a nice Hike near Morris Bridge, I''ll meet you guys there.',null);
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
-VALUES (6,'Swamp Orienteering','February 9th, 2019',3,1,4,2,'Want to learn how to find your way out of the swamp? I can teach you how.','https://images.unsplash.com/photo-1501155971883-5eea9f469c10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+VALUES (6,'Swamp Orienteering','2019-02-09T09:00',3,1,4,2,'Want to learn how to find your way out of the swamp? I can teach you how.','https://images.unsplash.com/photo-1501155971883-5eea9f469c10?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
-VALUES (7,'Trees of Tampa','February 16th, 2019',4,0,4,2,'The flora of Tampa are quite diverse. I''ll show you what''s what.','https://images.unsplash.com/photo-1541638127853-301f4ac81bbc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+VALUES (7,'Trees of Tampa','2019-02-16T09:00',4,0,4,2,'The flora of Tampa are quite diverse. I''ll show you what''s what.','https://images.unsplash.com/photo-1541638127853-301f4ac81bbc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
-VALUES (8,'Sailor''s Serenade','February 2nd, 2019',5,0,3,3,'Come to the riverfront to sing sea shanties long into the night.','https://images.unsplash.com/photo-1521616210349-dbec8efd13b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+VALUES (8,'Sailor''s Serenade','2019-02-02T20:00',5,0,3,3,'Come to the riverfront to sing sea shanties long into the night.','https://images.unsplash.com/photo-1521616210349-dbec8efd13b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
-VALUES (9,'Spoils of the Sea','February 9th, 2019',6,0,2,3,'I''ll be cooking up all the sea has to offer, BYOB.','https://images.unsplash.com/photo-1530435525778-78f9b82b5115?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
+VALUES (9,'Spoils of the Sea','2019-02-09T12:00',6,0,2,3,'I''ll be cooking up all the sea has to offer, BYOB.','https://images.unsplash.com/photo-1530435525778-78f9b82b5115?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
 INSERT INTO EVENT (id,name,date,address_id,flag,event_category_id,user_id,description,picture) 
-VALUES (10,'Let''s clean up Tampa','February 10th, 2019',7,0,6,4,'Tampa could use some cleaning. Let''s pick up as much litter as possible.','https://images.unsplash.com/photo-1530587191325-3db32d826c18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60');
+VALUES (10,'Let''s clean up Tampa','2019-02-10T06:00',7,0,6,4,'Tampa could use some cleaning. Let''s pick up as much litter as possible.','https://images.unsplash.com/photo-1530587191325-3db32d826c18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=60');
 
 INSERT INTO USER_EVENT (event_id,user_id,rating) VALUES (2,1,1);
 INSERT INTO USER_EVENT (event_id,user_id,rating) VALUES (2,2,1);

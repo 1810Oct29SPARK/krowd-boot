@@ -103,7 +103,6 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<UserEvent> events = new ArrayList<>();
 
-
 	public int getId() {
 		return id;
 	}
@@ -212,12 +211,9 @@ public class User implements Serializable {
 	}
 	
 	@JsonProperty("roleId")
-    private void unpackNestedrole(int role_id) {
+    private void unpackNestedRole(int role_id) {
         this.roleId = new UserRole();
         roleId.setId(role_id);
     }
-	
-	
-	
 
 }
