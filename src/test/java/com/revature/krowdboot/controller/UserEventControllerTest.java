@@ -1,11 +1,20 @@
+/**
+ * @Author Jake Mulrenin
+ */
+
 package com.revature.krowdboot.controller;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 
+import org.junit.Assert;
 import org.junit.Test;
 
+import com.google.gson.JsonObject;
+
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 public class UserEventControllerTest extends TestSetup {
 
@@ -22,7 +31,14 @@ public class UserEventControllerTest extends TestSetup {
     
     @Test
     public void addUserEventTest() {
-    //	RestAssured.get("/userEvent/scoreEvent/1").then().assertThat().body(containsString("firstname"));
+        RequestSpecification httpRequest = RestAssured.given();
+        httpRequest.header("Content-Type", "application/json");
+        JsonObject request = new JsonObject();
+        request.addProperty("userId", 10);
+        request.addProperty("eventId", 3);
+        httpRequest.body(request.toString());
+        Response response = httpRequest.post("/userEvent/addUserEvent");
+        Assert.assertEquals(200, response.statusCode());
     }
     
     @Test
@@ -32,8 +48,15 @@ public class UserEventControllerTest extends TestSetup {
     
     @Test
     public void rateEventTest() {
-    //	RestAssured.get("/user/all").then().assertThat()
-    //	.body("size()", equalTo(3));
+        RequestSpecification httpRequest = RestAssured.given();
+        httpRequest.header("Content-Type", "application/json");
+        JsonObject request = new JsonObject();
+        request.addProperty("userId", 10);
+        request.addProperty("eventId", 3);
+        request.addProperty("rating", 1);
+        httpRequest.body(request.toString());
+        Response response = httpRequest.put("/userEvent/rate");
+        Assert.assertEquals(200, response.statusCode());
     }
     
     @Test

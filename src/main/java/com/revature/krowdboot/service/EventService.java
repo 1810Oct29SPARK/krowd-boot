@@ -66,6 +66,7 @@ public class EventService {
 	public void updateEvent(JSONObject json) {
 
 		Integer id = json.getInt("eventID");
+		Event e = eventRepository.getOne(id);
 		String name = json.getString("eventName");
 		String picture = json.getString("eventPhotoID");
 		String description = json.getString("eventDescription");
@@ -85,7 +86,7 @@ public class EventService {
 		String state = json.getString("eventState");
 		int zipCode = json.getInt("eventZip");
 		Address address = addressService.checkAddress(new Address(streetAddress,apartment,city,state,zipCode));
-		Event e=new Event(id,name,picture,description,date,address,score,flag,eventCategory,userObj);
+		e = new Event(id,name,picture,description,date,address,score,flag,eventCategory,userObj);
 		eventRepository.save(e);
 	}
 

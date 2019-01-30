@@ -1,3 +1,6 @@
+/**
+ * @Author: Jake Mulrenin
+ */
 package com.revature.krowdboot.controller;
 
 import org.junit.Assert;
@@ -22,24 +25,6 @@ public class AdminControllerTest extends TestSetup {
         RestAssured.get("/admin/events").then().statusCode(200);
     }
     
-/*    @Test
-    public void UpdateUserTest() {
-            RequestSpecification httpRequest = RestAssured.given();
-            httpRequest.header("Content-Type", "application/json");
-            JsonObject request = new JsonObject();
-            request.addProperty("id", 2);
-            request.addProperty("email", "shepherd@lamb.com");
-            request.addProperty("firstname", "Bo");
-            request.addProperty("lastname", "Peep");
-            request.addProperty("username", "BoPeep");
-            request.addProperty("picture", "https://upload.wikimedia.org/wikipedia/commons/6/66/Hambledon_Hill_Sheep.jpg");
-            request.addProperty("reputation", 87);
-            request.addProperty("accountStatus", 1);
-            httpRequest.body(request.toString());
-            Response response = httpRequest.post("/admin/deactivate");
-            Assert.assertEquals(response.statusCode(), 200);
-    }
-*/
     /*
      * deactivateUserTest will ensure that admins are able to deactivate user accounts.
      * The test begins by initializing an http request and sets the content type in the

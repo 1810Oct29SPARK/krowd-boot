@@ -1,3 +1,7 @@
+/**
+ * @Author Jake Mulrenin
+ */
+
 package com.revature.krowdboot.controller;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -8,12 +12,6 @@ import com.revature.krowdboot.service.UserService;
 import io.restassured.RestAssured;
 
 public class UserControllerTest extends TestSetup{
-	private UserService userService;
-
-	@Autowired
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
 	
     @Test
     public void basicPingTest() {
