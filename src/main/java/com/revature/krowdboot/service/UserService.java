@@ -1,6 +1,7 @@
 package com.revature.krowdboot.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,12 @@ public class UserService {
 	 * user associated with that id.
 	 */
 	public User getUserById(int id) {
-		return userRepository.getById(id);
+		Optional<User> u = userRepository.findById(id);
+		if (u.isPresent()) {
+			return u.get();
+		} else {
+			return null;
+		}
 	}
 
 	/*

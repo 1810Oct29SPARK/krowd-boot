@@ -91,7 +91,7 @@ public class CommentServiceTest {
 
 		Comment comment = mock.getComment();
 
-		when(commentRepositoryMock.getCommentById(id)).thenReturn(comment);
+		when(commentRepositoryMock.getOne(id)).thenReturn(comment);
 
 		Comment actual = commentService.getCommentById(id);
 

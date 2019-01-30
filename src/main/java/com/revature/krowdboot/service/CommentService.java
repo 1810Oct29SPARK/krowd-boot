@@ -1,6 +1,7 @@
 package com.revature.krowdboot.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,12 @@ public class CommentService {
 	}
 
 	public Comment getCommentById(int id) {
-		return commentRepository.getCommentById(id);
+		Optional<Comment> c = commentRepository.findById(id);
+		if (c.isPresent()) {
+			return c.get();
+		} else {
+			return null;
+		}
 	}
 
 	public void deleteCommentById(int id) {
