@@ -22,6 +22,10 @@ import com.revature.krowdboot.repository.EventRepository;
 import com.revature.krowdboot.repository.UserRepository;
 import com.revature.krowdboot.utility.MockUtility;
 
+/*
+ * @Author Moises Trevino
+ */
+
 public class AdminServiceTest {
 
 	MockUtility mock;
