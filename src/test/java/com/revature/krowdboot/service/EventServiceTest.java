@@ -16,6 +16,7 @@ import com.revature.krowdboot.model.UserRole;
 import com.revature.krowdboot.repository.EventCategoryRepository;
 import com.revature.krowdboot.repository.EventRepository;
 
+
 public class EventServiceTest {
 
 	@Mock
