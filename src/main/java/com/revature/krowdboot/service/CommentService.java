@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.krowdboot.model.Comment;
+import com.revature.krowdboot.model.Event;
+import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.repository.CommentRepository;
 
 @Service("commentService")
@@ -38,8 +40,16 @@ public class CommentService {
 		return commentRepository.save(comment);
 	}
 
-	public void updateComment(Comment comment) {
-		commentRepository.save(comment);
+	public Comment updateComment(Comment comment) {
+		return commentRepository.save(comment);
+	}
+
+	public List<Comment> getByUser(int userId) {
+		return commentRepository.findByUserId(new User(userId));
+	}
+
+	public List<Comment> getByEvent(int eventId) {
+		return commentRepository.findByEventId(new Event(eventId));
 	}
 
 }
