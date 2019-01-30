@@ -1,11 +1,13 @@
 package com.revature.krowdboot.configuration;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 // Uncomment when CORS policy is needed
-//@Configuration
-//@EnableWebMvc
+@Configuration
+@EnableWebMvc
 public class WebConfiguration implements WebMvcConfigurer {
 
 	@Override
