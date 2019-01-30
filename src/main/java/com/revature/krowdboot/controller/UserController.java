@@ -82,7 +82,22 @@ public class UserController {
 	}
 
 	@PostMapping(value = "/create")
-	public ResponseEntity<User> createUser(@RequestBody User user) {
+	public ResponseEntity<User> createUser(@RequestBody String userString) {
+
+		JSONObject json = new JSONObject(userString);
+		User user = new User();
+
+		if (json != null) {
+			user.setEmail(json.getString("email"));
+			user.setFirstname(json.getString("firstname"));
+			user.setLastname(json.getString("lastname"));
+			user.setPicture(json.getString("picture"));
+			user.setUsername(json.getString("username"));
+
+			user.setRoleId(new UserRole(2, "User"));
+		}
+
+		user.setReputation(0);
 		user.setAccountStatus(0);
 		userService.createUser(user);
 		return new ResponseEntity<>(HttpStatus.OK);
