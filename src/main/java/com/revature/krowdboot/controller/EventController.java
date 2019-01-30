@@ -45,7 +45,7 @@ public class EventController {
 	@DeleteMapping("/delete")
 	public void deleteEvent(@RequestBody String jsonStr) {
 		JSONObject json = new JSONObject(jsonStr);
-		Integer id = Integer.parseInt((String) json.get("id"));
+		int id = json.getInt("id");
 		es.deleteEvent(id);
 	}
 
