@@ -38,8 +38,8 @@ public class CommentService {
 		return commentRepository.save(comment);
 	}
 
-	public void updateComment(Comment comment) {
-		commentRepository.save(comment);
+	public Comment updateComment(Comment comment) {
+		return commentRepository.save(comment);
 	}
 
 }
