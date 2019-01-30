@@ -28,21 +28,18 @@ public class UserEventController {
 	@Autowired
 	private UserEventService ues;
 	
-	@PreAuthorize("hasRole(1)")
 	@GetMapping("/userByEvent/{eventId}")
 	public ResponseEntity<List<User>> getAllUsersByEventId(@PathVariable String eventId){
 		int eventNumber=Integer.parseInt(eventId);
 		return new ResponseEntity<>(ues.findAllUsersByEventId(eventNumber),HttpStatus.OK);
 	}
-	
-	@PreAuthorize("hasRole(1)")
+
 	@GetMapping("/eventByUser/{userId}")
 	public ResponseEntity<List<Event>> getAllEventsByUserId(@PathVariable String userId){
 		int userNumber=Integer.parseInt(userId);
 		return new ResponseEntity<>(ues.findAllEventsByUserId(userNumber),HttpStatus.OK);
 	}
-	
-	@PreAuthorize("hasRole(1)")
+
 	@PostMapping("/addUserEvent")
 	public void addUserEvent(@RequestBody String jsonStr){
 		JSONObject json = new JSONObject(jsonStr);
@@ -56,15 +53,13 @@ public class UserEventController {
 		int eId = Integer.parseInt(eventId);
 		return ues.calculateEventScore(eId);
 	}
-	
-	@PreAuthorize("hasRole(1)")
+
 	@PutMapping("/rate")
 	public void rateEvent(@RequestBody String jsonStr) {
 		JSONObject json = new JSONObject(jsonStr);
 		ues.updateUserEvent(json);
 	}
-	
-	@PreAuthorize("hasRole(1)")
+
 	@GetMapping("/getReputation/{userId}")
 	public Integer getReputation(@PathVariable String userId) {
 		int userNumber=Integer.parseInt(userId);

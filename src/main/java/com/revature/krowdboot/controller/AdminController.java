@@ -20,7 +20,6 @@ import com.revature.krowdboot.service.AdminService;
 
 @RestController
 @CrossOrigin
-@PreAuthorize("hasRole(1)")
 @RequestMapping(value = "/admin")
 public class AdminController {
 	

@@ -36,7 +36,6 @@ public class CommentController {
 		return new ResponseEntity<>(commentService.getCommentById(id),HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole(2)")
 	@PostMapping("/commentsbyflag")
 	public ResponseEntity<List<Comment>> getCommentByFlag(@RequestBody String comment) {
 		JSONObject js = new JSONObject(comment);
@@ -44,7 +43,6 @@ public class CommentController {
 		return new ResponseEntity<>(commentService.getCommentsByFlag(flag),HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole(2)")
 	@PostMapping("/deletecomment")
 		public ResponseEntity<String> deleteComment(@RequestBody String comment){
 			JSONObject js = new JSONObject(comment);
@@ -53,8 +51,6 @@ public class CommentController {
 			return new ResponseEntity<>("",HttpStatus.OK);
 		}
 	
-	//If this does not work, we must take off tags for Admins to be able to use User roles
-	@PreAuthorize("hasRole(1)")
 	@PostMapping("/createcomment")
 	public ResponseEntity<String> createComment(@RequestBody Comment comment){
 		LocalDateTime ldt = LocalDateTime.now();

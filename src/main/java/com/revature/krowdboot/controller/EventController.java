@@ -36,14 +36,12 @@ public class EventController {
 	return new ResponseEntity<>(es.findallEvents(), HttpStatus.OK);
 	}
 	
-	@PreAuthorize("hasRole(1)")
 	@PostMapping("/add")
 	public void addEvent(@RequestBody String jsonStr) {
 		JSONObject json = new JSONObject(jsonStr);
 		es.addEvent(json);
 	}
-	
-	@PreAuthorize("hasRole(2)")
+
 	@DeleteMapping("/delete")
 	public void deleteEvent(@RequestBody String jsonStr) {
 		JSONObject json = new JSONObject(jsonStr);
@@ -51,7 +49,6 @@ public class EventController {
 		es.deleteEvent(id);
 	}
 	
-	@PreAuthorize("hasRole(1)")
 	@PutMapping("/update")
 	public void updateEvent(@RequestBody String jsonStr){
 		JSONObject json = new JSONObject(jsonStr);
@@ -64,8 +61,7 @@ public class EventController {
 		Integer eventNumber=Integer.parseInt(eventId);
 		return new ResponseEntity<Event>(es.getEventById(eventNumber), HttpStatus.OK);
 	}
-	
-	@PreAuthorize("hasRole(1)")
+
 	@GetMapping("/byCategory/{categoryId}")
 	public ResponseEntity<List<Event>> getEventsByEventCategory(@PathVariable String categoryId){
 		Integer categoryNumber=Integer.parseInt(categoryId);
@@ -76,8 +72,7 @@ public class EventController {
 	public ResponseEntity<List<Event>> getEventsByUser(@PathVariable Integer userId){
 		return new ResponseEntity<List<Event>>(es.getEventsByUser(userId), HttpStatus.OK);
 	}
-	
-	@PreAuthorize("hasRole(2)")
+
 	@GetMapping("/byFlag")
 	public ResponseEntity<List<Event>> getEventsByFlag(){
 		return new ResponseEntity<List<Event>>(es.getEventsByFlag(), HttpStatus.OK);

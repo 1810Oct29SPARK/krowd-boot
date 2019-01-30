@@ -22,7 +22,6 @@ import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.service.UserService;
 
 @RestController
-@PreAuthorize("hasRole(2)")
 @RequestMapping("/user")
 public class UserController {
 	
