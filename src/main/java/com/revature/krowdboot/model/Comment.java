@@ -17,13 +17,12 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
-@Table(name = "comment")
+@Table(name = "COMMENT")
 public class Comment implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public Comment() {
@@ -39,29 +38,37 @@ public class Comment implements Serializable {
 		this.eventId = eventId;
 	}
 
+	public Comment(int id, @NotNull String comment, @NotNull int flag, User userId, Event eventId, String timestamp) {
+		super();
+		this.id = id;
+		this.comment = comment;
+		this.flag = flag;
+		this.userId = userId;
+		this.eventId = eventId;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
 	@Column
 	@NotNull
 	private String comment;
-	
+
 	@Column
 	@NotNull
 	private int flag;
-	
+
 	@Column
 	private String timestamp;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id")
-	@OnDelete (action = OnDeleteAction.CASCADE)
+
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "USER_ID")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User userId;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "event_id")
-	@OnDelete (action = OnDeleteAction.CASCADE)
+
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "EVENT_ID")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Event eventId;
 
 	public int getId() {
@@ -126,6 +133,26 @@ public class Comment implements Serializable {
 		Comment other = (Comment) obj;
 		return Objects.equals(comment, other.comment) && Objects.equals(eventId, other.eventId) && flag == other.flag
 				&& id == other.id && Objects.equals(userId, other.userId);
+	}
+
+	@JsonProperty("userId")
+	private void unpackNestedUser(int user_id) {
+		this.userId = new User();
+		userId.setId(user_id);
+	}
+
+	@JsonProperty("eventId")
+	private void unpackNestedEvent(int event_id) {
+		this.eventId = new Event();
+		eventId.setId(event_id);
+	}
+
+	public String getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(String timestamp) {
+		this.timestamp = timestamp;
 	}
 
 }
