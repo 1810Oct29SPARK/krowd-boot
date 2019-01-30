@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.krowdboot.model.User;
-
+import com.revature.krowdboot.model.UserRole;
 import com.revature.krowdboot.service.UserService;
 
 /*
@@ -85,6 +86,32 @@ public class UserController {
 		user.setAccountStatus(0);
 		userService.createUser(user);
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+	@PutMapping(value = "/update")
+	public void updateUser(@RequestBody String userString) {
+
+		JSONObject json = new JSONObject(userString);
+		User user = new User();
+
+		if (json != null) {
+			user.setId(json.getInt("id"));
+			user.setAccountStatus(json.getInt("accountStatus"));
+			user.setEmail(json.getString("email"));
+			user.setFirstname(json.getString("firstname"));
+			user.setLastname(json.getString("lastname"));
+			user.setPicture(json.getString("picture"));
+			user.setReputation(json.getInt("reputation"));
+			user.setUsername(json.getString("username"));
+
+			UserRole ur = new UserRole();
+			JSONObject jsonUr = json.getJSONObject("roleId");
+			ur.setId(jsonUr.getInt("id"));
+			ur.setName(jsonUr.getString("name"));
+			user.setRoleId(ur);
+			userService.updateUser(user);
+		}
+
 	}
 
 }

@@ -62,4 +62,13 @@ public class UserService {
 		userRepository.save(user);
 	}
 
+	public int updateUser(User user) {
+		User u = userRepository.save(user);
+		if (u != null) {
+			return u.getId();
+		} else {
+			return 0;
+		}
+	}
+
 }
