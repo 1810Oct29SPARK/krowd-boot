@@ -20,10 +20,25 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * 
+ * The configuration class that enables the swagger documentation for API
+ * testing.
+ * 
+ * @author Eddy Soma
+ *
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfiguration extends WebMvcConfigurationSupport {
 
+	/**
+	 * 
+	 * The standard bean that is registered with spring in order to map Swagger
+	 * endpoints.
+	 * 
+	 * @return Docket
+	 */
 	@Bean
 	public Docket krowdRestApi() {
 
@@ -33,12 +48,22 @@ public class SwaggerConfiguration extends WebMvcConfigurationSupport {
 
 	}
 
+	/**
+	 * 
+	 * The method that returns the API metadata for Swagger documentation.
+	 * 
+	 * @return the API Info object
+	 */
 	private ApiInfo metadata() {
 		return new ApiInfoBuilder().title("Krowd v2 Rest API").version("2.0")
 				.description("Spring Boot RESTful API for Krowd v2 - Online Social Platform").license("MIT License")
 				.licenseUrl("https://opensource.org/licenses/MIT").build();
 	}
 
+	/**
+	 * 
+	 * The method that registers the static resources for Swagger UI.
+	 */
 	@Override
 	protected void addResourceHandlers(ResourceHandlerRegistry registry) {
 
@@ -48,6 +73,12 @@ public class SwaggerConfiguration extends WebMvcConfigurationSupport {
 
 	}
 
+	/**
+	 * 
+	 * This method is used to generate a URL paths that Swagger will recognize.
+	 * 
+	 * @return the returned Predicate
+	 */
 	private Predicate<String> paths() {
 
 		List<Predicate<String>> regexList = new ArrayList<>();

@@ -19,9 +19,12 @@ import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.model.UserRole;
 import com.revature.krowdboot.service.UserService;
 
-/*
- * UserController maps the endpoints that will be associated with the corresponding get and post 
- * requests that can be received from the client side. 
+/**
+ * UserController maps the endpoints that will be associated with the
+ * corresponding get and post requests that can be received from the client
+ * side.
+ * 
+ * @author Unknown
  */
 @RestController
 @CrossOrigin
@@ -35,21 +38,28 @@ public class UserController {
 		this.userService = userService;
 	}
 
-	/*
+	/**
+	 * 
 	 * getAllUsers maps a get request that corresponds to /user/getallusers. The
 	 * method will return a response that contains a list of all of the users in the
 	 * database.
+	 * 
+	 * @return the user list
 	 */
 	@GetMapping("/all")
 	public ResponseEntity<List<User>> getAllUsers() {
 		return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
 	}
 
-	/*
+	/**
+	 * 
 	 * getUserById will map a get request to the endpoint,
 	 * /user/getuserbyid/{requestid}. The request will contain an int that will be
 	 * associated with their id. If their id is a real id within the database, the
 	 * method will return the user associated with that id.
+	 * 
+	 * @param requestId
+	 * @return the user
 	 */
 	@GetMapping(value = "/users/{requestId}")
 	public ResponseEntity<User> getUserById(@PathVariable String requestId) {
@@ -57,22 +67,29 @@ public class UserController {
 		return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
 	}
 
-	/*
+	/**
+	 * 
 	 * getUserByUsername will map a get request to the endpoint,
 	 * /user/getuserbyusername/{username}. The request will contain a username that
 	 * will be used to find that user in the database. If it is a real user, the
 	 * method will return a user object associated with that username.
+	 * 
+	 * @param username
+	 * @return the user
 	 */
 	@GetMapping(value = "/{username}")
 	public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
 		return new ResponseEntity<>(userService.findUserByUsername(username), HttpStatus.OK);
 	}
 
-	/*
+	/**
+	 * 
 	 * The deleteUserById method will map a post request to the endpoint,
 	 * /user/deleteuser. The request will contain a user object that will be used
 	 * with the service method, deleteUserById, once the id is extracted from the
 	 * object.
+	 * 
+	 * @param user
 	 */
 	@PostMapping(value = "/delete")
 	public void deleteUserById(@RequestBody String user) {
@@ -81,6 +98,13 @@ public class UserController {
 		userService.deleteUserById(id);
 	}
 
+	/**
+	 * 
+	 * The controller method that registers and persists a new user to the database.
+	 * 
+	 * @param userString
+	 * @return the user object
+	 */
 	@PostMapping(value = "/create")
 	public ResponseEntity<User> createUser(@RequestBody String userString) {
 
@@ -103,6 +127,12 @@ public class UserController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
+	/**
+	 * 
+	 * The controller method that updates a user's information.
+	 * 
+	 * @param userString
+	 */
 	@PutMapping(value = "/update")
 	public void updateUser(@RequestBody String userString) {
 
