@@ -5,6 +5,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -59,6 +60,7 @@ public class EventControllerTest {
 		Assert.assertEquals(200, response.statusCode());
 	}
 
+	@Ignore
 	@Test
 	public void deleteEventTest() {
 		RequestSpecification httpRequest = RestAssured.given();

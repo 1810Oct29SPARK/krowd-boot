@@ -86,7 +86,6 @@ public class CommentControllerTest {
 
 	@Test
 	public void unflagCommentTest() {
-		// RestAssured.get("/user/users/1").then().assertThat().body(containsString("firstname"));
 	}
 
 }
