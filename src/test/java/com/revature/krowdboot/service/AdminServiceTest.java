@@ -104,7 +104,7 @@ public class AdminServiceTest {
 
 	}
 
-	@Ignore
+	
 	@Test
 	public void testDeactivateUser() {
 
@@ -122,7 +122,7 @@ public class AdminServiceTest {
 
 		int id = 1;
 
-		when(userRepositoryMock.getOne(id)).thenReturn(user);
+		when(userRepositoryMock.getById(id)).thenReturn(user);
 
 		when(userRepositoryMock.save(flaggedUser)).thenReturn(flaggedUser);
 
