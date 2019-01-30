@@ -21,8 +21,7 @@ import com.revature.krowdboot.service.UserEventService;
 
 /*
  * @Author Jonathan Snider & Stewart Gardner
-*/
-
+ */
 @RestController
 @CrossOrigin
 @RequestMapping(value="/userEvent")

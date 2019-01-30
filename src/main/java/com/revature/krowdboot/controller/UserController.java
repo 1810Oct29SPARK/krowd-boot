@@ -2,6 +2,7 @@ package com.revature.krowdboot.controller;
 
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +50,7 @@ public class UserController {
 	 * associated with their id. If their id is a real id within the database, the
 	 * method will return the user associated with that id.
 	 */
-	@GetMapping(value = "/users/{requestid}")
+	@GetMapping(value = "/users/{requestId}")
 	public ResponseEntity<User> getUserById(@PathVariable String requestId) {
 		int id = Integer.parseInt(requestId);
 		return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
@@ -77,17 +78,6 @@ public class UserController {
 		JSONObject js = new JSONObject(user);
 		int id = js.getInt("id");
 		userService.deleteUserById(id);
-	}
-  
-	/*
-	 * getUserByUsername will map a get request to the endpoint,
-	 * /user/getuserbyusername/{username}. The request will contain a username that
-	 * will be used to find that user in the database. If it is a real user, the
-	 * method will return a user object associated with that username.
-	 */
-	@GetMapping(value = "/{username}")
-	public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
-		return new ResponseEntity<>(userService.findUserByUsername(username), HttpStatus.OK);
 	}
 	
 	@PostMapping(value="/create")

@@ -15,7 +15,7 @@ import com.revature.krowdboot.repository.UserEventRepository;
 
 /*
  * @Author Jonathan Snider & Stewart Gardner
-*/
+ */
 
 @Service
 public class UserEventService {
