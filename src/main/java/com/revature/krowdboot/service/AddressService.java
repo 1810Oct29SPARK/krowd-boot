@@ -11,16 +11,15 @@ import com.revature.krowdboot.repository.AddressRepository;
 
 /*
  * @Author Jonathan Snider & Stewart Gardner
-*/
-
+ */
 @Service
 public class AddressService {
 
 	private AddressRepository addressRepository;
-	
+
 	public AddressService() {
 	}
-	
+
 	public AddressService(AddressRepository addressRepository) {
 		this.addressRepository = addressRepository;
 	}
@@ -49,13 +48,13 @@ public class AddressService {
 	}
 
 	public boolean addAddress(Address address) {
-		
+
 		Address ad = addressRepository.save(address);
-		if (ad!= null) {
-			return true; 
+		if (ad != null) {
+			return true;
 		}
-		
-		return false; 
+
+		return false;
 	}
 
 	public Address checkAddress(Address address) {

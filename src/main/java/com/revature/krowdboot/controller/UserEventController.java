@@ -21,11 +21,10 @@ import com.revature.krowdboot.service.UserEventService;
 
 /*
  * @Author Jonathan Snider & Stewart Gardner
-*/
-
+ */
 @RestController
 @CrossOrigin
-@RequestMapping(value="/userEvent")
+@RequestMapping(value = "/userEvent")
 public class UserEventController {
 
 	private UserEventService ues;
@@ -72,4 +71,5 @@ public class UserEventController {
 		int userNumber = Integer.parseInt(userId);
 		return ues.calculateReputation(userNumber);
 	}
+
 }

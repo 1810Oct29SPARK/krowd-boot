@@ -7,9 +7,12 @@ import com.revature.krowdboot.model.Address;
 
 /*
  * @Author Jonathan Snider & Stewart Gardner
-*/
+ */
 
 @Repository
-public interface AddressRepository extends JpaRepository<Address, Integer>{
-	public Address findAllByZipLikeAndStreetAddressLikeAndApartment(Integer zipcode, String streetAddress, String apartment);
+public interface AddressRepository extends JpaRepository<Address, Integer> {
+
+	public Address findAllByZipLikeAndStreetAddressLikeAndApartment(Integer zipcode, String streetAddress,
+			String apartment);
+
 }

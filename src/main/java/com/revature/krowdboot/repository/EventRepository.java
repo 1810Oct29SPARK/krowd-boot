@@ -11,11 +11,14 @@ import com.revature.krowdboot.model.User;
 
 /*
  * @Author Jonathan Snider & Stewart Gardner
-*/
-
+ */
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {
+
 	public List<Event> getEventsByCategoryId(EventCategory category);
+
 	public List<Event> getEventsByUserId(User user);
+
 	public List<Event> getEventsByFlag(int flag);
+
 }

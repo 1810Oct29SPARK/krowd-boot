@@ -26,7 +26,7 @@ import com.revature.krowdboot.service.CommentService;
 public class AdminController {
 
 	private AdminService adminService;
-  
+
 	private CommentService commentService;
 
 	@Autowired
@@ -84,10 +84,10 @@ public class AdminController {
 	public ResponseEntity<Comment> unflagComment(@RequestBody String id) {
 		JSONObject js = new JSONObject(id);
 		int comid = js.getInt("id");
-		Comment com =commentService.getCommentById(comid);
+		Comment com = commentService.getCommentById(comid);
 		com.setFlag(0);
 		commentService.updateComment(com);
-		return new ResponseEntity<>(com,HttpStatus.OK);
+		return new ResponseEntity<>(com, HttpStatus.OK);
 	}
 
 }

@@ -21,11 +21,10 @@ import com.revature.krowdboot.service.EventService;
 
 /*
  * @Author Jonathan Snider & Stewart Gardner
-*/
-
+ */
 @RestController
 @CrossOrigin
-@RequestMapping(value="/event")
+@RequestMapping(value = "/event")
 public class EventController {
 
 	@Autowired

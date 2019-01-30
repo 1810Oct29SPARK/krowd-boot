@@ -34,6 +34,11 @@ public class Event implements Serializable {
 		super();
 	}
 
+	public Event(Integer id) {
+		super();
+		this.id = id;
+	}
+
 	public Event(int id, @NotNull String name, String picture, String description, @NotNull String date,
 			@NotNull Address address, @NotNull Integer score, @NotNull Integer flag, @NotNull EventCategory categoryId,
 			@NotNull User userId) {
@@ -110,6 +115,7 @@ public class Event implements Serializable {
 	@JoinColumn(name = "ADDRESS_ID")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Address address;
+
 	public Integer getId() {
 		return id;
 	}
@@ -210,23 +216,23 @@ public class Event implements Serializable {
 				&& Objects.equals(picture, other.picture) && Objects.equals(score, other.score)
 				&& Objects.equals(userId, other.userId) && Objects.equals(users, other.users);
 	}
-	
+
 	@JsonProperty("userId")
-    private void unpackNestedUser(int user_id) {
-        this.userId = new User();
-        userId.setId(user_id);
-    }
-	
+	private void unpackNestedUser(int user_id) {
+		this.userId = new User();
+		userId.setId(user_id);
+	}
+
 	@JsonProperty("categoryId")
-    private void unpackNestedEventCategory(int cat_id) {
-        this.categoryId = new EventCategory();
-        categoryId.setId(cat_id);
-    }
-	
+	private void unpackNestedEventCategory(int cat_id) {
+		this.categoryId = new EventCategory();
+		categoryId.setId(cat_id);
+	}
+
 	@JsonProperty("address")
-    private void unpackNestedAddress(int addressId) {
-        this.address = new Address();
-        address.setId(addressId);
-    }
+	private void unpackNestedAddress(int addressId) {
+		this.address = new Address();
+		address.setId(addressId);
+	}
 
 }
