@@ -12,16 +12,18 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "user_role")
+@Table(name = "USER_ROLE")
 public class UserRole implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public UserRole() {
 		super();
+	}
+
+	public UserRole(@NotNull String name) {
+		super();
+		this.name = name;
 	}
 
 	public UserRole(int id, @NotNull String name) {
@@ -33,7 +35,7 @@ public class UserRole implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column
 	@NotNull
 	private String name;

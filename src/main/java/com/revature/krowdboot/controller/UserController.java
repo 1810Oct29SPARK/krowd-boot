@@ -2,10 +2,10 @@ package com.revature.krowdboot.controller;
 
 import java.util.List;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.krowdboot.model.User;
+
 import com.revature.krowdboot.service.UserService;
 
 /*
@@ -21,6 +22,7 @@ import com.revature.krowdboot.service.UserService;
  * requests that can be received from the client side. 
  */
 @RestController
+@CrossOrigin
 @RequestMapping("/user")
 public class UserController {
 
@@ -75,6 +77,24 @@ public class UserController {
 		JSONObject js = new JSONObject(user);
 		int id = js.getInt("id");
 		userService.deleteUserById(id);
+	}
+  
+	/*
+	 * getUserByUsername will map a get request to the endpoint,
+	 * /user/getuserbyusername/{username}. The request will contain a username that
+	 * will be used to find that user in the database. If it is a real user, the
+	 * method will return a user object associated with that username.
+	 */
+	@GetMapping(value = "/{username}")
+	public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
+		return new ResponseEntity<>(userService.findUserByUsername(username), HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/create")
+	public ResponseEntity<User> createUser(@RequestBody User user){
+		user.setAccountStatus(0);
+		userService.createUser(user);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }

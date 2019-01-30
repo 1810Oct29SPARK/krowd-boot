@@ -22,84 +22,99 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
-@Table(name = "event")
+@Table(name = "EVENT")
 public class Event implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	public Event() {
 		super();
 	}
 
-	public Event(int id, @NotNull String name, String picture, @NotNull String date, @NotNull String address,
-			@NotNull int score, @NotNull int flag, EventCategory categoryId) {
+	public Event(int id, @NotNull String name, String picture, String description, @NotNull String date,
+			@NotNull Address address, @NotNull Integer score, @NotNull Integer flag, @NotNull EventCategory categoryId,
+			@NotNull User userId) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.picture = picture;
+		this.description = description;
 		this.date = date;
 		this.address = address;
 		this.score = score;
 		this.flag = flag;
 		this.categoryId = categoryId;
+		this.userId = userId;
+
+	}
+
+	public Event(@NotNull String name, String picture, String description, @NotNull String date,
+			@NotNull Address address, @NotNull Integer score, @NotNull Integer flag, @NotNull EventCategory categoryId,
+			@NotNull User userId) {
+		super();
+		this.name = name;
+		this.picture = picture;
+		this.description = description;
+		this.date = date;
+		this.address = address;
+		this.score = score;
+		this.flag = flag;
+		this.categoryId = categoryId;
+		this.userId = userId;
+
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
+	private Integer id;
+
 	@Column
 	@NotNull
 	private String name;
-	
+
 	@Column
 	@NotNull
 	private String description;
-	
+
 	@Column
 	private String picture;
-	
+
 	@Column
 	@NotNull
 	private String date;
-	
-	@Column(name = "address_id")
-	@NotNull
-	private String address;
-	
+
 	@Transient
-	private int score;
-	
+	private Integer score;
+
 	@Column
 	@NotNull
-	private int flag;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "user_id")
+	private Integer flag;
+
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "USER_ID")
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private User userId;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "event_category_id")
-	@OnDelete (action = OnDeleteAction.CASCADE)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "EVENT_CATEGORY_ID")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private EventCategory categoryId;
-	
-	@OneToMany(
-	        mappedBy = "event",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	    )
+
+	@OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<UserEvent> users = new ArrayList<>();
 
-	public int getId() {
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "ADDRESS_ID")
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Address address;
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -127,27 +142,27 @@ public class Event implements Serializable {
 		this.date = date;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
-	public int getScore() {
+	public Integer getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(Integer score) {
 		this.score = score;
 	}
 
-	public int getFlag() {
+	public Integer getFlag() {
 		return flag;
 	}
 
-	public void setFlag(int flag) {
+	public void setFlag(Integer flag) {
 		this.flag = flag;
 	}
 
@@ -159,15 +174,25 @@ public class Event implements Serializable {
 		this.categoryId = categoryId;
 	}
 
-	@Override
-	public String toString() {
-		return "Event [id=" + id + ", name=" + name + ", picture=" + picture + ", date=" + date + ", address=" + address
-				+ ", score=" + score + ", flag=" + flag + ", categoryId=" + categoryId + "]";
+	public User getUserId() {
+		return userId;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, categoryId, date, flag, id, name, picture, score);
+		return Objects.hash(address, categoryId, date, description, flag, id, name, picture, score, userId, users);
 	}
 
 	@Override
@@ -180,8 +205,28 @@ public class Event implements Serializable {
 			return false;
 		Event other = (Event) obj;
 		return Objects.equals(address, other.address) && Objects.equals(categoryId, other.categoryId)
-				&& Objects.equals(date, other.date) && flag == other.flag && id == other.id
-				&& Objects.equals(name, other.name) && Objects.equals(picture, other.picture) && score == other.score;
+				&& Objects.equals(date, other.date) && Objects.equals(description, other.description)
+				&& Objects.equals(flag, other.flag) && Objects.equals(id, other.id) && Objects.equals(name, other.name)
+				&& Objects.equals(picture, other.picture) && Objects.equals(score, other.score)
+				&& Objects.equals(userId, other.userId) && Objects.equals(users, other.users);
 	}
+	
+	@JsonProperty("userId")
+    private void unpackNestedUser(int user_id) {
+        this.userId = new User();
+        userId.setId(user_id);
+    }
+	
+	@JsonProperty("categoryId")
+    private void unpackNestedEventCategory(int cat_id) {
+        this.categoryId = new EventCategory();
+        categoryId.setId(cat_id);
+    }
+	
+	@JsonProperty("address")
+    private void unpackNestedAddress(int addressId) {
+        this.address = new Address();
+        address.setId(addressId);
+    }
 
 }
