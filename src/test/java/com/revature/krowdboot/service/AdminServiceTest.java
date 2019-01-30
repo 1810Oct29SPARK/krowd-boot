@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -126,7 +125,7 @@ public class AdminServiceTest {
 
 		int id = 1;
 
-		when(userRepositoryMock.getById(id)).thenReturn(user);
+		when(userRepositoryMock.getOne(id)).thenReturn(user);
 
 		when(userRepositoryMock.save(flaggedUser)).thenReturn(flaggedUser);
 

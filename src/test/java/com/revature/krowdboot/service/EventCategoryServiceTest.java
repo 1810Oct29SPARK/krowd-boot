@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,10 +11,8 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
-import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.EventCategory;
 import com.revature.krowdboot.repository.EventCategoryRepository;
-import com.revature.krowdboot.repository.EventRepository;
 import com.revature.krowdboot.utility.MockUtility;
 
 public class EventCategoryServiceTest {

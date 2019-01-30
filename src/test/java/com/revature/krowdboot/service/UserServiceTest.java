@@ -69,7 +69,7 @@ public class UserServiceTest {
 		
 		int id = user.getId(); 
 
-		when(userRepositoryMock.getById(id)).thenReturn(user);
+		when(userRepositoryMock.getOne(id)).thenReturn(user);
 
 		User actual = userService.getUserById(id); 
 
