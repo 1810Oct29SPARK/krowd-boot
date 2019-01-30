@@ -4,7 +4,13 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import com.google.gson.JsonObject;
 
@@ -15,7 +21,17 @@ import io.restassured.specification.RequestSpecification;
 /**
  * @Author Jake Mulrenin
  */
-public class UserEventControllerTest extends TestSetup {
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+public class UserEventControllerTest {
+
+	@LocalServerPort
+	private int port;
+
+	@Before
+	public void setUp() throws Exception {
+		RestAssured.port = port;
+	}
 
 	@Test
 	public void getAllUsersByEventIdTest() {
