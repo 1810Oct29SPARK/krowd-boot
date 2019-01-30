@@ -34,6 +34,11 @@ public class Event implements Serializable {
 		super();
 	}
 
+	public Event(Integer id) {
+		super();
+		this.id = id;
+	}
+
 	public Event(int id, @NotNull String name, String picture, String description, @NotNull String date,
 			@NotNull Address address, @NotNull Integer score, @NotNull Integer flag, @NotNull EventCategory categoryId,
 			@NotNull User userId) {

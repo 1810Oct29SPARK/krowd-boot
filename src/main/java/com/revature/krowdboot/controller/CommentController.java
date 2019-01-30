@@ -78,4 +78,14 @@ public class CommentController {
 		return new ResponseEntity<>(com, HttpStatus.OK);
 	}
 
+	@GetMapping("/getByUser/{userId}")
+	public ResponseEntity<List<Comment>> getCommentsByUserId(@PathVariable int userId) {
+		return new ResponseEntity<>(commentService.getByUser(userId), HttpStatus.OK);
+	}
+
+	@GetMapping("/getByEvent/{eventId}")
+	public ResponseEntity<List<Comment>> getCommentsByEventId(@PathVariable int eventId) {
+		return new ResponseEntity<>(commentService.getByEvent(eventId), HttpStatus.OK);
+	}
+
 }

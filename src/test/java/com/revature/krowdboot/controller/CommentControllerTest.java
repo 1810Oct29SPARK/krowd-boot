@@ -88,4 +88,14 @@ public class CommentControllerTest {
 	public void unflagCommentTest() {
 	}
 
+	@Test
+	public void getCommentByUserIdTest() {
+		RestAssured.get("/comment/getByUser/2").then().assertThat().body(containsString("shepherd@lamb.com"));
+	}
+
+	@Test
+	public void getCommentByEventIdTest() {
+		RestAssured.get("/comment/getByEvent/1").then().assertThat().body(containsString("123 Boogie Woogie Ave"));
+	}
+
 }
