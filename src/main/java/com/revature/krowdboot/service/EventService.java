@@ -61,6 +61,7 @@ public class EventService {
 	
 	public void updateEvent(JSONObject json) {
 		Integer id = Integer.parseInt((String) json.get("id"));
+		
 		String name = (String) json.get("name");
 		String picture = (String) json.get("picture");
 		String description = (String) json.get("description");

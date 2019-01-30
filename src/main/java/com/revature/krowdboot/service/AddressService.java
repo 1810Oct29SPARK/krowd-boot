@@ -16,8 +16,8 @@ public class AddressService {
 	public AddressService() {
 	}
 	
-	public AddressService(AddressRepository addressRepositoryMock) {
-		this.addressRepository = addressRepositoryMock;
+	public AddressService(AddressRepository addressRepository) {
+		this.addressRepository = addressRepository;
 	}
 
 	public Address getAddressById(int id) {
@@ -30,8 +30,14 @@ public class AddressService {
 		return a;
 	}
 
-	public void addAddress(Address address) {
-		addressRepository.save(address);
+	public boolean addAddress(Address address) {
+		
+		Address ad = addressRepository.save(address);
+		if (ad!= null) {
+			return true; 
+		}
+		
+		return false; 
 	}
 
 	public Address checkAddress(Address address) {
