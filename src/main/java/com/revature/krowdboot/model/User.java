@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 @Entity
 @Table(name = "KROWD_USER")
@@ -207,5 +209,11 @@ public class User implements Serializable {
 				&& Objects.equals(lastname, other.lastname) && Objects.equals(picture, other.picture)
 				&& reputation == other.reputation && Objects.equals(username, other.username);
 	}
+	
+	@JsonProperty("roleId")
+    private void unpackNestedRole(int role_id) {
+        this.roleId = new UserRole();
+        roleId.setId(role_id);
+    }
 
 }
