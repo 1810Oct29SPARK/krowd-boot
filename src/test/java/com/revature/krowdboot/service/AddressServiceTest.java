@@ -62,8 +62,7 @@ public class AddressServiceTest {
 		list.add(new Address(1, "First Address", "", "New York", "NY", 12345)); 
 		list.add(new Address(2, "Second Address", "", "Tampa", "Florida", 22222));
 		list.add(new Address(3, "Third Address", "", "Dallas", "Texas", 99999));
-		
-//		when(addressRepositoryMock.getOne(id)).thenReturn(address); 
+	
 		when(addressRepositoryMock.findAll()).thenReturn(list); 
 
 		List <Address> actual = addressService.getAllAddresses(); 

@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.service.EventService;
 
+/*
+ * @Author Jonathan Snider & Stewart Gardner
+*/
+
 @RestController
 @CrossOrigin
 @RequestMapping(value="/event")
@@ -41,7 +45,7 @@ public class EventController {
 	@DeleteMapping("/delete")
 	public void deleteEvent(@RequestBody String jsonStr) {
 		JSONObject json = new JSONObject(jsonStr);
-		Integer id = Integer.parseInt((String) json.get("id"));
+		int id = json.getInt("id");
 		es.deleteEvent(id);
 	}
 

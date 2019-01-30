@@ -1,4 +1,8 @@
-package com.revature.test;
+/**
+ * @Author Jake Mulrenin
+ */
+
+package com.revature.krowdboot.controller;
 
 import org.junit.Before;
 import org.junit.BeforeClass;

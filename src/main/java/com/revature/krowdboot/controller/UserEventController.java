@@ -19,6 +19,10 @@ import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.service.UserEventService;
 
+/*
+ * @Author Jonathan Snider & Stewart Gardner
+*/
+
 @RestController
 @CrossOrigin
 @RequestMapping(value="/userEvent")
@@ -46,8 +50,8 @@ public class UserEventController {
 	@PostMapping("/addUserEvent")
 	public void addUserEvent(@RequestBody String jsonStr) {
 		JSONObject json = new JSONObject(jsonStr);
-		int eventId = Integer.parseInt((String) json.get("eventId"));
-		int userId = Integer.parseInt((String) json.get("userId"));
+		int userId = json.getInt("userId");
+		int eventId = json.getInt("eventId");
 		ues.addUserEvent(userId, eventId);
 	}
 
