@@ -12,6 +12,14 @@ import org.springframework.context.annotation.Configuration;
 
 import com.revature.krowdboot.utility.KrowdUtility;
 
+/**
+ * 
+ * The main aspect class that manages the logging across multiple layers of the
+ * application.
+ * 
+ * @author Eddy Soma
+ *
+ */
 @Aspect
 @Configuration
 public class LoggingAspect {
@@ -42,6 +50,13 @@ public class LoggingAspect {
 		return serviceLogger;
 	}
 
+	/**
+	 * 
+	 * The method that issues an advice to log out a message before the execution of
+	 * any controller methods.
+	 * 
+	 * @param jp
+	 */
 	@Before(value = controllerLayerPointCut)
 	public void beforeLoggingAdviceToControllerLayer(JoinPoint jp) {
 
@@ -49,6 +64,14 @@ public class LoggingAspect {
 
 	}
 
+	/**
+	 * 
+	 * The method that issues an advice to log out a message after any controller
+	 * method has finished execution successfully and returned a value.
+	 * 
+	 * @param jp
+	 * @param returnVal
+	 */
 	@AfterReturning(pointcut = controllerLayerPointCut, returning = "returnVal")
 	public void afterReturningLoggingAdviceToControllerLayer(JoinPoint jp, Object returnVal) {
 
@@ -62,6 +85,14 @@ public class LoggingAspect {
 
 	}
 
+	/**
+	 * 
+	 * The method that issues an advice to log out a message after any controller
+	 * method throws an unhandled exception.
+	 * 
+	 * @param jp
+	 * @param throwObj
+	 */
 	@AfterThrowing(pointcut = controllerLayerPointCut, throwing = "throwObj")
 	public void afterthrowingLoggingAdviceToControllerLayer(JoinPoint jp, Throwable throwObj) {
 
@@ -70,6 +101,13 @@ public class LoggingAspect {
 
 	}
 
+	/**
+	 * 
+	 * The method that issues an advice to log out a message after the execution of
+	 * any controller methods.
+	 * 
+	 * @param jp
+	 */
 	@After(value = controllerLayerPointCut)
 	public void afterLoggingAdviceToControllerLayer(JoinPoint jp) {
 
@@ -77,6 +115,13 @@ public class LoggingAspect {
 
 	}
 
+	/**
+	 * 
+	 * The method that issues an advice to log out a message before the execution of
+	 * any service methods.
+	 * 
+	 * @param jp
+	 */
 	@Before(value = serviceLayerPointCut)
 	public void beforeLoggingAdviceToServiceLayer(JoinPoint jp) {
 
@@ -84,6 +129,14 @@ public class LoggingAspect {
 
 	}
 
+	/**
+	 * 
+	 * The method that issues an advice to log out a message after any service
+	 * method has finished execution successfully and returned a value.
+	 * 
+	 * @param jp
+	 * @param returnVal
+	 */
 	@AfterReturning(pointcut = serviceLayerPointCut, returning = "returnVal")
 	public void afterReturningLoggingAdviceToServiceLayer(JoinPoint jp, Object returnVal) {
 
@@ -96,6 +149,14 @@ public class LoggingAspect {
 
 	}
 
+	/**
+	 * 
+	 * The method that issues an advice to log out a message after any service
+	 * method throws an unhandled exception.
+	 * 
+	 * @param jp
+	 * @param throwObj
+	 */
 	@AfterThrowing(pointcut = serviceLayerPointCut, throwing = "throwObj")
 	public void afterthrowingLoggingAdviceToServiceLayer(JoinPoint jp, Throwable throwObj) {
 
@@ -104,6 +165,13 @@ public class LoggingAspect {
 
 	}
 
+	/**
+	 * 
+	 * The method that issues an advice to log out a message after the execution of
+	 * any service methods.
+	 * 
+	 * @param jp
+	 */
 	@After(value = serviceLayerPointCut)
 	public void afterLoggingAdviceToServiceLayer(JoinPoint jp) {
 

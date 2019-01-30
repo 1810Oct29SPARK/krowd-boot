@@ -7,8 +7,13 @@ import org.springframework.stereotype.Repository;
 
 import com.revature.krowdboot.model.UserEvent;
 
-/*
- * @Author Jonathan Snider & Stewart Gardner
+/**
+ * 
+ * The repository interface that serves as the data access object for the
+ * UserEvent class.
+ * 
+ * @author Jonathan Snider & Stewart Gardner
+ *
  */
 @Repository
 public interface UserEventRepository extends JpaRepository<UserEvent, Integer> {

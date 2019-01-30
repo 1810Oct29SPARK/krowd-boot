@@ -20,6 +20,14 @@ import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.service.AdminService;
 import com.revature.krowdboot.service.CommentService;
 
+/**
+ * 
+ * The controller class that handles the HTTP requests related to admin
+ * functions.
+ * 
+ * @author Unknown
+ *
+ */
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/admin")
@@ -39,6 +47,12 @@ public class AdminController {
 		this.commentService = commentService;
 	}
 
+	/**
+	 * 
+	 * The controller method that returns all flagged comments.
+	 * 
+	 * @return the comment list
+	 */
 	@GetMapping(value = "/comments")
 	public ResponseEntity<List<Comment>> getFlaggedComments() {
 		ResponseEntity<List<Comment>> response = null;
@@ -52,6 +66,12 @@ public class AdminController {
 		return response;
 	}
 
+	/**
+	 * 
+	 * The controller method that returns all flagged events.
+	 * 
+	 * @return the event list
+	 */
 	@GetMapping(value = "/events")
 	public ResponseEntity<List<Event>> getFlaggedEvents() {
 		ResponseEntity<List<Event>> response = null;
@@ -65,6 +85,13 @@ public class AdminController {
 		return response;
 	}
 
+	/**
+	 * 
+	 * The controller method that deactivates a user.
+	 * 
+	 * @param id
+	 * @return the deactivated user
+	 */
 	@PostMapping("/deactivate")
 	public ResponseEntity<User> deactivateUser(@RequestBody String id) {
 		ResponseEntity<User> response = null;
@@ -80,6 +107,13 @@ public class AdminController {
 		return response;
 	}
 
+	/**
+	 * 
+	 * The controller method that unflags an comment.
+	 * 
+	 * @param id
+	 * @return the unflagged comment
+	 */
 	@PostMapping("/unflagcomment")
 	public ResponseEntity<Comment> unflagComment(@RequestBody String id) {
 		JSONObject js = new JSONObject(id);
