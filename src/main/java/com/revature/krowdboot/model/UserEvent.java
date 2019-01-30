@@ -14,7 +14,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "USER_EVENT")
 public class UserEvent implements Serializable {
-
+	
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 
 	public UserEvent() {
@@ -26,7 +29,7 @@ public class UserEvent implements Serializable {
 		this.user = u;
 		this.event = e;
 	}
-
+	
 	public UserEvent(UserEventId id, User user, Event event, int rating) {
 		super();
 		this.id = id;
@@ -37,14 +40,15 @@ public class UserEvent implements Serializable {
 
 	@EmbeddedId
 	private UserEventId id;
-
-	@ManyToOne(fetch = FetchType.EAGER)
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("userId")
 	private User user;
-
-	@ManyToOne(fetch = FetchType.EAGER)
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	@MapsId("eventId")
 	private Event event;
+	
 	@Column(name = "RATING", columnDefinition = "int default 0")
 	private int rating;
 

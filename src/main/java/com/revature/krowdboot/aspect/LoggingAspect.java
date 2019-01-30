@@ -10,8 +10,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.context.annotation.Configuration;
 
-import com.revature.krowdboot.utility.KrowdUtility;
-
 @Aspect
 @Configuration
 public class LoggingAspect {
@@ -26,7 +24,7 @@ public class LoggingAspect {
 	private final String afterExecutionMsg = "Finished executing <{}> layer method <{}> from class <{}>.";
 
 	private final String afterReturningMsg = "Complete returning on <{}> layer method <{}> from class <{}>, return result is: {}.";
-	private final String afterThrowingMsg = "Oops! <{}> layer method <{}> from class <{}> has thrown an uncaught exception. Exception type is: {}, exception message is: {}. Full stack trace is shown below {}";
+	private final String afterThrowingMsg = "Oops! <{}> layer method <{}> from class <{}> has thrown an uncaught exception. Exception type is: {}, exception message is: {}. Full stack trace is shown below";
 
 	public LoggingAspect() {
 		super();
@@ -52,13 +50,8 @@ public class LoggingAspect {
 	@AfterReturning(pointcut = controllerLayerPointCut, returning = "returnVal")
 	public void afterReturningLoggingAdviceToControllerLayer(JoinPoint jp, Object returnVal) {
 
-		String returnStr = null;
-		if (returnVal != null) {
-			returnStr = returnVal.toString();
-		}
-
 		controllerLogger.info(afterReturningMsg, BusinessLayerType.CONTROLLER, jp.getSignature(), jp.getTarget(),
-				returnStr);
+				returnVal.toString());
 
 	}
 
@@ -66,7 +59,7 @@ public class LoggingAspect {
 	public void afterthrowingLoggingAdviceToControllerLayer(JoinPoint jp, Throwable throwObj) {
 
 		controllerLogger.error(afterThrowingMsg, BusinessLayerType.CONTROLLER, jp.getSignature(), jp.getTarget(),
-				throwObj.getClass().getName(), throwObj.getMessage(), KrowdUtility.formatStackTrace(throwObj));
+				throwObj.getClass().getName(), throwObj.getMessage());
 
 	}
 
@@ -87,12 +80,8 @@ public class LoggingAspect {
 	@AfterReturning(pointcut = serviceLayerPointCut, returning = "returnVal")
 	public void afterReturningLoggingAdviceToServiceLayer(JoinPoint jp, Object returnVal) {
 
-		String returnStr = null;
-		if (returnVal != null) {
-			returnStr = returnVal.toString();
-		}
-
-		serviceLogger.info(afterReturningMsg, BusinessLayerType.SERVICE, jp.getSignature(), jp.getTarget(), returnStr);
+		serviceLogger.info(afterReturningMsg, BusinessLayerType.SERVICE, jp.getSignature(), jp.getTarget(),
+				returnVal.toString());
 
 	}
 
@@ -100,7 +89,7 @@ public class LoggingAspect {
 	public void afterthrowingLoggingAdviceToServiceLayer(JoinPoint jp, Throwable throwObj) {
 
 		serviceLogger.fatal(afterThrowingMsg, BusinessLayerType.SERVICE, jp.getSignature(), jp.getTarget(),
-				throwObj.getClass().getName(), throwObj.getMessage(), KrowdUtility.formatStackTrace(throwObj));
+				throwObj.getClass().getName(), throwObj.getMessage());
 
 	}
 

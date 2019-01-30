@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "EVENT_CATEGORY")
 public class EventCategory implements Serializable {
-
+	
 	private static final long serialVersionUID = 1L;
 
 	public EventCategory() {
@@ -30,7 +30,7 @@ public class EventCategory implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	
 	@Column
 	@NotNull
 	private String name;

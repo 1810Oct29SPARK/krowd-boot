@@ -58,12 +58,14 @@
 		<Logger name="controllerLogger" level="info" additivity="false">
 			<AppenderRef ref="controllerInfoAppender" level="info" />
 			<AppenderRef ref="controllerErrorAppender" level="error" />
+			<AppenderRef ref="errorAppender" level="error" />
 			<AppenderRef ref="masterAppender" level="info" />
 		</Logger>
 
 		<Logger name="serviceLogger" level="info" additivity="false">
 			<AppenderRef ref="serviceInfoAppender" level="info" />
 			<AppenderRef ref="serviceErrorAppender" level="error" />
+			<AppenderRef ref="errorAppender" level="error" />
 			<AppenderRef ref="masterAppender" level="info" />
 		</Logger>
 
