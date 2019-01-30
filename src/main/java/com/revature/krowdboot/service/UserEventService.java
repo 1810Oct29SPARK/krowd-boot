@@ -13,6 +13,9 @@ import com.revature.krowdboot.model.UserEvent;
 import com.revature.krowdboot.model.UserEventId;
 import com.revature.krowdboot.repository.UserEventRepository;
 
+/*
+ * @Author Jonathan Snider & Stewart Gardner
+ */
 @Service
 public class UserEventService {
 
@@ -76,9 +79,9 @@ public class UserEventService {
 	}
 
 	public void updateUserEvent(JSONObject json) {
-		int userId =json.getInt("userId");
-		int eventId =json.getInt("eventId");
-		int rating =json.getInt("rating");
+		int userId = json.getInt("userId");
+		int eventId = json.getInt("eventId");
+		int rating = json.getInt("rating");
 		UserEvent ue = userEventRepository.findByUserIdLikeAndEventId(userId, eventId);
 		ue.setRating(rating);
 		userEventRepository.save(ue);

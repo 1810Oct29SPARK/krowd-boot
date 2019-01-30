@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import com.revature.krowdboot.model.EventCategory;
 import com.revature.krowdboot.repository.EventCategoryRepository;
 
+/*
+ * @Author Jonathan Snider & Stewart Gardner
+ */
 @Service
 public class EventCategoryService {
 
@@ -25,8 +28,8 @@ public class EventCategoryService {
 
 	public EventCategory getCategoryById(int id) {
 
-		Optional<EventCategory> ec=ecr.findById(id);
-		
+		Optional<EventCategory> ec = ecr.findById(id);
+
 		if (ec.isPresent()) {
 			return ec.get();
 		} else {
