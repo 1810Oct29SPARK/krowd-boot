@@ -36,9 +36,6 @@ public class EventController {
 
 	@GetMapping("/all")
 	public ResponseEntity<List<Event>> getAllEvents() {
-		if(cognito.length() < 100) {
-			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-		}
 		return new ResponseEntity<>(es.findallEvents(), HttpStatus.OK);
 	}
 
