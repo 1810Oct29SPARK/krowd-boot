@@ -3,6 +3,8 @@ package com.revature.krowdboot.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,16 +18,29 @@ import com.revature.krowdboot.model.Comment;
 import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.service.AdminService;
+import com.revature.krowdboot.service.CommentService;
 
 @RestController
 @CrossOrigin
 @RequestMapping(value = "/admin")
 public class AdminController {
-	
+
 	private AdminService adminService;
-	
+  
+	private CommentService commentService;
+
+	@Autowired
+	public void setAdminService(AdminService adminService) {
+		this.adminService = adminService;
+	}
+
+	@Autowired
+	public void setCommentService(CommentService commentService) {
+		this.commentService = commentService;
+	}
+
 	@GetMapping(value = "/comments")
-	public ResponseEntity<List<Comment>> getFlaggedComments(){
+	public ResponseEntity<List<Comment>> getFlaggedComments() {
 		ResponseEntity<List<Comment>> response = null;
 		List<Comment> comments = new ArrayList<>();
 		try {
@@ -36,9 +51,9 @@ public class AdminController {
 		}
 		return response;
 	}
-	
+
 	@GetMapping(value = "/events")
-	public ResponseEntity<List<Event>> getFlaggedEvents(){
+	public ResponseEntity<List<Event>> getFlaggedEvents() {
 		ResponseEntity<List<Event>> response = null;
 		List<Event> events = new ArrayList<>();
 		try {
@@ -49,18 +64,30 @@ public class AdminController {
 		}
 		return response;
 	}
-	
+
 	@PostMapping("/deactivate")
-	public ResponseEntity<User> deactivateUser(@RequestBody int id) {
+	public ResponseEntity<User> deactivateUser(@RequestBody String id) {
 		ResponseEntity<User> response = null;
+		JSONObject js = new JSONObject(id);
+		int userId = js.getInt("id");
 		User u = null;
 		try {
-			u = adminService.deactivateUser(id);
+			u = adminService.deactivateUser(userId);
 			response = new ResponseEntity<>(u, HttpStatus.OK);
 		} catch (Exception e) {
 			response = new ResponseEntity<>(u, HttpStatus.BAD_REQUEST);
 		}
 		return response;
+	}
+
+	@PostMapping("/unflagcomment")
+	public ResponseEntity<Comment> unflagComment(@RequestBody String id) {
+		JSONObject js = new JSONObject(id);
+		int comid = js.getInt("id");
+		Comment com =commentService.getCommentById(comid);
+		com.setFlag(0);
+		commentService.updateComment(com);
+		return new ResponseEntity<>(com,HttpStatus.OK);
 	}
 
 }

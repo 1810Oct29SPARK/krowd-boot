@@ -1,10 +1,3 @@
-/*
- * AdminService highlights the methods that are associated with users whom are admins. The AdminService 
- * uses methods that are defined in the UserRepository, EventRepository, and CommentRepository. The 
- * methods include getting lists of flagged events and comments, deactivating users, updating users, 
- * and getting users by their account status.
- */
-
 package com.revature.krowdboot.service;
 
 import java.util.List;
@@ -19,13 +12,19 @@ import com.revature.krowdboot.repository.CommentRepository;
 import com.revature.krowdboot.repository.EventRepository;
 import com.revature.krowdboot.repository.UserRepository;
 
+/*
+ * AdminService highlights the methods that are associated with users whom are admins. The AdminService 
+ * uses methods that are defined in the UserRepository, EventRepository, and CommentRepository. The 
+ * methods include getting lists of flagged events and comments, deactivating users, updating users, 
+ * and getting users by their account status.
+ */
 @Service
 public class AdminService {
-	
+
 	private UserRepository userRepository;
 	private EventRepository eventRepository;
 	private CommentRepository commentRepository;
-	
+
 	/*
 	 * Setter method for the EventRepository.
 	 */
@@ -41,7 +40,7 @@ public class AdminService {
 	public void setCommentRepository(CommentRepository commentRepository) {
 		this.commentRepository = commentRepository;
 	}
-	
+
 	/*
 	 * Setter method for the UserRepository.
 	 */
@@ -50,22 +49,21 @@ public class AdminService {
 		this.userRepository = userRepository;
 	}
 
-	
 	/*
-	 * Method 
+	 * Method
 	 */
 	public List<Comment> getFlaggedComments(int flag) {
 		List<Comment> comments = commentRepository.getCommentsByFlag(flag);
 		return comments;
 	}
-	
+
 	public List<Event> getFlaggedEvents(int flag) {
 		List<Event> events = eventRepository.getEventsByFlag(flag);
 		return events;
 	}
-	
+
 	public User deactivateUser(int id) {
-		User u = userRepository.getOne(id);
+		User u = userRepository.getById(id);
 		u.setAccountStatus(1);
 		u = userRepository.save(u);
 		return u;
