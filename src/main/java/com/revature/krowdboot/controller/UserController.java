@@ -40,9 +40,45 @@ public class UserController {
 	 */
 	@GetMapping("/all")
 	public ResponseEntity<List<User>> getAllUsers() {
-		return new ResponseEntity<>(userService.findAllUsers(),HttpStatus.OK);
+		return new ResponseEntity<>(userService.findAllUsers(), HttpStatus.OK);
 	}
 
+	/*
+	 * getUserById will map a get request to the endpoint,
+	 * /user/getuserbyid/{requestid}. The request will contain an int that will be
+	 * associated with their id. If their id is a real id within the database, the
+	 * method will return the user associated with that id.
+	 */
+	@GetMapping(value = "/users/{requestid}")
+	public ResponseEntity<User> getUserById(@PathVariable String requestId) {
+		int id = Integer.parseInt(requestId);
+		return new ResponseEntity<>(userService.getUserById(id), HttpStatus.OK);
+	}
+
+	/*
+	 * getUserByUsername will map a get request to the endpoint,
+	 * /user/getuserbyusername/{username}. The request will contain a username that
+	 * will be used to find that user in the database. If it is a real user, the
+	 * method will return a user object associated with that username.
+	 */
+	@GetMapping(value = "/{username}")
+	public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
+		return new ResponseEntity<>(userService.findUserByUsername(username), HttpStatus.OK);
+	}
+
+	/*
+	 * The deleteUserById method will map a post request to the endpoint,
+	 * /user/deleteuser. The request will contain a user object that will be used
+	 * with the service method, deleteUserById, once the id is extracted from the
+	 * object.
+	 */
+	@PostMapping(value = "/delete")
+	public void deleteUserById(@RequestBody String user) {
+		JSONObject js = new JSONObject(user);
+		int id = js.getInt("id");
+		userService.deleteUserById(id);
+	}
+  
 	/*
 	 * getUserByUsername will map a get request to the endpoint,
 	 * /user/getuserbyusername/{username}. The request will contain a username that
