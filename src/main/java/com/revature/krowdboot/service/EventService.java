@@ -35,11 +35,10 @@ public class EventService {
 
 	public EventService() {
 	}
-	
-	public EventService(EventRepository eventRepository) {
-		this.eventRepository= eventRepository; 
-	}
 
+	public EventService(EventRepository eventRepository) {
+		this.eventRepository = eventRepository;
+	}
 
 	public List<Event> findallEvents() {
 		List<Event> e = new ArrayList<>();
@@ -48,64 +47,75 @@ public class EventService {
 	}
 
 	public int addEvent(JSONObject json) {
-		String name =json.getString("eventName");
-		String picture =json.getString("eventPhotoID");
-		String description =json.getString("eventDescription");
-		String date = json.getString("eventDate");
-		Integer flag = 0;
-		Integer score = 0;
-		//the above are fine as is, the below need to call methods
-		int userId =json.getInt("userID");
-		User userObj = userService.getUserById(userId);
-		//we need to call the get userById on the above
-        int eventCategoryId =json.getInt("eventCategory");
-        EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
-        //the above gets the Category
-		String streetAddress =json.getString("eventAddress");
-		String apartment =json.getString("eventApartment");
-		String city =json.getString("eventCity");
-		String state =json.getString("eventState");
-		int zipCode =json.getInt("eventZip");
-		Address address = addressService.checkAddress(new Address(streetAddress,apartment,city,state,zipCode));
-		Event e=new Event(name,picture,description,date,address,score,flag,eventCategory,userObj);
-		Event newEvent = eventRepository.save(e); 
-		if (newEvent !=null) {
-			return newEvent.getId(); 
-		}
-		return 0; 
-	}
-
-	public void updateEvent(JSONObject json) {
-		Integer id = json.getInt("eventID");
 		String name = json.getString("eventName");
 		String picture = json.getString("eventPhotoID");
 		String description = json.getString("eventDescription");
 		String date = json.getString("eventDate");
-		int score = 0;//json.getInt("score");
-		int flag = json.getInt("eventFlag");
-		//the above are fine as is, the below need to call methods
+		Integer flag = 0;
+		Integer score = 0;
+		// the above are fine as is, the below need to call methods
 		int userId = json.getInt("userID");
 		User userObj = userService.getUserById(userId);
-		//we need to call the get userById on the above
-        int eventCategoryId = json.getInt("eventCategory");
-        EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
-        //the above gets the Category
+		// we need to call the get userById on the above
+		int eventCategoryId = json.getInt("eventCategory");
+		EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
+		// the above gets the Category
 		String streetAddress = json.getString("eventAddress");
 		String apartment = json.getString("eventApartment");
 		String city = json.getString("eventCity");
 		String state = json.getString("eventState");
 		int zipCode = json.getInt("eventZip");
-		Address address = addressService.checkAddress(new Address(streetAddress,apartment,city,state,zipCode));
-		Event e=new Event(id,name,picture,description,date,address,score,flag,eventCategory,userObj);
-		eventRepository.save(e);
+		Address address = addressService.checkAddress(new Address(streetAddress, apartment, city, state, zipCode));
+		Event e = new Event(name, picture, description, date, address, score, flag, eventCategory, userObj);
+		Event newEvent = eventRepository.save(e);
+		if (newEvent != null) {
+			return newEvent.getId();
+		}
+		return 0;
 	}
 
-	public void deleteEvent(Integer id) {
+	public int updateEvent(JSONObject json) {
+		Integer id = json.getInt("eventID");
+		String name = json.getString("eventName");
+		String picture = json.getString("eventPhotoID");
+		String description = json.getString("eventDescription");
+		String date = json.getString("eventDate");
+		int score = 0;// json.getInt("score");
+		int flag = json.getInt("eventFlag");
+		// the above are fine as is, the below need to call methods
+		int userId = json.getInt("userID");
+		User userObj = userService.getUserById(userId);
+		// we need to call the get userById on the above
+		int eventCategoryId = json.getInt("eventCategory");
+		EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
+		// the above gets the Category
+		String streetAddress = json.getString("eventAddress");
+		String apartment = json.getString("eventApartment");
+		String city = json.getString("eventCity");
+		String state = json.getString("eventState");
+		int zipCode = json.getInt("eventZip");
+		Address address = addressService.checkAddress(new Address(streetAddress, apartment, city, state, zipCode));
+		Event e = new Event(id, name, picture, description, date, address, score, flag, eventCategory, userObj);
+		Event newEvent = eventRepository.save(e);
+		if (newEvent != null) {
+			return newEvent.getId();
+		}
+		return 0;
+	}
+
+	public int deleteEvent(Integer id) {
 		eventRepository.deleteById(id);
+		System.out.println(id);
+		if (eventRepository.findById(id) != null) {
+			return 0;
+		}
+		else {
+			return 1;
+		}
 	}
 
 	public Event getEventById(Integer id) {
-		Optional<Event> e=eventRepository.findById(id);
+		Optional<Event> e = eventRepository.findById(id);
 		if (e.isPresent()) {
 			return e.get();
 		} else {
