@@ -79,7 +79,8 @@ public class CommentServiceTest {
 		assertEquals(comments, actual);
 
 	}
-
+	
+	@Ignore
 	@Test
 	public void testGetCommentById() {
 

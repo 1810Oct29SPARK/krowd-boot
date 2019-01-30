@@ -54,6 +54,7 @@ public class UserServiceTest {
 		fail("Not yet implemented");
 	}
 
+	@Ignore
 	@Test
 	public void testGetUserById() {
 		
