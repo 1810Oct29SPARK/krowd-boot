@@ -47,28 +47,28 @@ public class EventService {
 
 	public int addEvent(JSONObject json) {
 
-		String name = json.getString("eventName");
-		String picture = json.getString("eventPhotoID");
-		String description = json.getString("eventDescription");
-		String date = json.getString("eventDate");
+		String name = json.getString("name");
+		String picture = "huh";//json.getString("picture");
+		String description = json.getString("description");
+		String date = json.getString("date");
 
 		Integer flag = 0;
 		Integer score = 0;
 
 		// the above are fine as is, the below need to call methods
-		int userId = json.getInt("userID");
+		int userId = json.getInt("userId");
 		User userObj = userService.getUserById(userId);
 
 		// we need to call the get userById on the above
-		int eventCategoryId = json.getInt("eventCategory");
+		int eventCategoryId = json.getInt("categoryId");
 		EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
 
 		// the above gets the Category
-		String streetAddress = json.getString("eventAddress");
-		String apartment = json.getString("eventApartment");
-		String city = json.getString("eventCity");
-		String state = json.getString("eventState");
-		int zipCode = json.getInt("eventZip");
+		String streetAddress = json.getString("address");
+		String apartment = json.getString("apartment");
+		String city = json.getString("city");
+		String state = json.getString("state");
+		int zipCode = json.getInt("zip");
 
 		Address address = addressService.checkAddress(new Address(streetAddress, apartment, city, state, zipCode));
 
