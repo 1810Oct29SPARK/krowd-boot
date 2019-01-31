@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.google.gson.JsonObject;
 
 import io.restassured.RestAssured;
+import io.restassured.http.Header;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -26,6 +27,7 @@ import io.restassured.specification.RequestSpecification;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class EventControllerTest {
 
+	Header token = new Header("Authorization", "gjahdnsandhfajdfjue73845yhrgh8483t4hfuhduhfdsagfy476ru4guhusghurauyfeq7hrqeyfgudhasyfsq73ygqryfgu8ydgvduqfhgyrq8gf8uqherfugq87yghdbjkvucdsagijngfuewhguiwn8rugy74uh43iutrh8rt7ah");
 	@LocalServerPort
 	private int port;
 
@@ -36,13 +38,14 @@ public class EventControllerTest {
 
 	@Test
 	public void getAllEventsTest() {
-		RestAssured.get("/event/all").then().statusCode(200);
+		RestAssured.given().header(token).get("/event/all").then().statusCode(200);
 	}
 
 	@Test
 	public void addEventTest() {
 		RequestSpecification httpRequest = RestAssured.given();
 		httpRequest.header("Content-Type", "application/json");
+		httpRequest.header(token);
 		JsonObject request = new JsonObject();
 		request.addProperty("eventName", "Bradley's");
 		request.addProperty("eventPhotoID", "photo");
@@ -65,6 +68,7 @@ public class EventControllerTest {
 	public void deleteEventTest() {
 		RequestSpecification httpRequest = RestAssured.given();
 		httpRequest.header("Content-Type", "application/json");
+		httpRequest.header(token);
 		JsonObject request = new JsonObject();
 		request.addProperty("id", 1);
 		httpRequest.body(request.toString());
@@ -76,6 +80,7 @@ public class EventControllerTest {
 	public void updateEventTest() {
 		RequestSpecification httpRequest = RestAssured.given();
 		httpRequest.header("Content-Type", "application/json");
+		httpRequest.header(token);
 		JsonObject request = new JsonObject();
 		request.addProperty("eventID", 9);
 		request.addProperty("eventName", "Beach Party");
@@ -97,22 +102,22 @@ public class EventControllerTest {
 
 	@Test
 	public void getEventByEventIdTest() {
-		RestAssured.get("/event/byId/2").then().assertThat().body(containsString("Arts and Crafts with Grandma"));
+		RestAssured.given().header(token).get("/event/byId/2").then().assertThat().body(containsString("Arts and Crafts with Grandma"));
 	}
 
 	@Test
 	public void getEventsByEventCategoryTest() {
-		RestAssured.get("/event/byCategory/2").then().assertThat().body(containsString("Learn to Bake"));
+		RestAssured.given().header(token).get("/event/byCategory/2").then().assertThat().body(containsString("Learn to Bake"));
 	}
 
 	@Test
 	public void getEventsByUser() {
-		RestAssured.get("/event/byUser/2").then().assertThat().body(containsString("Hike near Hillsborough"));
+		RestAssured.given().header(token).get("/event/byUser/2").then().assertThat().body(containsString("Hike near Hillsborough"));
 	}
 
 	@Test
 	public void getEventsByFlagTest() {
-		RestAssured.get("/event/byFlag").then().assertThat().body("size()", equalTo(1));
+		RestAssured.given().header(token).get("/event/byFlag").then().assertThat().body("size()", equalTo(1));
 	}
 
 }
