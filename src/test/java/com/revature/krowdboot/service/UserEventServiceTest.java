@@ -1,23 +1,20 @@
 
 package com.revature.krowdboot.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.model.UserEvent;
-import com.revature.krowdboot.repository.EventRepository;
 import com.revature.krowdboot.repository.UserEventRepository;
 import com.revature.krowdboot.utility.MockUtility;
 

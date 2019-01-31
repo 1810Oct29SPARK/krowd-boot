@@ -127,3 +127,4 @@ INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (7,'I''m
 INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (8,'I love hiking.',0,5,5,'2019-01-06T20:51');
 INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (9,'Loved the first event. Krowd is cool.',0,6,1,'2019-01-13T06:00');
 INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (10,'I liked the cookies.',0,7,2,'2019-01-05T10:00');
+

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -51,17 +50,10 @@ public class EventController {
 		es.addEvent(json);
 	}
 
-	/**
-	 * 
-	 * The controller method that deletes an event.
-	 * 
-	 * @param jsonStr
-	 */
-	@DeleteMapping("/delete")
-	public void deleteEvent(@RequestBody String jsonStr) {
-		JSONObject json = new JSONObject(jsonStr);
-		int id = json.getInt("id");
-		es.deleteEvent(id);
+	@DeleteMapping("/delete/{id}")
+	public void deleteEvent(@PathVariable String id) {
+		int ID = Integer.parseInt(id);
+		es.deleteEvent(ID);
 	}
 
 	/**

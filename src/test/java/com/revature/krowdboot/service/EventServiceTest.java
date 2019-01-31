@@ -15,6 +15,7 @@ import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.model.UserRole;
 import com.revature.krowdboot.repository.EventCategoryRepository;
 import com.revature.krowdboot.repository.EventRepository;
+import com.revature.krowdboot.utility.DateUtility;
 
 
 public class EventServiceTest {

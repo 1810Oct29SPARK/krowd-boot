@@ -122,6 +122,7 @@ public class UserEventService {
 			Total = Total + eventScore;
 		}
 		return Total;
+		
 	}
 
 	/**
