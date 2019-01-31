@@ -67,7 +67,7 @@ public class EventService {
 	public int addEvent(JSONObject json) {
 
 		String name = json.getString("name");
-		String picture = "huh";//json.getString("picture");
+		String picture = json.getString("picture");
 		String description = json.getString("description");
 		String date = json.getString("date");
 
