@@ -41,11 +41,10 @@ public class EventController {
 		es.addEvent(json);
 	}
 
-	@DeleteMapping("/delete")
-	public void deleteEvent(@RequestBody String jsonStr) {
-		JSONObject json = new JSONObject(jsonStr);
-		int id = json.getInt("id");
-		es.deleteEvent(id);
+	@DeleteMapping("/delete/{id}")
+	public void deleteEvent(@PathVariable String id) {
+		int ID = Integer.parseInt(id);
+		es.deleteEvent(ID);
 	}
 
 	@PutMapping("/update")
