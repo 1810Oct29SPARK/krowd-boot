@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.google.gson.JsonObject;
 
 import io.restassured.RestAssured;
+import io.restassured.http.Header;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -24,6 +25,8 @@ import io.restassured.specification.RequestSpecification;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class CommentControllerTest {
+
+	Header token = new Header("Authorization", "gjahdnsandhfajdfjue73845yhrgh8483t4hfuhduhfdsagfy476ru4guhusghurauyfeq7hrqeyfgudhasyfsq73ygqryfgu8ydgvduqfhgyrq8gf8uqherfugq87yghdbjkvucdsagijngfuewhguiwn8rugy74uh43iutrh8rt7ah");
 
 	@LocalServerPort
 	private int port;
@@ -35,24 +38,25 @@ public class CommentControllerTest {
 
 	@Test
 	public void getAllCommentsTest() {
-		RestAssured.get("/comment/getallcomments").then().assertThat().body("size()", equalTo(10));
+		RestAssured.given().header(token).get("/comment/getallcomments").then().assertThat().body("size()", equalTo(10));
 	}
 
 	@Test
 	public void getCommentByIdTest() {
-		RestAssured.get("/comment/getById/1").then().assertThat()
+		RestAssured.given().header(token).get("/comment/getById/1").then().assertThat()
 				.body(containsString("Looking forward to seeing all you."));
 	}
 
 	@Test
 	public void getCommentByFlagTest() {
-		RestAssured.get("/comment/getByFlag/1").then().assertThat().body("size()", equalTo(2));
+		RestAssured.given().header(token).get("/comment/getByFlag/1").then().assertThat().body("size()", equalTo(2));
 	}
 
 	@Test
 	public void deleteCommentTest() {
 		RequestSpecification httpRequest = RestAssured.given();
 		httpRequest.header("Content-Type", "application/json");
+		httpRequest.header(token);
 		JsonObject request = new JsonObject();
 		request.addProperty("id", 2);
 		httpRequest.body(request.toString());
@@ -64,6 +68,7 @@ public class CommentControllerTest {
 	public void createCommentTest() {
 		RequestSpecification httpRequest = RestAssured.given();
 		httpRequest.header("Content-Type", "application/json");
+		httpRequest.header(token);
 		JsonObject request = new JsonObject();
 		request.addProperty("comment", "Laughable");
 		request.addProperty("userId", 1);
@@ -90,12 +95,12 @@ public class CommentControllerTest {
 
 	@Test
 	public void getCommentByUserIdTest() {
-		RestAssured.get("/comment/getByUser/2").then().assertThat().body(containsString("shepherd@lamb.com"));
+		RestAssured.given().header(token).get("/comment/getByUser/2").then().assertThat().body(containsString("shepherd@lamb.com"));
 	}
 
 	@Test
 	public void getCommentByEventIdTest() {
-		RestAssured.get("/comment/getByEvent/1").then().assertThat().body(containsString("123 Boogie Woogie Ave"));
+		RestAssured.given().header(token).get("/comment/getByEvent/1").then().assertThat().body(containsString("123 Boogie Woogie Ave"));
 	}
 
 }

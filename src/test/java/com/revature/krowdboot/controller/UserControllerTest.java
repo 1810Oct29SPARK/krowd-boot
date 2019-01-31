@@ -12,6 +12,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import io.restassured.RestAssured;
+import io.restassured.http.Header;
 
 /**
  * @Author Jake Mulrenin
@@ -19,6 +20,8 @@ import io.restassured.RestAssured;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class UserControllerTest {
+
+	Header token = new Header("Authorization", "gjahdnsandhfajdfjue73845yhrgh8483t4hfuhduhfdsagfy476ru4guhusghurauyfeq7hrqeyfgudhasyfsq73ygqryfgu8ydgvduqfhgyrq8gf8uqherfugq87yghdbjkvucdsagijngfuewhguiwn8rugy74uh43iutrh8rt7ah");
 
 	@LocalServerPort
 	private int port;
@@ -30,17 +33,17 @@ public class UserControllerTest {
 
 	@Test
 	public void basicPingTest() {
-		RestAssured.get("/user/all").then().statusCode(200);
+		RestAssured.given().header(token).get("/user/all").then().statusCode(200);
 	}
 
 	@Test
 	public void getAllUsersTest() {
-		RestAssured.get("/user/all").then().assertThat().body("size()", equalTo(10));
+		RestAssured.given().header(token).get("/user/all").then().assertThat().body("size()", equalTo(10));
 	}
 
 	@Test
 	public void getUserById1Test() {
-		RestAssured.get("/user/users/1").then().assertThat().body(containsString("Grandmother"));
+		RestAssured.given().header(token).get("/user/users/1").then().assertThat().body(containsString("Grandmother"));
 	}
 
 }
