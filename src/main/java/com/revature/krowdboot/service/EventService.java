@@ -13,12 +13,14 @@ import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.EventCategory;
 import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.repository.EventRepository;
+import com.revature.krowdboot.utility.DateUtility;
 
 /*
  * @Author Jonathan Snider & Stewart Gardner
  */
 @Service
 public class EventService {
+	
 
 	@Autowired
 	private EventRepository eventRepository;
@@ -73,7 +75,12 @@ public class EventService {
 		Address address = addressService.checkAddress(new Address(streetAddress, apartment, city, state, zipCode));
 
 		Event e = new Event(name, picture, description, date, address, score, flag, eventCategory, userObj);
-		Event newEvent = eventRepository.save(e);
+		
+		Event newEvent = null; 
+		
+		if(DateUtility.isNotPastDate(date)) {
+			newEvent = eventRepository.save(e);
+		}
 
 		if (newEvent != null) {
 			return newEvent.getId();
@@ -111,7 +118,12 @@ public class EventService {
 
 		Address address = addressService.checkAddress(new Address(streetAddress, apartment, city, state, zipCode));
 		Event e = new Event(id, name, picture, description, date, address, score, flag, eventCategory, userObj);
-		Event newEvent = eventRepository.save(e);
+		
+		Event newEvent = null; 
+		
+		if(DateUtility.isNotPastDate(date)) {
+			newEvent = eventRepository.save(e);
+		}
 
 		if (newEvent != null) {
 			return newEvent.getId();

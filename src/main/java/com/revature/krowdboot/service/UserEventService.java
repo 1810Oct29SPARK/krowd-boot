@@ -87,6 +87,7 @@ public class UserEventService {
 			Total = Total + eventScore;
 		}
 		return Total;
+		
 	}
 
 	public Integer calculateReputation(Integer userId) {
