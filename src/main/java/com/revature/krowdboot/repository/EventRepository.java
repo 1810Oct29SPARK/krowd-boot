@@ -9,8 +9,13 @@ import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.EventCategory;
 import com.revature.krowdboot.model.User;
 
-/*
- * @Author Jonathan Snider & Stewart Gardner
+/**
+ * 
+ * The repository interface that serves as the data access object for the Event
+ * class.
+ * 
+ * @author Jonathan Snider & Stewart Gardner
+ *
  */
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {

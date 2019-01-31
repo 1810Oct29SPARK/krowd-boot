@@ -13,9 +13,15 @@ import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.EventCategory;
 import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.repository.EventRepository;
+import com.revature.krowdboot.utility.DateUtility;
 
-/*
- * @Author Jonathan Snider & Stewart Gardner
+/**
+ * 
+ * The service class that manages the communication between the DAO layer and
+ * the controller layer for the Event class.
+ * 
+ * @author Jonathan Snider & Stewart Gardner
+ *
  */
 @Service
 public class EventService {
@@ -39,41 +45,59 @@ public class EventService {
 		this.eventRepository = eventRepository;
 	}
 
+	/**
+	 * 
+	 * The method that retrieves and returns all events.
+	 * 
+	 * @return the event list
+	 */
 	public List<Event> findallEvents() {
 		List<Event> e = new ArrayList<>();
 		e = eventRepository.findAll();
 		return e;
 	}
 
+	/**
+	 * 
+	 * The methods that creates and adds an event to the DB.
+	 * 
+	 * @param json
+	 * @return the new event ID
+	 */
 	public int addEvent(JSONObject json) {
 
-		String name = json.getString("eventName");
-		String picture = json.getString("eventPhotoID");
-		String description = json.getString("eventDescription");
-		String date = json.getString("eventDate");
+		String name = json.getString("name");
+		String picture = json.getString("picture");
+		String description = json.getString("description");
+		String date = json.getString("date");
 
 		Integer flag = 0;
 		Integer score = 0;
 
 		// the above are fine as is, the below need to call methods
-		int userId = json.getInt("userID");
+		int userId = json.getInt("userId");
 		User userObj = userService.getUserById(userId);
 
 		// we need to call the get userById on the above
-		int eventCategoryId = json.getInt("eventCategory");
+		int eventCategoryId = json.getInt("categoryId");
 		EventCategory eventCategory = eventCategoryService.getCategoryById(eventCategoryId);
 
 		// the above gets the Category
-		String streetAddress = json.getString("eventAddress");
-		String apartment = json.getString("eventApartment");
-		String city = json.getString("eventCity");
-		String state = json.getString("eventState");
-		int zipCode = json.getInt("eventZip");
+		String streetAddress = json.getString("address");
+		String apartment = json.getString("apartment");
+		String city = json.getString("city");
+		String state = json.getString("state");
+		int zipCode = json.getInt("zip");
 
 		Address address = addressService.checkAddress(new Address(streetAddress, apartment, city, state, zipCode));
 
 		Event e = new Event(name, picture, description, date, address, score, flag, eventCategory, userObj);
-		Event newEvent = eventRepository.save(e);
+
+		Event newEvent = null;
+
+		if (DateUtility.isNotPastDate(date)) {
+			newEvent = eventRepository.save(e);
+		}
 
 		if (newEvent != null) {
 			return newEvent.getId();
@@ -83,6 +107,13 @@ public class EventService {
 
 	}
 
+	/**
+	 * 
+	 * The method that updates an event.
+	 * 
+	 * @param json
+	 * @return the event id
+	 */
 	public int updateEvent(JSONObject json) {
 
 		Integer id = json.getInt("eventID");
@@ -111,7 +142,12 @@ public class EventService {
 
 		Address address = addressService.checkAddress(new Address(streetAddress, apartment, city, state, zipCode));
 		Event e = new Event(id, name, picture, description, date, address, score, flag, eventCategory, userObj);
-		Event newEvent = eventRepository.save(e);
+
+		Event newEvent = null;
+
+		if (DateUtility.isNotPastDate(date)) {
+			newEvent = eventRepository.save(e);
+		}
 
 		if (newEvent != null) {
 			return newEvent.getId();
@@ -121,6 +157,13 @@ public class EventService {
 
 	}
 
+	/**
+	 * 
+	 * The method that deletes an event.
+	 * 
+	 * @param id
+	 * @return the event ID
+	 */
 	public int deleteEvent(Integer id) {
 		eventRepository.deleteById(id);
 		System.out.println(id);
@@ -131,6 +174,13 @@ public class EventService {
 		}
 	}
 
+	/**
+	 * 
+	 * The method that gets an event by its ID.
+	 * 
+	 * @param id
+	 * @return the event
+	 */
 	public Event getEventById(Integer id) {
 		Optional<Event> e = eventRepository.findById(id);
 		if (e.isPresent()) {
@@ -140,6 +190,13 @@ public class EventService {
 		}
 	}
 
+	/**
+	 * 
+	 * The method that retrieves and returns all events of a specific category.
+	 * 
+	 * @param id
+	 * @return the event list
+	 */
 	public List<Event> getEventsByEventCategory(Integer id) {
 		List<Event> e = new ArrayList<>();
 		EventCategory eventCategory = eventCategoryService.getCategoryById(id);
@@ -147,6 +204,13 @@ public class EventService {
 		return e;
 	}
 
+	/**
+	 * 
+	 * The method that retrieves and returns all events created by a specific user.
+	 * 
+	 * @param id
+	 * @return the event list
+	 */
 	public List<Event> getEventsByUser(Integer id) {
 		List<Event> e = new ArrayList<>();
 		User user = userService.getUserById(id);
@@ -154,6 +218,12 @@ public class EventService {
 		return e;
 	}
 
+	/**
+	 * 
+	 * The method that retrieves and returns all flagged events.
+	 * 
+	 * @return the event list
+	 */
 	public List<Event> getEventsByFlag() {
 		List<Event> e = new ArrayList<>();
 		e = eventRepository.getEventsByFlag(1);

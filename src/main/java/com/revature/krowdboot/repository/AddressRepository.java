@@ -5,10 +5,14 @@ import org.springframework.stereotype.Repository;
 
 import com.revature.krowdboot.model.Address;
 
-/*
- * @Author Jonathan Snider & Stewart Gardner
+/**
+ * 
+ * The repository interface that serves as the data access object for the
+ * Address class.
+ * 
+ * @author Jonathan Snider & Stewart Gardner
+ *
  */
-
 @Repository
 public interface AddressRepository extends JpaRepository<Address, Integer> {
 

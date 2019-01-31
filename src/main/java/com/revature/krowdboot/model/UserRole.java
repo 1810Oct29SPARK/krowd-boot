@@ -11,6 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+/**
+ * 
+ * The entity class that corresponds to the User_Role table in the DB.
+ * 
+ * @author Unknown
+ *
+ */
 @Entity
 @Table(name = "USER_ROLE")
 public class UserRole implements Serializable {

@@ -19,8 +19,12 @@ import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.service.UserEventService;
 
-/*
- * @Author Jonathan Snider & Stewart Gardner
+/**
+ * 
+ * The controller class that managers the relationship between users and events.
+ * 
+ * @author Jonathan Snider & Stewart Gardner
+ *
  */
 @RestController
 @CrossOrigin
@@ -34,18 +38,40 @@ public class UserEventController {
 		this.ues = ues;
 	}
 
+	/**
+	 * 
+	 * The controller method that retrieves and returns all users that are attending
+	 * a specific event.
+	 * 
+	 * @param eventId
+	 * @return the user list
+	 */
 	@GetMapping("/userByEvent/{eventId}")
 	public ResponseEntity<List<User>> getAllUsersByEventId(@PathVariable String eventId) {
 		int eventNumber = Integer.parseInt(eventId);
 		return new ResponseEntity<>(ues.findAllUsersByEventId(eventNumber), HttpStatus.OK);
 	}
 
+	/**
+	 * 
+	 * The controller method that retrieves and returns all events that a user has
+	 * RSVPed for.
+	 * 
+	 * @param userId
+	 * @return the event list
+	 */
 	@GetMapping("/eventByUser/{userId}")
 	public ResponseEntity<List<Event>> getAllEventsByUserId(@PathVariable String userId) {
 		int userNumber = Integer.parseInt(userId);
 		return new ResponseEntity<>(ues.findAllEventsByUserId(userNumber), HttpStatus.OK);
 	}
 
+	/**
+	 * 
+	 * The controller method that allows a user to RSVP for an event.
+	 * 
+	 * @param jsonStr
+	 */
 	@PostMapping("/addUserEvent")
 	public void addUserEvent(@RequestBody String jsonStr) {
 		JSONObject json = new JSONObject(jsonStr);
@@ -54,18 +80,38 @@ public class UserEventController {
 		ues.addUserEvent(userId, eventId);
 	}
 
+	/**
+	 * 
+	 * The controller method that returns the cumulative review score of an event.
+	 * 
+	 * @param eventId
+	 * @return the review score
+	 */
 	@GetMapping("/scoreEvent/{eventId}")
 	public Integer getScore(@PathVariable String eventId) {
 		int eId = Integer.parseInt(eventId);
 		return ues.calculateEventScore(eId);
 	}
 
+	/**
+	 * 
+	 * The controller method that allows an user to rate an event.
+	 * 
+	 * @param jsonStr
+	 */
 	@PutMapping("/rate")
 	public void rateEvent(@RequestBody String jsonStr) {
 		JSONObject json = new JSONObject(jsonStr);
 		ues.updateUserEvent(json);
 	}
 
+	/**
+	 * 
+	 * The controller method that returns the reputation score of a user.
+	 * 
+	 * @param userId
+	 * @return the reputation score
+	 */
 	@GetMapping("/getReputation/{userId}")
 	public Integer getReputation(@PathVariable String userId) {
 		int userNumber = Integer.parseInt(userId);

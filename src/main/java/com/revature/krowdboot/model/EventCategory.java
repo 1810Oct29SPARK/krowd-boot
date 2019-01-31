@@ -11,6 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+/**
+ * 
+ * The entity class that corresponds to the Event_Category table in the DB.
+ * 
+ * @author Unknown
+ *
+ */
 @Entity
 @Table(name = "EVENT_CATEGORY")
 public class EventCategory implements Serializable {

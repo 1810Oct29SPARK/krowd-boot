@@ -5,9 +5,14 @@ import org.springframework.stereotype.Repository;
 
 import com.revature.krowdboot.model.User;
 
-/*
- * UserRpository interface highlights the CRUD methods that will be used within the UserService and 
- * AdminService. The methods are associated with the KROWD_USER table.
+/**
+ * 
+ * UserRpository interface highlights the CRUD methods that will be used within
+ * the UserService and AdminService. The methods are associated with the
+ * KROWD_USER table.
+ * 
+ * @author Unknown
+ *
  */
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
