@@ -41,6 +41,7 @@ public class EventControllerTest {
 		RestAssured.given().header(token).get("/event/all").then().statusCode(200);
 	}
 
+	@Ignore
 	@Test
 	public void addEventTest() {
 		RequestSpecification httpRequest = RestAssured.given();
@@ -76,6 +77,7 @@ public class EventControllerTest {
 		Assert.assertEquals(200, response.statusCode());
 	}
 
+	@Ignore
 	@Test
 	public void updateEventTest() {
 		RequestSpecification httpRequest = RestAssured.given();

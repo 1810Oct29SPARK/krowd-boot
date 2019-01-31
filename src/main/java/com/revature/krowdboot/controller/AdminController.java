@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,7 +55,10 @@ public class AdminController {
 	 * @return the comment list
 	 */
 	@GetMapping(value = "/comments")
-	public ResponseEntity<List<Comment>> getFlaggedComments() {
+	public ResponseEntity<List<Comment>> getFlaggedComments(@RequestHeader(value = "Authorization") String cognito) {
+		if (cognito.length() < 100) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
 		ResponseEntity<List<Comment>> response = null;
 		List<Comment> comments = new ArrayList<>();
 		try {
@@ -73,7 +77,10 @@ public class AdminController {
 	 * @return the event list
 	 */
 	@GetMapping(value = "/events")
-	public ResponseEntity<List<Event>> getFlaggedEvents() {
+	public ResponseEntity<List<Event>> getFlaggedEvents(@RequestHeader(value = "Authorization") String cognito) {
+		if (cognito.length() < 100) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
 		ResponseEntity<List<Event>> response = null;
 		List<Event> events = new ArrayList<>();
 		try {

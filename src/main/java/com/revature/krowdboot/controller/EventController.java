@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +35,10 @@ public class EventController {
 	private EventService es;
 
 	@GetMapping("/all")
-	public ResponseEntity<List<Event>> getAllEvents() {
+	public ResponseEntity<List<Event>> getAllEvents(@RequestHeader(value = "Authorization") String cognito) {
+		if (cognito.length() < 100) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
 		return new ResponseEntity<>(es.findallEvents(), HttpStatus.OK);
 	}
 
@@ -113,7 +117,10 @@ public class EventController {
 	 * @return the event list
 	 */
 	@GetMapping("/byFlag")
-	public ResponseEntity<List<Event>> getEventsByFlag() {
+	public ResponseEntity<List<Event>> getEventsByFlag(@RequestHeader(value = "Authorization") String cognito) {
+		if (cognito.length() < 100) {
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
 		return new ResponseEntity<List<Event>>(es.getEventsByFlag(), HttpStatus.OK);
 	}
 
