@@ -27,8 +27,8 @@ import com.revature.krowdboot.service.EventService;
  * @Author Jonathan Snider & Stewart Gardner
  */
 @RestController
-@CrossOrigin
-@RequestMapping(value = "/event")
+@CrossOrigin(origins="*", allowedHeaders="*")
+@RequestMapping(value="/event")
 public class EventController {
 
 	@Autowired
@@ -50,7 +50,10 @@ public class EventController {
 	 */
 	@PostMapping("/add")
 	public void addEvent(@RequestBody String jsonStr) {
+		System.out.println("before sysout");
+		System.out.println(jsonStr);
 		JSONObject json = new JSONObject(jsonStr);
+		System.out.println(json);
 		es.addEvent(json);
 	}
 
