@@ -6,6 +6,13 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+/**
+ * 
+ * The embedded class that represents the composite key of the User_Event table.
+ * 
+ * @author Unknown
+ *
+ */
 @Embeddable
 public class UserEventId implements Serializable {
 

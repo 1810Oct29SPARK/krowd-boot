@@ -1,12 +1,16 @@
 package com.revature.krowdboot.service;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import org.junit.*;
-import org.mockito.*;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import com.revature.krowdboot.model.Address;
 import com.revature.krowdboot.model.Event;
@@ -15,6 +19,7 @@ import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.model.UserRole;
 import com.revature.krowdboot.repository.EventCategoryRepository;
 import com.revature.krowdboot.repository.EventRepository;
+
 
 public class EventServiceTest {
 

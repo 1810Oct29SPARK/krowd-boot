@@ -9,8 +9,13 @@ import org.springframework.stereotype.Service;
 import com.revature.krowdboot.model.Address;
 import com.revature.krowdboot.repository.AddressRepository;
 
-/*
- * @Author Jonathan Snider & Stewart Gardner
+/**
+ * 
+ * The service class that manages the communication between the DAO layer and
+ * the controller layer for the Address class.
+ * 
+ * @author Jonathan Snider & Stewart Gardner
+ *
  */
 @Service
 public class AddressService {

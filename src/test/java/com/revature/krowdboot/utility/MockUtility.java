@@ -9,8 +9,12 @@ import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.EventCategory;
 import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.model.UserEvent;
+import com.revature.krowdboot.model.UserEventId;
 import com.revature.krowdboot.model.UserRole;
 
+/*
+ * @Author Moises Trevino
+ */
 public class MockUtility {
 
 	public MockUtility() {
@@ -31,12 +35,12 @@ public class MockUtility {
 
 		list.add(new Event(1, "Bonfire", "", "People standing by a fire", "2019-02-29T08:00", addressList.get(0), 21, 1,
 				getEventCategory(), getUser()));
-		list.add(new Event(2, "Fishing", "", "People standing by a fire", "2019-02-02T09:10", addressList.get(1), 22, 0,
+		list.add(new Event(2, "Fishing", "", "Let's go noodling", "2019-02-02T09:10", addressList.get(1), 22, 0,
 				getEventCategory(), getUser()));
-		list.add(new Event(3, "Concert", "", "People standing by a fire", "2019-03-13T12:09", addressList.get(2), 100,
-				1, getEventCategory(), getUser()));
-		list.add(new Event(4, "Volunteer", "", "People standing by a fire", "2019-02-11T08:11", addressList.get(3), 200,
-				0, getEventCategory(), getUser()));
+		list.add(new Event(3, "Concert", "", "Bad music, great vibes", "2019-03-13T12:09", addressList.get(2), 100, 1,
+				getEventCategory(), getUser()));
+		list.add(new Event(4, "Volunteer", "", "Help people out", "2019-02-11T08:11", addressList.get(3), 200, 0,
+				getEventCategory(), getUser()));
 
 		return list;
 
@@ -98,6 +102,18 @@ public class MockUtility {
 		return new EventCategory(1, "Outdoor");
 	}
 
+	public List<EventCategory> getEventCategoryList() {
+
+		List<EventCategory> eventCategories = new ArrayList<EventCategory>();
+
+		eventCategories.add(new EventCategory(0, "Outdoor"));
+		eventCategories.add(new EventCategory(1, "Outdoor"));
+		eventCategories.add(new EventCategory(2, "Music"));
+		eventCategories.add(new EventCategory(3, "Volunteering"));
+
+		return eventCategories;
+	}
+
 	public UserEvent getUserEvent() {
 		return new UserEvent(getUser(), getEvent());
 	}
@@ -108,13 +124,30 @@ public class MockUtility {
 
 		List<User> users = getUserList();
 		List<Event> events = getEventList();
+		List<UserEventId> userEventIds = getUserEventIdList();
 
-		userEvents.add(new UserEvent(users.get(0), events.get(0)));
-		userEvents.add(new UserEvent(users.get(1), events.get(1)));
-		userEvents.add(new UserEvent(users.get(2), events.get(2)));
-		userEvents.add(new UserEvent(users.get(3), events.get(3)));
+		userEvents.add(new UserEvent(userEventIds.get(0), users.get(0), events.get(1), 1));
+		userEvents.add(new UserEvent(userEventIds.get(1), users.get(1), events.get(1), 1));
+		userEvents.add(new UserEvent(userEventIds.get(2), users.get(2), events.get(2), 1));
+		userEvents.add(new UserEvent(userEventIds.get(3), users.get(3), events.get(2), 1));
 
 		return userEvents;
+
+	}
+
+	public List<UserEventId> getUserEventIdList() {
+
+		List<UserEventId> userEventIds = new ArrayList<UserEventId>();
+
+		List<User> users = getUserList();
+		List<Event> events = getEventList();
+
+		userEventIds.add(new UserEventId(users.get(0).getId(), events.get(1).getId()));
+		userEventIds.add(new UserEventId(users.get(1).getId(), events.get(1).getId()));
+		userEventIds.add(new UserEventId(users.get(2).getId(), events.get(2).getId()));
+		userEventIds.add(new UserEventId(users.get(3).getId(), events.get(2).getId()));
+
+		return userEventIds;
 
 	}
 

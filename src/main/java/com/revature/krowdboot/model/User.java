@@ -20,6 +20,13 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * 
+ * The entity class that corresponds to the User table in the DB.
+ * 
+ * @author Unknown
+ *
+ */
 @Entity
 @Table(name = "KROWD_USER")
 public class User implements Serializable {

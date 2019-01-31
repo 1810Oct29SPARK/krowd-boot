@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.google.gson.JsonObject;
 
 import io.restassured.RestAssured;
+import io.restassured.http.Header;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -21,6 +22,8 @@ import io.restassured.specification.RequestSpecification;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class AdminControllerTest {
+
+	Header token = new Header("Authorization", "gjahdnsandhfajdfjue73845yhrgh8483t4hfuhduhfdsagfy476ru4guhusghurauyfeq7hrqeyfgudhasyfsq73ygqryfgu8ydgvduqfhgyrq8gf8uqherfugq87yghdbjkvucdsagijngfuewhguiwn8rugy74uh43iutrh8rt7ah");
 
 	@LocalServerPort
 	private int port;
@@ -32,12 +35,12 @@ public class AdminControllerTest {
 
 	@Test
 	public void flaggedCommentsTest() {
-		RestAssured.get("/admin/comments").then().statusCode(200);
+		RestAssured.given().header(token).get("/admin/comments").then().statusCode(200);
 	}
 
 	@Test
 	public void flaggedEventsTest() {
-		RestAssured.get("/admin/events").then().statusCode(200);
+		RestAssured.given().header(token).get("/admin/events").then().statusCode(200);
 	}
 
 	/*
@@ -54,6 +57,7 @@ public class AdminControllerTest {
 	public void deactivateUserTest() {
 		RequestSpecification httpRequest = RestAssured.given();
 		httpRequest.header("Content-Type", "application/json");
+		httpRequest.header(token);
 		JsonObject request = new JsonObject();
 		request.addProperty("id", 2);
 		httpRequest.body(request.toString());

@@ -1,6 +1,6 @@
 package com.revature.krowdboot.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -21,6 +21,10 @@ import com.revature.krowdboot.repository.CommentRepository;
 import com.revature.krowdboot.repository.EventRepository;
 import com.revature.krowdboot.repository.UserRepository;
 import com.revature.krowdboot.utility.MockUtility;
+
+/*
+ * @Author Moises Trevino
+ */
 
 public class AdminServiceTest {
 
