@@ -27,7 +27,8 @@ import io.restassured.specification.RequestSpecification;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class EventControllerTest {
 
-	Header token = new Header("Authorization", "gjahdnsandhfajdfjue73845yhrgh8483t4hfuhduhfdsagfy476ru4guhusghurauyfeq7hrqeyfgudhasyfsq73ygqryfgu8ydgvduqfhgyrq8gf8uqherfugq87yghdbjkvucdsagijngfuewhguiwn8rugy74uh43iutrh8rt7ah");
+	Header token = new Header("Authorization",
+			"gjahdnsandhfajdfjue73845yhrgh8483t4hfuhduhfdsagfy476ru4guhusghurauyfeq7hrqeyfgudhasyfsq73ygqryfgu8ydgvduqfhgyrq8gf8uqherfugq87yghdbjkvucdsagijngfuewhguiwn8rugy74uh43iutrh8rt7ah");
 	@LocalServerPort
 	private int port;
 
@@ -51,8 +52,8 @@ public class EventControllerTest {
 		request.addProperty("eventName", "Bradley's");
 		request.addProperty("eventPhotoID", "photo");
 		request.addProperty("eventDescription", "Social Get-Together");
-		request.addProperty("eventDate", "February 1, 2019");
-		request.addProperty("userID", 3);
+		request.addProperty("eventDate", "2019-02-01T10:15:30");
+		request.addProperty("userID", 2);
 		request.addProperty("eventCategory", 6);
 		request.addProperty("eventAddress", "1111 Ybor Road");
 		request.addProperty("eventApartment", "Bradley's");
@@ -61,6 +62,7 @@ public class EventControllerTest {
 		request.addProperty("eventZip", 33615);
 		httpRequest.body(request.toString());
 		Response response = httpRequest.post("/event/add");
+		System.out.println(response.asString());
 		Assert.assertEquals(200, response.statusCode());
 	}
 
@@ -88,7 +90,7 @@ public class EventControllerTest {
 		request.addProperty("eventName", "Beach Party");
 		request.addProperty("eventPhotoID", "photo");
 		request.addProperty("eventDescription", "Social Get-Together");
-		request.addProperty("eventDate", "February 1, 2019");
+		request.addProperty("eventDate", "2007-12-03T10:15:30");
 		request.addProperty("eventFlag", 0);
 		request.addProperty("userID", 3);
 		request.addProperty("eventCategory", 6);
@@ -104,17 +106,20 @@ public class EventControllerTest {
 
 	@Test
 	public void getEventByEventIdTest() {
-		RestAssured.given().header(token).get("/event/byId/2").then().assertThat().body(containsString("Arts and Crafts with Grandma"));
+		RestAssured.given().header(token).get("/event/byId/2").then().assertThat()
+				.body(containsString("Arts and Crafts with Grandma"));
 	}
 
 	@Test
 	public void getEventsByEventCategoryTest() {
-		RestAssured.given().header(token).get("/event/byCategory/2").then().assertThat().body(containsString("Learn to Bake"));
+		RestAssured.given().header(token).get("/event/byCategory/2").then().assertThat()
+				.body(containsString("Learn to Bake"));
 	}
 
 	@Test
 	public void getEventsByUser() {
-		RestAssured.given().header(token).get("/event/byUser/2").then().assertThat().body(containsString("Hike near Hillsborough"));
+		RestAssured.given().header(token).get("/event/byUser/2").then().assertThat()
+				.body(containsString("Hike near Hillsborough"));
 	}
 
 	@Test

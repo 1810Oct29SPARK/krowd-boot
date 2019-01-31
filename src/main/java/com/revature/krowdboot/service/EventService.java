@@ -25,7 +25,6 @@ import com.revature.krowdboot.utility.DateUtility;
  */
 @Service
 public class EventService {
-	
 
 	@Autowired
 	private EventRepository eventRepository;
@@ -93,10 +92,10 @@ public class EventService {
 		Address address = addressService.checkAddress(new Address(streetAddress, apartment, city, state, zipCode));
 
 		Event e = new Event(name, picture, description, date, address, score, flag, eventCategory, userObj);
-		
-		Event newEvent = null; 
-		
-		if(DateUtility.isNotPastDate(date)) {
+
+		Event newEvent = null;
+
+		if (DateUtility.isNotPastDate(date)) {
 			newEvent = eventRepository.save(e);
 		}
 
@@ -143,10 +142,10 @@ public class EventService {
 
 		Address address = addressService.checkAddress(new Address(streetAddress, apartment, city, state, zipCode));
 		Event e = new Event(id, name, picture, description, date, address, score, flag, eventCategory, userObj);
-		
-		Event newEvent = null; 
-		
-		if(DateUtility.isNotPastDate(date)) {
+
+		Event newEvent = null;
+
+		if (DateUtility.isNotPastDate(date)) {
 			newEvent = eventRepository.save(e);
 		}
 
