@@ -118,9 +118,9 @@ INSERT INTO USER_EVENT (event_id,user_id) VALUES (9,2);
 INSERT INTO USER_EVENT (event_id,user_id) VALUES (10,1);
 
 INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (1,'Looking forward to seeing all you.',0,1,1,'2019-01-20T17:48');
-INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (2,'I hated this event. The host should just die in a hole.',1,2,2,'2019-01-01T19:32');
-INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (3,'Why is every event bad. I don''t like Krowd.',1,2,1,'2019-01-01T18:00');
-INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (4,'You are all jerks. I hate this stuff.',1,2,2,'2019-01-27T12:00');
+INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (2,'Generic offensive comment',1,2,2,'2019-01-01T19:32');
+INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (3,'Generic offensive comment',1,2,1,'2019-01-01T18:00');
+INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (4,'Generic offensive comment',1,2,2,'2019-01-27T12:00');
 INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (5,'I actually liked this event. Good job.',0,2,1,'2019-01-12T12:00');
 INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (6,'Nice. I love seafood.',0,4,8,'2019-01-27T12:00');
 INSERT INTO COMMENT (id,comment,flag,user_id,event_id,timestamp) VALUES (7,'I''m looking forward to learning about all the nature around here.',0,3,7,'2019-01-25T21:09');
