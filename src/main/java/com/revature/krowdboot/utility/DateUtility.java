@@ -47,20 +47,20 @@ public class DateUtility {
 
 		return fdt.compareTo(sdt) > 0;
 	}
-	
+
 	/**
 	 * 
-	 * The method compares a formatted date string against the current time will return true if 
-	 * the date is chronologically later than the current date, or false otherwise.
+	 * The method compares a formatted date string against the current time will
+	 * return true if the date is chronologically later than the current date, or
+	 * false otherwise.
 	 * 
 	 * @param firstDate
-	 * @param secondDate
 	 * @return the comparison boolean value
 	 */
 	public static boolean isNotPastDate(String date) {
 
 		LocalDateTime dt = LocalDateTime.parse(date);
-		LocalDateTime current = LocalDateTime.now(); 
+		LocalDateTime current = LocalDateTime.now();
 
 		return dt.compareTo(current) < 0;
 
