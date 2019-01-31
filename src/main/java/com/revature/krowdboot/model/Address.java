@@ -11,6 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+/**
+ * 
+ * The entity class that corresponds to the Address table in the DB.
+ * 
+ * @author Unknown
+ *
+ */
 @Entity
 @Table(name = "ADDRESS")
 public class Address implements Serializable {

@@ -1,6 +1,7 @@
 package com.revature.krowdboot.service;
 
 import static org.junit.Assert.*;
+
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
@@ -16,6 +17,10 @@ import org.mockito.InjectMocks;
 
 import com.revature.krowdboot.model.Address;
 import com.revature.krowdboot.repository.AddressRepository;
+
+/*
+ * @Author Moises Trevino
+ */
 
 public class AddressServiceTest {
 

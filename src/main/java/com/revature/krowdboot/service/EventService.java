@@ -14,8 +14,13 @@ import com.revature.krowdboot.model.EventCategory;
 import com.revature.krowdboot.model.User;
 import com.revature.krowdboot.repository.EventRepository;
 
-/*
- * @Author Jonathan Snider & Stewart Gardner
+/**
+ * 
+ * The service class that manages the communication between the DAO layer and
+ * the controller layer for the Event class.
+ * 
+ * @author Jonathan Snider & Stewart Gardner
+ *
  */
 @Service
 public class EventService {
@@ -39,12 +44,25 @@ public class EventService {
 		this.eventRepository = eventRepository;
 	}
 
+	/**
+	 * 
+	 * The method that retrieves and returns all events.
+	 * 
+	 * @return the event list
+	 */
 	public List<Event> findallEvents() {
 		List<Event> e = new ArrayList<>();
 		e = eventRepository.findAll();
 		return e;
 	}
 
+	/**
+	 * 
+	 * The methods that creates and adds an event to the DB.
+	 * 
+	 * @param json
+	 * @return the new event ID
+	 */
 	public int addEvent(JSONObject json) {
 
 		String name = json.getString("eventName");
@@ -83,6 +101,13 @@ public class EventService {
 
 	}
 
+	/**
+	 * 
+	 * The method that updates an event.
+	 * 
+	 * @param json
+	 * @return the event id
+	 */
 	public int updateEvent(JSONObject json) {
 
 		Integer id = json.getInt("eventID");
@@ -121,6 +146,13 @@ public class EventService {
 
 	}
 
+	/**
+	 * 
+	 * The method that deletes an event.
+	 * 
+	 * @param id
+	 * @return the event ID
+	 */
 	public int deleteEvent(Integer id) {
 		eventRepository.deleteById(id);
 		System.out.println(id);
@@ -131,6 +163,13 @@ public class EventService {
 		}
 	}
 
+	/**
+	 * 
+	 * The method that gets an event by its ID.
+	 * 
+	 * @param id
+	 * @return the event
+	 */
 	public Event getEventById(Integer id) {
 		Optional<Event> e = eventRepository.findById(id);
 		if (e.isPresent()) {
@@ -140,6 +179,13 @@ public class EventService {
 		}
 	}
 
+	/**
+	 * 
+	 * The method that retrieves and returns all events of a specific category.
+	 * 
+	 * @param id
+	 * @return the event list
+	 */
 	public List<Event> getEventsByEventCategory(Integer id) {
 		List<Event> e = new ArrayList<>();
 		EventCategory eventCategory = eventCategoryService.getCategoryById(id);
@@ -147,6 +193,13 @@ public class EventService {
 		return e;
 	}
 
+	/**
+	 * 
+	 * The method that retrieves and returns all events created by a specific user.
+	 * 
+	 * @param id
+	 * @return the event list
+	 */
 	public List<Event> getEventsByUser(Integer id) {
 		List<Event> e = new ArrayList<>();
 		User user = userService.getUserById(id);
@@ -154,6 +207,12 @@ public class EventService {
 		return e;
 	}
 
+	/**
+	 * 
+	 * The method that retrieves and returns all flagged events.
+	 * 
+	 * @return the event list
+	 */
 	public List<Event> getEventsByFlag() {
 		List<Event> e = new ArrayList<>();
 		e = eventRepository.getEventsByFlag(1);

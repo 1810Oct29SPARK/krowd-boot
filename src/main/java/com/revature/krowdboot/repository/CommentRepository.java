@@ -9,16 +9,20 @@ import com.revature.krowdboot.model.Comment;
 import com.revature.krowdboot.model.Event;
 import com.revature.krowdboot.model.User;
 
+/**
+ * 
+ * The repository interface that serves as the data access object for the
+ * Comment class.
+ * 
+ * @author Unknown
+ *
+ */
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
 	public List<Comment> getCommentsByFlag(int flag);
 
 	public List<Comment> findAll();
-
-	public Comment getCommentById(int id);
-
-	public void deleteCommentById(int id);
 
 	public List<Comment> findByUserId(User user);
 

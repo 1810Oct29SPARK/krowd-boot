@@ -11,6 +11,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+/**
+ * 
+ * The entity class that corresponds to the User Event table in the DB.
+ * 
+ * @author Unknown
+ *
+ */
 @Entity
 @Table(name = "USER_EVENT")
 public class UserEvent implements Serializable {

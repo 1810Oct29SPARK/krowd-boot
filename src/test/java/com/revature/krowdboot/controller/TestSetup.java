@@ -1,6 +1,8 @@
 package com.revature.krowdboot.controller;
 
+import org.junit.Before;
 import org.junit.BeforeClass;
+import org.springframework.boot.web.server.LocalServerPort;
 
 import io.restassured.RestAssured;
 
@@ -8,6 +10,14 @@ import io.restassured.RestAssured;
  * @Author Jake Mulrenin
  */
 public class TestSetup {
+	
+	@LocalServerPort
+	private int port;
+	
+	@Before
+	public void setUp() throws Exception {
+	    RestAssured.port = port;
+	}
 
 	@BeforeClass
 	public static void setup() {
